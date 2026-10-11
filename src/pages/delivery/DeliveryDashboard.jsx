@@ -6,6 +6,27 @@ import { Card, Badge, Button, EmptyState, Spinner } from '../../components/commo
 import { getDeliveryRoutes } from '../../firebase/firestore.js'
 
 const todayStr = () => new Date().toISOString().slice(0, 10)
+const timestamp = (value) => (value?.toMillis ? value.toMillis() : value?.seconds ? value.seconds * 1000 : 0)
+
+function sortRoutes(routes) {
+  return [...routes].sort((a, b) => {
+    const aCompleted = a.status === 'completed' ? 1 : 0
+    const bCompleted = b.status === 'completed' ? 1 : 0
+    if (aCompleted !== bCompleted) return aCompleted - bCompleted
+    return timestamp(b.createdAt) - timestamp(a.createdAt)
+  })
+}
+
+function statusLabel(status) {
+  if (status === 'not_started') return 'Pending'
+  return (status || 'pending').replace(/_/g, ' ')
+}
+
+function statusTone(status) {
+  if (status === 'completed') return 'success'
+  if (status === 'in_progress') return 'info'
+  return 'warn'
+}
 
 export default function DeliveryDashboard() {
   const { currentUser } = useAuth()
@@ -24,14 +45,14 @@ export default function DeliveryDashboard() {
         <EmptyState icon="🛵" title="Koi route assign nahi hua" message="Jab mess owner aapko route assign karega, wo yahan dikhega." />
       ) : (
         <div className="flex flex-col gap-4">
-          {routes.map((r, i) => (
+          {sortRoutes(routes).map((r, i) => (
             <Card key={r.id} className="flex justify-between items-center animate-fadeUp" style={{ animationDelay: `${i * 0.08}s` }}>
               <div>
                 <h3 className="text-lg capitalize">{r.meal} Route</h3>
-                <p className="text-charcoal-soft text-sm">{r.stops.length} stops</p>
+                <p className="text-charcoal-soft text-sm">{(r.stops || []).length} {(r.stops || []).length === 1 ? 'stop' : 'stops'}</p>
               </div>
               <div className="flex gap-3 items-center">
-                <Badge tone={r.status === 'in_progress' ? 'success' : 'neutral'}>{r.status.replace('_', ' ')}</Badge>
+                <Badge tone={statusTone(r.status)}>{statusLabel(r.status)}</Badge>
                 <Link to={`/delivery/route/${r.id}`}><Button size="sm">Open Route</Button></Link>
               </div>
             </Card>
