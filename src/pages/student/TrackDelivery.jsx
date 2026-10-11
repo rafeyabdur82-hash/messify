@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext.jsx'
 import PageLayout from '../../components/common/StudentPage.jsx'
 import { Card, Badge, Spinner } from '../../components/common/UI.jsx'
 import LiveMap from '../../components/common/LiveMap.jsx'
-import { getMessProfile, getUserProfile, listenRoute } from '../../firebase/firestore.js'
+import { getMessProfile, getUserProfile, listenRoute, updateStudentLiveLocation } from '../../firebase/firestore.js'
 import { geocodeAddress } from '../../utils/location.js'
 
 function agoText(ts) {
@@ -21,6 +21,8 @@ export default function TrackDelivery() {
   const [missing, setMissing] = useState(false)
   const [messPoint, setMessPoint] = useState(null)
   const [studentPoint, setStudentPoint] = useState(null)
+  const [locationError, setLocationError] = useState('')
+  const lastLocationWrite = useRef(0)
   const [, setTick] = useState(0)
 
   useEffect(() => listenRoute(orderId, (r) => { setRoute(r); setMissing(!r) }), [orderId])
@@ -33,8 +35,14 @@ export default function TrackDelivery() {
         getMessProfile(route.messId).catch(() => null),
       ])
       const profile = { ...(publicProfile || {}), ...(userProfile || {}) }
+      const label = route.messLocation?.label || profile.messName || 'Mess'
+      const savedPoint = route.messLocation?.lat != null && route.messLocation?.lng != null ? route.messLocation : profile
+      if (savedPoint.lat != null && savedPoint.lng != null) {
+        if (!cancelled) setMessPoint({ lat: Number(savedPoint.lat), lng: Number(savedPoint.lng), label })
+        return
+      }
       const point = await geocodeAddress(profile.fullAddress || profile.area || publicProfile?.area).catch(() => null)
-      if (!cancelled) setMessPoint(point ? { ...point, label: profile.messName || publicProfile?.messName || 'Mess' } : null)
+      if (!cancelled) setMessPoint(point ? { ...point, label } : null)
     })()
     return () => { cancelled = true }
   }, [route?.messId])
@@ -53,6 +61,26 @@ export default function TrackDelivery() {
     geocodeAddress(stop.address).then((point) => { if (!cancelled) setStudentPoint(point) }).catch(() => {})
     return () => { cancelled = true }
   }, [route?.stops, currentUser.uid, profile?.lat, profile?.lng])
+  useEffect(() => {
+    if (route?.status !== 'in_progress' || !('geolocation' in navigator)) return undefined
+    const watchId = navigator.geolocation.watchPosition(
+      ({ coords }) => {
+        const point = { lat: coords.latitude, lng: coords.longitude }
+        setStudentPoint(point)
+        setLocationError('')
+        const now = Date.now()
+        if (now - lastLocationWrite.current < 8000) return
+        lastLocationWrite.current = now
+        updateStudentLiveLocation(currentUser.uid, { ...point, accuracy: coords.accuracy })
+          .catch((error) => console.error('Student live location update failed:', error))
+      },
+      (error) => setLocationError(error.code === error.PERMISSION_DENIED
+        ? 'Location permission is off. Allow it in browser settings to share your current location during delivery.'
+        : 'Could not get your current location. Check device location settings.'),
+      { enableHighAccuracy: true, maximumAge: 5000, timeout: 20000 },
+    )
+    return () => navigator.geolocation.clearWatch(watchId)
+  }, [route?.status, currentUser.uid])
   // keep the "x seconds ago" label fresh
   useEffect(() => { const t = setInterval(() => setTick((n) => n + 1), 10000); return () => clearInterval(t) }, [])
 
@@ -82,6 +110,8 @@ export default function TrackDelivery() {
           <h3 className="text-base font-bold">Live location</h3>
           {liveLocation && <span className="text-xs text-charcoal-soft">Updated {agoText(liveLocation.updatedAt)}</span>}
         </div>
+        {route.status === 'in_progress' && <p className="text-xs text-charcoal-soft mb-3">When browser location is allowed, your current position is shared with the assigned delivery partner until this route ends.</p>}
+        {locationError && <p className="text-xs text-danger mb-3">{locationError}</p>}
         {liveLocation ? (
           <LiveMap
             rider={liveLocation}

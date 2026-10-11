@@ -112,13 +112,13 @@ export default function Signup() {
 
   return (
     <div
-      className="min-h-screen lg:h-screen lg:min-h-0 lg:overflow-hidden bg-brand-cream flex items-center justify-center py-6 md:py-10 lg:py-4 px-4 md:px-8"
+      className="min-h-screen xl:h-screen xl:min-h-0 xl:overflow-hidden bg-brand-cream flex items-center justify-center py-6 md:py-10 xl:py-4 px-4 md:px-8"
       style={{ backgroundImage: 'radial-gradient(#0F4D3A22 0.8px, transparent 0.8px)', backgroundSize: '24px 24px' }}
     >
-      <div className="w-full max-w-7xl rounded-3xl overflow-hidden shadow-2xl border-2 border-brand-gold/40 bg-white grid grid-cols-1 lg:grid-cols-12 lg:h-full lg:max-h-[900px]">
+      <div className="w-full max-w-7xl rounded-3xl overflow-hidden shadow-2xl border-2 border-brand-gold/40 bg-white grid grid-cols-1 xl:grid-cols-12 xl:h-full xl:max-h-[900px]">
         {/* LEFT: brand panel */}
         <div
-          className="lg:col-span-5 bg-brand-forest p-7 sm:p-10 lg:p-8 text-white flex flex-col justify-between gap-8 lg:gap-3 relative overflow-hidden lg:min-h-0"
+          className="hidden xl:flex xl:col-span-5 bg-brand-forest p-7 sm:p-10 lg:p-8 text-white flex-col justify-between gap-8 lg:gap-3 relative overflow-hidden lg:min-h-0"
           style={{ backgroundImage: 'radial-gradient(rgba(224,165,38,0.16) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px' }}
         >
           <div className="absolute -top-16 -left-16 w-80 h-80 rounded-full bg-brand-gold/10 blur-3xl pointer-events-none" />
@@ -171,7 +171,7 @@ export default function Signup() {
         </div>
 
         {/* RIGHT: signup form */}
-        <div className="lg:col-span-7 bg-brand-cream/60 p-5 sm:p-10 lg:p-4 flex flex-col justify-center lg:overflow-y-auto">
+        <div className="w-full xl:col-span-7 bg-brand-cream/60 p-5 sm:p-10 lg:p-4 flex flex-col justify-center xl:overflow-y-auto">
           <div className="max-w-xl mx-auto w-full bg-white rounded-2xl p-6 sm:p-8 lg:p-5 shadow-xl border border-brand-gold/35">
             <div className="mb-6 lg:mb-2">
               <div className="flex items-center justify-between gap-2">

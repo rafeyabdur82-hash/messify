@@ -62,19 +62,19 @@ function Header({ location, status, onDetect }) {
     <header className="sticky top-0 z-50 w-full shadow-lg">
       {showBar && <AnnouncementBar onClose={() => setShowBar(false)} />}
       <nav className="bg-brand-forest text-white border-b border-brand-gold/30 py-3.5">
-        <div className={`${CONTAINER} flex items-center justify-between`}>
-          <a className="flex items-center space-x-3 group" href="#top">
-            <Logo className="w-12 h-12 shadow-md" />
+        <div className={`${CONTAINER} flex flex-wrap items-center justify-between gap-y-2`}>
+          <a className="flex min-w-0 items-center space-x-2 sm:space-x-3 group" href="#top">
+            <Logo className="w-10 h-10 sm:w-12 sm:h-12 shadow-md shrink-0" />
             <div className="flex flex-col">
-              <span className="text-2xl font-extrabold tracking-wider text-brand-gold uppercase font-heading leading-tight">MESSIFY</span>
-              <span className="text-[9px] tracking-widest text-amber-200/90 font-medium uppercase">Fresh mess food, one tap away</span>
+              <span className="text-xl sm:text-2xl font-extrabold tracking-wider text-brand-gold uppercase font-heading leading-tight">MESSIFY</span>
+              <span className="text-[8px] sm:text-[9px] tracking-widest text-amber-200/90 font-medium uppercase">Fresh mess food, one tap away</span>
             </div>
           </a>
 
-          <div className="flex items-center space-x-3 sm:space-x-5">
-            <LocationPill location={location} status={status} onDetect={onDetect} />
-            <Link to="/login" className="text-sm font-semibold text-amber-100 hover:text-white transition-colors px-2 py-1">Login</Link>
-            <Link to="/student/browse" className="bg-brand-saffron hover:bg-brand-saffronHover text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all transform hover:-translate-y-0.5 inline-flex items-center">
+          <div className="ml-auto flex w-full min-w-0 items-center justify-end gap-2 sm:w-auto sm:gap-3 md:gap-5">
+            <LocationPill className="hidden sm:flex" location={location} status={status} onDetect={onDetect} />
+            <Link to="/login" className="shrink-0 text-xs sm:text-sm font-semibold text-amber-100 hover:text-white transition-colors px-1.5 sm:px-2 py-1">Login</Link>
+            <Link to="/student/browse" className="shrink-0 bg-brand-saffron hover:bg-brand-saffronHover text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm shadow-md transition-all transform hover:-translate-y-0.5 inline-flex items-center whitespace-nowrap">
               Find My Mess
             </Link>
           </div>

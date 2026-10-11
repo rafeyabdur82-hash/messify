@@ -96,10 +96,10 @@ export default function Login() {
   const inputCls = 'w-full bg-surface-container-low text-on-surface font-body-md text-body-md pl-10 py-2.5 rounded-lg focus:outline-none focus:bg-surface-bright focus:shadow-md transition-all placeholder:text-outline'
 
   return (
-    <div className="portal-theme min-h-screen lg:h-screen lg:min-h-0 lg:overflow-hidden flex items-center justify-center py-6 md:py-10 lg:py-4 px-4 md:px-8">
-      <div className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden shadow-xl bg-surface-container-lowest flex flex-col lg:flex-row lg:h-full lg:max-h-[880px] relative">
+    <div className="portal-theme min-h-screen xl:h-screen xl:min-h-0 xl:overflow-hidden flex items-center justify-center py-6 md:py-10 xl:py-4 px-4 md:px-8">
+      <div className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden shadow-xl bg-surface-container-lowest flex flex-col xl:flex-row xl:h-full xl:max-h-[880px] relative">
         {/* LEFT: forest green brand panel */}
-        <div className="lg:w-1/2 w-full bg-primary-container text-surface-bright p-space-lg md:p-space-xl lg:p-space-lg flex flex-col justify-between relative overflow-hidden gap-space-lg lg:gap-space-sm">
+        <div className="hidden xl:flex xl:w-1/2 w-full bg-primary-container text-surface-bright p-space-lg md:p-space-xl lg:p-space-lg flex-col justify-between relative overflow-hidden gap-space-lg lg:gap-space-sm">
           <div className="absolute inset-0 pointer-events-none opacity-10 flex items-center justify-center">
             <svg className="w-[680px] h-[680px] max-w-none text-surface-bright stroke-current fill-none" viewBox="0 0 400 400">
               <circle cx="200" cy="200" r="180" strokeDasharray="6,6" strokeWidth="1.5" />
@@ -176,7 +176,7 @@ export default function Login() {
         </div>
 
         {/* RIGHT: login card */}
-        <div className="lg:w-1/2 w-full bg-surface-container-low p-space-md sm:p-space-lg lg:p-space-md flex flex-col justify-center items-center relative lg:overflow-y-auto">
+        <div className="w-full xl:w-1/2 bg-surface-container-low p-space-md sm:p-space-lg lg:p-space-md flex flex-col justify-center items-center relative xl:overflow-y-auto">
           <div className="w-full max-w-md mb-space-md lg:mb-space-sm flex justify-between items-center bg-surface-container rounded-full p-1 shadow-sm" role="tablist" aria-label="Choose portal">
             {PORTALS.map((p) => (
               <button

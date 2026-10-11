@@ -18,7 +18,7 @@ const TEXT = {
   error: 'Could not detect · tap to retry',
 }
 
-export default function LocationPill({ location, status, onDetect }) {
+export default function LocationPill({ location, status, onDetect, className = '' }) {
   const label = status === 'ready' && location ? (location.full || location.label).replace(/,\s*India$/, '') : TEXT[status] || TEXT.idle
   const boxRef = useRef(null)
   const textRef = useRef(null)
@@ -42,10 +42,10 @@ export default function LocationPill({ location, status, onDetect }) {
       onClick={onDetect}
       disabled={status === 'detecting' || status === 'unsupported'}
       title={label}
-      className="flex items-center gap-1.5 bg-brand-forestDark px-3 py-1.5 rounded-full border border-brand-gold/40 text-xs shadow-inner text-brand-gold font-semibold hover:border-brand-gold transition-colors disabled:cursor-default max-w-[200px] sm:max-w-[320px] min-w-0"
+      className={`flex items-center gap-1.5 bg-brand-forestDark px-2 sm:px-3 py-1.5 rounded-full border border-brand-gold/40 text-xs shadow-inner text-brand-gold font-semibold hover:border-brand-gold transition-colors disabled:cursor-default max-w-[140px] sm:max-w-[180px] md:max-w-[240px] lg:max-w-[320px] min-w-0 ${className}`}
     >
       <PinIcon />
-      <span ref={boxRef} className="overflow-hidden whitespace-nowrap min-w-0 w-[120px] sm:w-[240px]">
+      <span ref={boxRef} className="overflow-hidden whitespace-nowrap min-w-0 w-[88px] sm:w-[120px] md:w-[180px] lg:w-[240px]">
         {overflowing ? (
           <span className="inline-flex" style={{ animation: `locationScroll ${seconds}s linear infinite` }}>
             <span className="pr-10">{label}</span>

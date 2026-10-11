@@ -254,6 +254,16 @@ export async function getUserProfile(uid) {
   return snap.exists() ? snap.data() : null
 }
 
+export function listenUserProfile(uid, callback) {
+  return onSnapshot(doc(db, 'users', uid), (snap) => callback(snap.exists() ? snap.data() : null))
+}
+
+export async function updateStudentLiveLocation(uid, { lat, lng, accuracy }) {
+  await updateDoc(doc(db, 'users', uid), {
+    liveLocation: { lat, lng, accuracy: accuracy ?? null, updatedAt: serverTimestamp() },
+  })
+}
+
 // ---------- Tiffin box QR tracking ----------
 export async function recordBoxScan(qrId, studentId, messId, status, scannedBy = '') {
   const ref = doc(db, 'tiffinBoxes', qrId)

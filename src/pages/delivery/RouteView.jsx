@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import PageLayout from '../../components/common/DeliveryPage.jsx'
 import { Card, Button, Spinner, Badge } from '../../components/common/UI.jsx'
 import LiveMap from '../../components/common/LiveMap.jsx'
-import { listenRoute, startRoute, completeStop, updateRouteLocation, getUserProfile, getMessProfile } from '../../firebase/firestore.js'
+import { listenRoute, listenUserProfile, startRoute, completeStop, updateRouteLocation, getUserProfile, getMessProfile } from '../../firebase/firestore.js'
 import { geocodeAddress } from '../../utils/location.js'
 
 const SEND_EVERY_MS = 8000 // how often the live position is written to Firestore
@@ -24,6 +24,8 @@ export default function RouteView() {
   const [geo, setGeo] = useState({}) // address -> {lat,lng} for stops saved without coordinates
   const [messPoint, setMessPoint] = useState(null)
   const [riderLabel, setRiderLabel] = useState('Delivery partner')
+  const [studentLiveLocations, setStudentLiveLocations] = useState({})
+  const routeStudentIds = [...new Set((route?.stops || []).map((stop) => stop.studentId).filter(Boolean))].join('|')
 
   useEffect(() => listenRoute(routeId, setRoute), [routeId])
 
@@ -58,6 +60,16 @@ export default function RouteView() {
       .catch(() => { if (!cancelled) setRiderLabel('Delivery partner') })
     return () => { cancelled = true }
   }, [route?.deliveryPersonId])
+
+  useEffect(() => {
+    const studentIds = routeStudentIds ? routeStudentIds.split('|') : []
+    if (studentIds.length === 0) { setStudentLiveLocations({}); return undefined }
+    setStudentLiveLocations({})
+    const unsubscribers = studentIds.map((studentId) => listenUserProfile(studentId, (profile) => {
+      setStudentLiveLocations((current) => ({ ...current, [studentId]: profile?.liveLocation || null }))
+    }))
+    return () => unsubscribers.forEach((unsubscribe) => unsubscribe())
+  }, [routeStudentIds])
 
   const live = route?.status === 'in_progress'
 
@@ -152,7 +164,12 @@ export default function RouteView() {
             riderLabel={riderLabel}
             origin={messPoint}
             stops={route.stops.map((st, i) => {
-              const c = st.lat != null && st.lng != null ? st : geo[st.address] || {}
+              const liveLocation = studentLiveLocations[st.studentId]
+              const updatedAt = liveLocation?.updatedAt?.toMillis?.() ?? (liveLocation?.updatedAt?.seconds ? liveLocation.updatedAt.seconds * 1000 : 0)
+              const freshLocation = live && Date.now() - updatedAt < 30000 && liveLocation?.lat != null && liveLocation?.lng != null
+                ? liveLocation
+                : null
+              const c = freshLocation || (st.lat != null && st.lng != null ? st : geo[st.address] || {})
               return { lat: c.lat, lng: c.lng, label: `${i + 1}. ${st.name || 'Student'}`, done: i < route.currentStopIndex, current: i === route.currentStopIndex && !isComplete }
             })}
             className="h-72 md:h-96 w-full rounded-xl overflow-hidden border border-sooji z-0"
