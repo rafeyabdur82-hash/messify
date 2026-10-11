@@ -17,6 +17,8 @@ export default function RouteView() {
   const { routeId } = useParams()
   const [route, setRoute] = useState(null)
   const [busy, setBusy] = useState(false)
+  const [actionError, setActionError] = useState('')
+  const [actionMessage, setActionMessage] = useState('')
   const [sharing, setSharing] = useState(false)
   const [geoError, setGeoError] = useState('')
   const lastSent = useRef(0)
@@ -129,12 +131,36 @@ export default function RouteView() {
 
   async function handleStart() {
     setBusy(true)
-    try { await startRoute(routeId); setSharing(true) } finally { setBusy(false) }
+    setActionError('')
+    setActionMessage('')
+    try {
+      await startRoute(routeId)
+      setSharing(true)
+      setActionMessage('Route started. Mark each stop delivered after handing over the tiffin.')
+    } catch (error) {
+      console.error('Could not start delivery route:', error)
+      setActionError(error.code === 'permission-denied'
+        ? 'Route access was denied. Confirm that this route is assigned to your delivery account and that the latest Firestore rules are published.'
+        : 'Could not start the route. Check your connection and try again.')
+    } finally { setBusy(false) }
   }
 
   async function handleDelivered() {
+    if (!route || route.status !== 'in_progress' || isComplete || busy) return
     setBusy(true)
-    try { await completeStop(route, route.currentStopIndex) } finally { setBusy(false) }
+    setActionError('')
+    setActionMessage('')
+    try {
+      await completeStop(route, route.currentStopIndex)
+      setActionMessage(route.currentStopIndex + 1 >= route.stops.length
+        ? (Number(route.tipAmount) > 0 ? 'Route completed. The tip has been credited to your earnings.' : 'Route completed. All stops are delivered.')
+        : `Stop ${route.currentStopIndex + 1} delivered successfully.`)
+    } catch (error) {
+      console.error('Could not mark delivery stop complete:', error)
+      setActionError(error.code === 'permission-denied'
+        ? 'Firestore denied this update. Publish the latest firestore.rules; a route with a tip is credited only when its final stop is marked delivered.'
+        : 'Could not save this delivery. Check your connection and try again.')
+    } finally { setBusy(false) }
   }
 
   return (
@@ -146,6 +172,8 @@ export default function RouteView() {
           <Button full disabled={busy} onClick={handleStart}>{busy ? 'Starting…' : 'Start Route & Share Live Location'}</Button>
         ) : (
           <>
+            {actionError && <p role="alert" className="text-danger text-sm mb-3">{actionError}</p>}
+            {actionMessage && <p role="status" className="text-success text-sm mb-3">{actionMessage}</p>}
             <Button full disabled={busy} onClick={handleDelivered}>{busy ? 'Saving…' : `Mark Stop ${route.currentStopIndex + 1} Delivered`}</Button>
             <div className="flex items-center justify-between gap-3 mt-4 p-3 bg-dahi rounded-xl">
               <div className="text-sm">
@@ -157,6 +185,8 @@ export default function RouteView() {
             {geoError && <p className="text-danger text-xs mt-2">{geoError}</p>}
           </>
         )}
+        {route.status === 'not_started' && actionError && <p role="alert" className="text-danger text-sm mt-3">{actionError}</p>}
+        {route.status === 'not_started' && actionMessage && <p role="status" className="text-success text-sm mt-3">{actionMessage}</p>}
 
         <div className="mt-5">
           <LiveMap
