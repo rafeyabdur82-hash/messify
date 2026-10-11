@@ -4,7 +4,8 @@ import { useAuth } from '../../context/AuthContext.jsx'
 import PageLayout from '../../components/common/StudentPage.jsx'
 import { Card, Badge, Spinner } from '../../components/common/UI.jsx'
 import LiveMap from '../../components/common/LiveMap.jsx'
-import { listenRoute } from '../../firebase/firestore.js'
+import { getMessProfile, getUserProfile, listenRoute } from '../../firebase/firestore.js'
+import { geocodeAddress } from '../../utils/location.js'
 
 function agoText(ts) {
   if (!ts?.toDate) return ''
@@ -18,9 +19,32 @@ export default function TrackDelivery() {
   const { currentUser } = useAuth()
   const [route, setRoute] = useState(null)
   const [missing, setMissing] = useState(false)
+  const [messPoint, setMessPoint] = useState(null)
+  const [studentPoint, setStudentPoint] = useState(null)
   const [, setTick] = useState(0)
 
   useEffect(() => listenRoute(orderId, (r) => { setRoute(r); setMissing(!r) }), [orderId])
+  useEffect(() => {
+    if (!route?.messId) return undefined
+    let cancelled = false
+    ;(async () => {
+      const [userProfile, publicProfile] = await Promise.all([
+        getUserProfile(route.messId).catch(() => null),
+        getMessProfile(route.messId).catch(() => null),
+      ])
+      const profile = userProfile || publicProfile || {}
+      const point = await geocodeAddress(profile.fullAddress || profile.area || publicProfile?.area).catch(() => null)
+      if (!cancelled) setMessPoint(point ? { ...point, label: profile.messName || publicProfile?.messName || 'Mess' } : null)
+    })()
+    return () => { cancelled = true }
+  }, [route?.messId])
+  useEffect(() => {
+    const stop = route?.stops?.find((item) => item.studentId === currentUser.uid)
+    if (!stop || (stop.lat != null && stop.lng != null)) { setStudentPoint(null); return undefined }
+    let cancelled = false
+    geocodeAddress(stop.address).then((point) => { if (!cancelled) setStudentPoint(point) }).catch(() => {})
+    return () => { cancelled = true }
+  }, [route?.stops, currentUser.uid])
   // keep the "x seconds ago" label fresh
   useEffect(() => { const t = setInterval(() => setTick((n) => n + 1), 10000); return () => clearInterval(t) }, [])
 
@@ -51,7 +75,11 @@ export default function TrackDelivery() {
           {liveLocation && <span className="text-xs text-charcoal-soft">Updated {agoText(liveLocation.updatedAt)}</span>}
         </div>
         {liveLocation ? (
-          <LiveMap rider={liveLocation} destination={mine?.lat ? { lat: mine.lat, lng: mine.lng } : null} />
+          <LiveMap
+            rider={liveLocation}
+            origin={messPoint}
+            destination={mine && (mine.lat != null && mine.lng != null || studentPoint) ? { ...(studentPoint || {}), ...(mine.lat != null && mine.lng != null ? { lat: mine.lat, lng: mine.lng } : {}), label: mine.name || 'Your location' } : null}
+          />
         ) : (
           <div className="py-10 text-center bg-dahi rounded-xl text-sm text-charcoal-soft">
             {delivered ? 'Your tiffin has been delivered.' : status === 'in_progress' ? "Waiting for the delivery partner to share their live location." : 'The map appears once the delivery partner starts the route.'}

@@ -3,6 +3,7 @@ import StudentLayout from './StudentLayout.jsx'
 const DELIVERY_NAV = [
   { to: '/delivery', label: 'My Routes', icon: 'route', end: true },
   { to: '/delivery/scan', label: 'Scan Tiffin QR', icon: 'qr_code_scanner' },
+  { to: '/delivery/history', label: 'Order History', icon: 'history' },
 ]
 
 // Delivery-partner shell (same sidebar layout as student / mess panels). PageLayout-compatible props.

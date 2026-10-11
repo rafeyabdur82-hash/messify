@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../context/AuthContext.jsx'
 import PageLayout from '../../components/common/MessPage.jsx'
-import { Card, Input, Button, Badge, EmptyState, Spinner } from '../../components/common/UI.jsx'
-import { getMessDeliveryPartners, linkDeliveryPartner, unlinkDeliveryPartner } from '../../firebase/firestore.js'
+import { Card, Select, Button, Badge, EmptyState, Spinner } from '../../components/common/UI.jsx'
+import { getDeliveryPartnerAccounts, getMessDeliveryPartners, linkDeliveryPartner, unlinkDeliveryPartner } from '../../firebase/firestore.js'
 
 export default function DeliveryPartners() {
   const { currentUser } = useAuth()
   const [partners, setPartners] = useState([])
+  const [deliveryAccounts, setDeliveryAccounts] = useState([])
   const [loading, setLoading] = useState(true)
   const [email, setEmail] = useState('')
   const [linking, setLinking] = useState(false)
@@ -16,8 +17,12 @@ export default function DeliveryPartners() {
 
   async function load() {
     setLoading(true)
-    const data = await getMessDeliveryPartners(currentUser.uid)
+    const [data, accounts] = await Promise.all([
+      getMessDeliveryPartners(currentUser.uid),
+      getDeliveryPartnerAccounts(),
+    ])
     setPartners(data)
+    setDeliveryAccounts(accounts)
     setLoading(false)
   }
 
@@ -37,19 +42,32 @@ export default function DeliveryPartners() {
     load()
   }
 
+  const linkedEmails = new Set(partners.map((partner) => partner.email?.toLowerCase()))
+
   if (loading) return <PageLayout><Spinner /></PageLayout>
 
   return (
     <PageLayout title="Delivery Partners" subtitle="Link delivery accounts so you can assign them to routes">
       <Card className="mb-6 animate-fadeUp">
         <h3 className="text-base font-bold mb-3">Link a delivery partner</h3>
-        <p className="text-xs text-charcoal-soft mb-4">The delivery partner needs their own Messify account first (they sign up choosing "Delivery Partner"). Enter their email to link them to your mess.</p>
+        <p className="text-xs text-charcoal-soft mb-4">Select a delivery partner account to link it to your mess. Linked accounts are marked in the list.</p>
         <form onSubmit={handleLink} className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
-            <Input placeholder="delivery-partner@example.com" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Select required value={email} onChange={(e) => setEmail(e.target.value)}>
+              <option value="" disabled>Select a delivery partner</option>
+              {deliveryAccounts.map((account) => {
+                const linked = linkedEmails.has(account.email?.toLowerCase())
+                return (
+                  <option key={account.id} value={account.email} disabled={linked}>
+                    {account.name || 'Delivery Partner'} · {account.email}{linked ? ' (Linked)' : ''}
+                  </option>
+                )
+              })}
+            </Select>
           </div>
-          <Button type="submit" disabled={linking}>{linking ? 'Linking...' : 'Link Partner'}</Button>
+          <Button type="submit" disabled={linking || !email}>{linking ? 'Linking...' : 'Link Partner'}</Button>
         </form>
+        {deliveryAccounts.length === 0 && <p className="text-xs text-charcoal-soft mt-3">No delivery partner accounts found. They must sign up choosing “Delivery Partner” first.</p>}
         {error && <p className="text-danger text-[13px] bg-[#F7E3E0] px-3.5 py-2.5 rounded-xl mt-3">{error}</p>}
       </Card>
 

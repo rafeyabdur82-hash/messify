@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom'
 import PageLayout from '../../components/common/DeliveryPage.jsx'
 import { Card, Button, Spinner, Badge } from '../../components/common/UI.jsx'
 import LiveMap from '../../components/common/LiveMap.jsx'
-import { listenRoute, startRoute, completeStop, updateRouteLocation } from '../../firebase/firestore.js'
+import { listenRoute, startRoute, completeStop, updateRouteLocation, getUserProfile, getMessProfile } from '../../firebase/firestore.js'
+import { geocodeAddress } from '../../utils/location.js'
 
 const SEND_EVERY_MS = 8000 // how often the live position is written to Firestore
 
@@ -21,8 +22,36 @@ export default function RouteView() {
   const lastSent = useRef(0)
   const [myPos, setMyPos] = useState(null)
   const [geo, setGeo] = useState({}) // address -> {lat,lng} for stops saved without coordinates
+  const [messPoint, setMessPoint] = useState(null)
+  const [riderLabel, setRiderLabel] = useState('Delivery partner')
 
   useEffect(() => listenRoute(routeId, setRoute), [routeId])
+
+  useEffect(() => {
+    if (!route?.messId) return undefined
+    let cancelled = false
+    ;(async () => {
+      try {
+        const [userProfile, publicProfile] = await Promise.all([
+          getUserProfile(route.messId).catch(() => null),
+          getMessProfile(route.messId).catch(() => null),
+        ])
+        const profile = userProfile || publicProfile || {}
+        const point = await geocodeAddress(profile.fullAddress || profile.area || publicProfile?.area)
+        if (!cancelled) setMessPoint(point ? { ...point, label: profile.messName || publicProfile?.messName || 'Mess' } : null)
+      } catch { if (!cancelled) setMessPoint(null) }
+    })()
+    return () => { cancelled = true }
+  }, [route?.messId])
+
+  useEffect(() => {
+    if (!route?.deliveryPersonId) return undefined
+    let cancelled = false
+    getUserProfile(route.deliveryPersonId)
+      .then((profile) => { if (!cancelled) setRiderLabel(profile?.name || 'Delivery partner') })
+      .catch(() => { if (!cancelled) setRiderLabel('Delivery partner') })
+    return () => { cancelled = true }
+  }, [route?.deliveryPersonId])
 
   const live = route?.status === 'in_progress'
 
@@ -60,12 +89,10 @@ export default function RouteView() {
     ;(async () => {
       for (const st of route.stops) {
         if (cancelled) return
-        if (st.lat != null || !st.address || geo[st.address]) continue
+        if (st.lat != null && st.lng != null || !st.address || geo[st.address]) continue
         try {
-          const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(st.address)}`)
-          const j = await r.json()
-          if (j[0]) setGeo((g) => ({ ...g, [st.address]: { lat: Number(j[0].lat), lng: Number(j[0].lon) } }))
-          else setGeo((g) => ({ ...g, [st.address]: { lat: null, lng: null } }))
+          const point = await geocodeAddress(st.address)
+          setGeo((g) => ({ ...g, [st.address]: point || { lat: null, lng: null } }))
         } catch { /* map is optional */ }
         await new Promise((res) => setTimeout(res, 1100)) // Nominatim: max 1 request/second
       }
@@ -112,14 +139,16 @@ export default function RouteView() {
         <div className="mt-5">
           <LiveMap
             rider={myPos || route.liveLocation}
+            riderLabel={riderLabel}
+            origin={messPoint}
             stops={route.stops.map((st, i) => {
-              const c = st.lat != null ? st : geo[st.address] || {}
-              return { lat: c.lat, lng: c.lng, label: st.name || 'Student', done: i < route.currentStopIndex, current: i === route.currentStopIndex && !isComplete }
+              const c = st.lat != null && st.lng != null ? st : geo[st.address] || {}
+              return { lat: c.lat, lng: c.lng, label: `${i + 1}. ${st.name || 'Student'}`, done: i < route.currentStopIndex, current: i === route.currentStopIndex && !isComplete }
             })}
             className="h-72 md:h-96 w-full rounded-xl overflow-hidden border border-sooji z-0"
           />
           <p className="text-xs text-charcoal-soft mt-2">
-            {myPos ? 'Your position (maroon dot) updates live.' : live ? 'Waiting for your GPS position…' : 'Start the route to see your live position.'} Stops: green delivered, amber next, grey later.
+            {myPos ? 'Your position (maroon dot) updates live.' : live ? 'Waiting for your GPS position…' : 'Start the route to see your live position.'} Dashed line connects the mess, you, and delivery stops.
           </p>
         </div>
 

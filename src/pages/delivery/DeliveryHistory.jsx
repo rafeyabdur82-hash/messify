@@ -31,7 +31,7 @@ export default function DeliveryHistory() {
   const completedRoutes = routes.filter((r) => r.status === 'completed').length
 
   return (
-    <PageLayout title="Completed Orders" subtitle="Your delivery history">
+    <PageLayout title="Delivery History" subtitle="All your assigned routes and completed deliveries">
       <div className="grid grid-cols-3 gap-4 mb-6">
         <StatCard icon="📦" label="Orders delivered" value={totalDelivered} />
         <StatCard icon="📅" label="Delivered today" value={todayDelivered} color="haldi" />

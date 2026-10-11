@@ -383,6 +383,12 @@ export async function linkDeliveryPartner(messId, email) {
   return { success: true }
 }
 
+export async function getDeliveryPartnerAccounts() {
+  const q = query(collection(db, 'users'), where('role', '==', 'delivery'))
+  const snap = await getDocs(q)
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }))
+}
+
 export async function getMessDeliveryPartners(messId) {
   const q = query(collection(db, 'messDeliveryPartners'), where('messId', '==', messId))
   const snap = await getDocs(q)

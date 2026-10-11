@@ -6,6 +6,28 @@ import { useCallback, useEffect, useState } from 'react'
 
 const CACHE_KEY = 'messify.location'
 const DENIED_KEY = 'messify.location.denied'
+const GEOCODE_CACHE = new Map()
+let geocodeQueue = Promise.resolve()
+let lastGeocodeAt = 0
+
+export async function geocodeAddress(address) {
+  if (!address?.trim()) return null
+  const key = address.trim().toLowerCase()
+  if (GEOCODE_CACHE.has(key)) return GEOCODE_CACHE.get(key)
+  const request = geocodeQueue.then(async () => {
+    const delay = Math.max(0, 1100 - (Date.now() - lastGeocodeAt))
+    if (delay) await new Promise((resolve) => setTimeout(resolve, delay))
+    lastGeocodeAt = Date.now()
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(address.trim())}`)
+    if (!response.ok) return null
+    const results = await response.json()
+    return results[0] ? { lat: Number(results[0].lat), lng: Number(results[0].lon) } : null
+  })
+  geocodeQueue = request.catch(() => null)
+  const point = await request
+  GEOCODE_CACHE.set(key, point)
+  return point
+}
 
 function readCache() {
   try { return JSON.parse(localStorage.getItem(CACHE_KEY)) } catch { return null }
