@@ -99,14 +99,14 @@ export default function AIAgent() {
     <>
       <button
         onClick={() => setOpen((o) => !o)}
-        className="!fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-brand-forest text-white shadow-lg grid place-items-center text-2xl hover:-translate-y-1 transition-transform btn-glow"
+        className="!fixed bottom-20 right-4 sm:right-5 z-40 w-14 h-14 rounded-full bg-brand-forest text-white shadow-lg grid place-items-center text-2xl hover:-translate-y-1 transition-transform btn-glow"
         aria-label="Open Messify assistant"
       >
         {open ? '✕' : '🤖'}
       </button>
 
       {open && (
-        <div className="fixed bottom-24 right-5 z-40 w-[360px] max-w-[92vw] h-[520px] max-h-[75vh] bg-white border border-brand-gold/40 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fadeUp">
+        <div className="fixed bottom-36 right-4 sm:right-5 z-40 w-[360px] max-w-[92vw] h-[520px] max-h-[70vh] bg-white border border-brand-gold/40 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fadeUp">
           <div className="bg-brand-forest text-white px-4 py-3 flex items-center gap-2">
             <span className="text-lg">🤖</span>
             <div>

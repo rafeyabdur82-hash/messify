@@ -112,7 +112,7 @@ export default function Signup() {
 
   return (
     <div
-      className="min-h-screen xl:h-screen xl:min-h-0 xl:overflow-hidden bg-brand-cream flex items-center justify-center py-6 md:py-10 xl:py-4 px-4 md:px-8"
+      className="min-h-screen xl:h-screen xl:min-h-0 xl:overflow-hidden bg-brand-cream flex items-center justify-center py-3 sm:py-8 xl:py-4 px-2 sm:px-6 xl:px-8"
       style={{ backgroundImage: 'radial-gradient(#0F4D3A22 0.8px, transparent 0.8px)', backgroundSize: '24px 24px' }}
     >
       <div className="w-full max-w-7xl rounded-3xl overflow-hidden shadow-2xl border-2 border-brand-gold/40 bg-white grid grid-cols-1 xl:grid-cols-12 xl:h-full xl:max-h-[900px]">
@@ -171,8 +171,8 @@ export default function Signup() {
         </div>
 
         {/* RIGHT: signup form */}
-        <div className="w-full xl:col-span-7 bg-brand-cream/60 p-5 sm:p-10 lg:p-4 flex flex-col justify-center xl:overflow-y-auto">
-          <div className="max-w-xl mx-auto w-full bg-white rounded-2xl p-6 sm:p-8 lg:p-5 shadow-xl border border-brand-gold/35">
+        <div className="w-full xl:col-span-7 bg-brand-cream/60 p-2 sm:p-6 lg:p-4 flex flex-col justify-center xl:overflow-y-auto">
+          <div className="max-w-xl mx-auto w-full bg-white rounded-2xl p-4 sm:p-8 lg:p-5 shadow-xl border border-brand-gold/35">
             <div className="mb-6 lg:mb-2">
               <div className="flex items-center justify-between gap-2">
                 <h2 className="font-heading font-bold text-2xl sm:text-3xl text-brand-charcoal">Create your account</h2>
