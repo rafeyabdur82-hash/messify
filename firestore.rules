@@ -106,20 +106,22 @@ service cloud.firestore {
     }
 
     // ---------- delivery partner tips / in-app earnings ----------
-    // One immutable credit per route. Creation must be part of the same batch
-    // as a route owned by this mess and assigned to the named delivery partner.
+    // A delivery partner can credit the route tip only in the same batch that
+    // marks their assigned, in-progress route completed.
     match /deliveryPayments/{paymentId} {
       allow read: if isSignedIn() && (
         resource.data.deliveryPersonId == request.auth.uid ||
         resource.data.messId == request.auth.uid || isAdmin()
       );
-      allow create: if isSignedIn() && myRole() == 'mess' &&
-        request.resource.data.messId == request.auth.uid &&
+      allow create: if isSignedIn() && myRole() == 'delivery' &&
+        request.resource.data.deliveryPersonId == request.auth.uid &&
         request.resource.data.routeId == paymentId &&
         request.resource.data.amount is number && request.resource.data.amount > 0 &&
-        getAfter(/databases/$(database)/documents/routes/$(paymentId)).data.messId == request.auth.uid &&
-        getAfter(/databases/$(database)/documents/routes/$(paymentId)).data.deliveryPersonId == request.resource.data.deliveryPersonId &&
-        getAfter(/databases/$(database)/documents/routes/$(paymentId)).data.tipAmount == request.resource.data.amount;
+        get(/databases/$(database)/documents/routes/$(paymentId)).data.deliveryPersonId == request.auth.uid &&
+        get(/databases/$(database)/documents/routes/$(paymentId)).data.status == 'in_progress' &&
+        get(/databases/$(database)/documents/routes/$(paymentId)).data.tipAmount == request.resource.data.amount &&
+        getAfter(/databases/$(database)/documents/routes/$(paymentId)).data.status == 'completed' &&
+        getAfter(/databases/$(database)/documents/routes/$(paymentId)).data.messId == request.resource.data.messId;
       allow update, delete: if false;
     }
 

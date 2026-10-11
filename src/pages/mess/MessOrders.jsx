@@ -78,7 +78,7 @@ export default function MessOrders() {
     setRouteSaving(true)
     try {
       await createRoute(currentUser.uid, deliveryPersonId, todayStr(), routeBuilder.meal, stops, messLocation, tipAmount, profile?.messName)
-      setToast(`${routeBuilder.meal === 'lunch' ? 'Lunch' : 'Dinner'} route created — ${stops.length} stops${partner ? ` · assigned to ${partner.name}` : ''}${tipAmount > 0 ? ` · ${formatINR(tipAmount)} tip credited` : ''}`)
+      setToast(`${routeBuilder.meal === 'lunch' ? 'Lunch' : 'Dinner'} route created — ${stops.length} stops${partner ? ` · assigned to ${partner.name}` : ''}${tipAmount > 0 ? ` · ${formatINR(tipAmount)} tip on completion` : ''}`)
       setTimeout(() => setToast(''), 3500)
       setRouteBuilder(null)
     } catch (error) {
@@ -135,7 +135,7 @@ export default function MessOrders() {
                 onChange={(e) => setRouteBuilder((prev) => ({ ...prev, tipAmount: e.target.value }))}
                 placeholder="0.00"
               />
-              <p className="text-xs text-charcoal-soft mt-1">This amount is added to the selected delivery partner’s in-app earnings and shown in their payment history.</p>
+              <p className="text-xs text-charcoal-soft mt-1">This tip is added to the selected delivery partner’s in-app earnings only after all route stops are delivered.</p>
               {Number(routeBuilder.tipAmount) > 0 && !routeBuilder.partnerId && <p className="text-xs text-danger mt-1">Select a delivery partner to add a tip.</p>}
             </div>
 

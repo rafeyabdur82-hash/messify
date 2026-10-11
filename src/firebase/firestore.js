@@ -171,8 +171,8 @@ export async function respondToCustomRequest(requestId, status) {
 }
 
 // ---------- Routes / Delivery tracking (lightweight) ----------
-// Route and optional delivery tip are written atomically so an assigned tip
-// can never be recorded without its route (or vice versa).
+// Store the promised tip on the route. It is credited only after the delivery
+// partner completes the final stop.
 export async function createRoute(messId, deliveryPersonId, date, meal, stops, messLocation = null, tipAmount = 0, messName = '') {
   const amount = Number(tipAmount)
   if (!Number.isFinite(amount) || amount < 0) throw new Error('Tip amount must be zero or greater.')
@@ -180,31 +180,14 @@ export async function createRoute(messId, deliveryPersonId, date, meal, stops, m
     throw new Error('Assign a delivery partner before adding a tip.')
   }
 
-  const batch = writeBatch(db)
-  const routeRef = doc(collection(db, 'routes'))
-  batch.set(routeRef, {
-    messId, deliveryPersonId, date, meal, stops, tipAmount: amount, ...(messLocation ? { messLocation } : {}),
+  const routeRef = await addDoc(collection(db, 'routes'), {
+    messId, deliveryPersonId, date, meal, stops, tipAmount: amount, messName,
+    ...(messLocation ? { messLocation } : {}),
     studentIds: [...new Set(stops.map((st) => st.studentId))], // lets each student read only their own routes
     currentStopIndex: 0,
     status: 'not_started', createdAt: serverTimestamp(),
   })
-  if (amount > 0) {
-    batch.set(doc(db, 'deliveryPayments', routeRef.id), {
-      routeId: routeRef.id,
-      messId,
-      messName: messName || 'Mess',
-      deliveryPersonId,
-      date,
-      meal,
-      stopCount: stops.length,
-      amount,
-      type: 'route_tip',
-      status: 'credited',
-      paidAt: serverTimestamp(),
-    })
-  }
-  await batch.commit()
-  return { id: routeRef.id }
+  return routeRef
 }
 
 export function listenRoute(routeId, callback) {
@@ -222,12 +205,31 @@ export async function startRoute(routeId) {
 export async function completeStop(route, index) {
   const stops = route.stops.map((st, i) => (i === index ? { ...st, status: 'delivered', deliveredAt: Date.now() } : st))
   const finished = index + 1 >= stops.length
-  await updateDoc(doc(db, 'routes', route.id), {
+  const routeRef = doc(db, 'routes', route.id)
+  const batch = writeBatch(db)
+  batch.update(routeRef, {
     stops,
     currentStopIndex: index + 1,
     status: finished ? 'completed' : 'in_progress',
     ...(finished ? { completedAt: serverTimestamp(), liveLocation: deleteField() } : {}),
   })
+  const tipAmount = Number(route.tipAmount) || 0
+  if (finished && tipAmount > 0 && route.deliveryPersonId && route.deliveryPersonId !== 'unassigned') {
+    batch.set(doc(db, 'deliveryPayments', route.id), {
+      routeId: route.id,
+      messId: route.messId,
+      messName: route.messName || route.messLocation?.label || 'Mess',
+      deliveryPersonId: route.deliveryPersonId,
+      date: route.date,
+      meal: route.meal,
+      stopCount: stops.length,
+      amount: tipAmount,
+      type: 'route_tip',
+      status: 'credited',
+      paidAt: serverTimestamp(),
+    })
+  }
+  await batch.commit()
   const stop = route.stops[index]
   if (!stop?.studentId) return
   try {
