@@ -36,9 +36,15 @@ export default function RouteView() {
           getUserProfile(route.messId).catch(() => null),
           getMessProfile(route.messId).catch(() => null),
         ])
-        const profile = userProfile || publicProfile || {}
+        const profile = { ...(publicProfile || {}), ...(userProfile || {}) }
+        const label = route.messLocation?.label || profile.messName || publicProfile?.messName || 'Mess'
+        const savedPoint = route.messLocation?.lat != null && route.messLocation?.lng != null ? route.messLocation : profile
+        if (savedPoint.lat != null && savedPoint.lng != null) {
+          if (!cancelled) setMessPoint({ lat: Number(savedPoint.lat), lng: Number(savedPoint.lng), label })
+          return
+        }
         const point = await geocodeAddress(profile.fullAddress || profile.area || publicProfile?.area)
-        if (!cancelled) setMessPoint(point ? { ...point, label: profile.messName || publicProfile?.messName || 'Mess' } : null)
+        if (!cancelled) setMessPoint(point ? { ...point, label } : null)
       } catch { if (!cancelled) setMessPoint(null) }
     })()
     return () => { cancelled = true }
@@ -91,10 +97,14 @@ export default function RouteView() {
         if (cancelled) return
         if (st.lat != null && st.lng != null || !st.address || geo[st.address]) continue
         try {
-          const point = await geocodeAddress(st.address)
+          const studentProfile = st.studentId ? await getUserProfile(st.studentId).catch(() => null) : null
+          const hasProfileGps = studentProfile?.lat != null && studentProfile?.lng != null
+          const point = hasProfileGps
+            ? { lat: Number(studentProfile.lat), lng: Number(studentProfile.lng) }
+            : await geocodeAddress(st.address)
           setGeo((g) => ({ ...g, [st.address]: point || { lat: null, lng: null } }))
+          if (!hasProfileGps) await new Promise((res) => setTimeout(res, 1100)) // Nominatim: max 1 request/second
         } catch { /* map is optional */ }
-        await new Promise((res) => setTimeout(res, 1100)) // Nominatim: max 1 request/second
       }
     })()
     return () => { cancelled = true }

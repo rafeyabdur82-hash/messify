@@ -4,6 +4,7 @@ import PageLayout from '../../components/common/MessPage.jsx'
 import { Card, Input, Textarea, Button, Toast, Badge } from '../../components/common/UI.jsx'
 import ChangePasswordCard from '../../components/common/ChangePasswordCard.jsx'
 import { ensureMessProfile, updateMessProfile } from '../../firebase/firestore.js'
+import { useBrowserLocation } from '../../utils/location.js'
 
 export default function Profile() {
   const { profile, currentUser, updateUserProfile } = useAuth()
@@ -12,9 +13,18 @@ export default function Profile() {
   const [phone, setPhone] = useState(profile?.phone || '')
   const [area, setArea] = useState(profile?.area || '')
   const [fullAddress, setFullAddress] = useState(profile?.fullAddress || '')
+  const [coords, setCoords] = useState(profile?.lat != null && profile?.lng != null ? { lat: profile.lat, lng: profile.lng } : null)
   const [description, setDescription] = useState(profile?.description || '')
   const [saving, setSaving] = useState(false)
   const [toast, setToast] = useState('')
+  const { location, status: locationStatus, detect } = useBrowserLocation({ auto: false, useCache: false })
+
+  useEffect(() => {
+    if (locationStatus !== 'ready' || !location) return
+    setCoords({ lat: location.lat, lng: location.lon })
+    if (location.full) setFullAddress(location.full)
+    if (location.area) setArea(location.area)
+  }, [locationStatus, location])
 
   useEffect(() => {
     // Auto-repair: makes sure a public messProfiles listing exists even for
@@ -25,10 +35,10 @@ export default function Profile() {
   async function handleSave(e) {
     e.preventDefault()
     setSaving(true)
-    const updates = { messName, name: ownerName, phone, area, fullAddress, description }
+    const updates = { messName, name: ownerName, phone, area, fullAddress, description, lat: coords?.lat ?? null, lng: coords?.lng ?? null, locationAccuracy: coords ? location?.accuracy ?? profile?.locationAccuracy ?? null : null }
     await updateUserProfile(updates)
     // Keep the public student-facing listing in sync with what the owner just edited.
-    await updateMessProfile(currentUser.uid, { messName, area, description })
+    await updateMessProfile(currentUser.uid, { messName, area, fullAddress, description, lat: coords?.lat ?? null, lng: coords?.lng ?? null, locationAccuracy: coords ? location?.accuracy ?? profile?.locationAccuracy ?? null : null })
     setSaving(false)
     setToast('Profile updated successfully. Changes are now visible to students.')
     setTimeout(() => setToast(''), 3500)
@@ -70,8 +80,16 @@ export default function Profile() {
             <Input label="Email" value={profile?.email || ''} disabled className="opacity-60" />
             <p className="text-xs text-charcoal-soft -mt-2">Email can't be changed here. Contact support if you need to update it.</p>
             <Input label="Phone number" type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="98765 43210" />
-            <Input label="Area / Locality" required value={area} onChange={(e) => setArea(e.target.value)} placeholder="Civil Lines, Nagpur" />
-            <Textarea label="Full address (optional)" value={fullAddress} onChange={(e) => setFullAddress(e.target.value)} placeholder="Shop number, street, landmark" />
+            <Input label="Area / Locality" required value={area} onChange={(e) => { setArea(e.target.value); setCoords(null) }} placeholder="Civil Lines, Nagpur" />
+            <Textarea label="Full address (optional)" value={fullAddress} onChange={(e) => { setFullAddress(e.target.value); setCoords(null) }} placeholder="Shop number, street, landmark" />
+            <div className="flex flex-wrap items-center gap-3">
+              <Button type="button" size="sm" variant="outline" disabled={locationStatus === 'detecting'} onClick={detect}>
+                {locationStatus === 'detecting' ? 'Getting GPS…' : coords ? 'Refresh mess GPS location' : 'Set mess GPS location'}
+              </Button>
+              <span className="text-xs text-charcoal-soft">{coords ? `GPS saved (${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)})` : 'Use the device at your mess, then save changes.'}</span>
+            </div>
+            {locationStatus === 'denied' && <p className="text-xs text-danger">Allow location access in your browser, then try again.</p>}
+            {locationStatus === 'error' && <p className="text-xs text-danger">Could not read GPS. Check device location settings and try again.</p>}
             <Textarea label="About your mess (optional)" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="e.g. Pure vegetarian home-style meals since 2015" />
             <div>
               <Button type="submit" disabled={saving}>{saving ? 'Saving...' : 'Save Changes'}</Button>

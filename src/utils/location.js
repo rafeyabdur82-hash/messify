@@ -18,7 +18,7 @@ export async function geocodeAddress(address) {
     const delay = Math.max(0, 1100 - (Date.now() - lastGeocodeAt))
     if (delay) await new Promise((resolve) => setTimeout(resolve, delay))
     lastGeocodeAt = Date.now()
-    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(address.trim())}`)
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=in&q=${encodeURIComponent(address.trim())}`)
     if (!response.ok) return null
     const results = await response.json()
     return results[0] ? { lat: Number(results[0].lat), lng: Number(results[0].lon) } : null
@@ -52,8 +52,8 @@ async function reverseGeocode(lat, lon) {
 }
 
 // status: 'idle' | 'detecting' | 'ready' | 'denied' | 'unsupported' | 'error'
-export function useBrowserLocation({ auto = true } = {}) {
-  const cached = readCache()
+export function useBrowserLocation({ auto = true, useCache = true } = {}) {
+  const cached = useCache ? readCache() : null
   const [location, setLocation] = useState(cached)
   const [status, setStatus] = useState(cached ? 'ready' : 'idle')
 
@@ -62,16 +62,17 @@ export function useBrowserLocation({ auto = true } = {}) {
     setStatus('detecting')
     navigator.geolocation.getCurrentPosition(
       async ({ coords }) => {
+        const lat = coords.latitude
+        const lon = coords.longitude
+        let place = { label: `${lat.toFixed(5)}, ${lon.toFixed(5)}`, area: '', city: '', state: '', full: '' }
         try {
-          const place = await reverseGeocode(coords.latitude, coords.longitude)
-          const value = { ...place, lat: coords.latitude, lon: coords.longitude }
-          writeCache(value)
-          try { localStorage.removeItem(DENIED_KEY) } catch { /* ignore */ }
-          setLocation(value)
-          setStatus('ready')
-        } catch {
-          setStatus('error')
-        }
+          place = await reverseGeocode(lat, lon)
+        } catch { /* GPS coordinates are still valid if address lookup fails. */ }
+        const value = { ...place, lat, lon, accuracy: coords.accuracy ?? null }
+        writeCache(value)
+        try { localStorage.removeItem(DENIED_KEY) } catch { /* ignore */ }
+        setLocation(value)
+        setStatus('ready')
       },
       (err) => {
         if (err.code === err.PERMISSION_DENIED) {
@@ -81,7 +82,7 @@ export function useBrowserLocation({ auto = true } = {}) {
           setStatus('error')
         }
       },
-      { enableHighAccuracy: false, timeout: 12000, maximumAge: 10 * 60 * 1000 },
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 30 * 1000 },
     )
   }, [])
 

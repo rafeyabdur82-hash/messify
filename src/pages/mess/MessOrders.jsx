@@ -10,7 +10,7 @@ import { db } from '../../firebase/config.js'
 const todayStr = () => new Date().toISOString().slice(0, 10)
 
 export default function MessOrders() {
-  const { currentUser } = useAuth()
+  const { currentUser, profile } = useAuth()
   const [subs, setSubs] = useState([])
   const [skips, setSkips] = useState([])
   const [students, setStudents] = useState({})
@@ -37,17 +37,22 @@ export default function MessOrders() {
   function openRouteBuilder(meal) {
     const activeStudents = subs.filter((s) => s.status === 'active' && planIncludesMeal(s.plan, meal) && !isSkippedToday(s.studentId, meal))
     // Prefer the delivery details the student entered at checkout; fall back to their profile.
-    const stops = activeStudents.map((s) => ({
-      studentId: s.studentId,
-      name: s.deliveryName || students[s.studentId]?.name || 'Student',
-      phone: s.deliveryPhone || students[s.studentId]?.phone || '',
-      address: s.deliveryAddress || students[s.studentId]?.area || 'Address not set',
-      landmark: s.deliveryLandmark || '',
-      dietaryNote: s.dietaryNote || '',
-      lat: s.deliveryLat ?? null,
-      lng: s.deliveryLng ?? null,
-      status: 'pending',
-    }))
+    const stops = activeStudents.map((s) => {
+      const hasOrderGps = s.deliveryLat != null && s.deliveryLng != null
+      const studentProfile = students[s.studentId] || {}
+      const hasProfileGps = studentProfile.lat != null && studentProfile.lng != null
+      const point = hasOrderGps ? { lat: s.deliveryLat, lng: s.deliveryLng } : hasProfileGps ? { lat: studentProfile.lat, lng: studentProfile.lng } : { lat: null, lng: null }
+      return {
+        studentId: s.studentId,
+        name: s.deliveryName || studentProfile.name || 'Student',
+        phone: s.deliveryPhone || studentProfile.phone || '',
+        address: s.deliveryAddress || studentProfile.area || 'Address not set',
+        landmark: s.deliveryLandmark || '',
+        dietaryNote: s.dietaryNote || '',
+        ...point,
+        status: 'pending',
+      }
+    })
     setRouteBuilder({ meal, stops, partnerId: partners[0]?.partnerId || '' })
   }
 
@@ -65,7 +70,8 @@ export default function MessOrders() {
     const partner = partners.find((p) => p.partnerId === routeBuilder.partnerId)
     const deliveryPersonId = routeBuilder.partnerId || 'unassigned'
     const stops = routeBuilder.stops
-    await createRoute(currentUser.uid, deliveryPersonId, todayStr(), routeBuilder.meal, stops)
+    const messLocation = profile?.lat != null && profile?.lng != null ? { lat: profile.lat, lng: profile.lng, label: profile.messName || profile.name || 'Mess' } : null
+    await createRoute(currentUser.uid, deliveryPersonId, todayStr(), routeBuilder.meal, stops, messLocation)
     setToast(`${routeBuilder.meal === 'lunch' ? 'Lunch' : 'Dinner'} route created — ${stops.length} stops${partner ? ` · assigned to ${partner.name}` : ''}`)
     setTimeout(() => setToast(''), 3500)
     setRouteBuilder(null)

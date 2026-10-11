@@ -16,7 +16,7 @@ function agoText(ts) {
 
 export default function TrackDelivery() {
   const { orderId } = useParams() // the route id
-  const { currentUser } = useAuth()
+  const { currentUser, profile } = useAuth()
   const [route, setRoute] = useState(null)
   const [missing, setMissing] = useState(false)
   const [messPoint, setMessPoint] = useState(null)
@@ -32,7 +32,7 @@ export default function TrackDelivery() {
         getUserProfile(route.messId).catch(() => null),
         getMessProfile(route.messId).catch(() => null),
       ])
-      const profile = userProfile || publicProfile || {}
+      const profile = { ...(publicProfile || {}), ...(userProfile || {}) }
       const point = await geocodeAddress(profile.fullAddress || profile.area || publicProfile?.area).catch(() => null)
       if (!cancelled) setMessPoint(point ? { ...point, label: profile.messName || publicProfile?.messName || 'Mess' } : null)
     })()
@@ -40,11 +40,19 @@ export default function TrackDelivery() {
   }, [route?.messId])
   useEffect(() => {
     const stop = route?.stops?.find((item) => item.studentId === currentUser.uid)
-    if (!stop || (stop.lat != null && stop.lng != null)) { setStudentPoint(null); return undefined }
+    if (!stop) { setStudentPoint(null); return undefined }
+    if (stop.lat != null && stop.lng != null) {
+      setStudentPoint(null)
+      return undefined
+    }
+    if (profile?.lat != null && profile?.lng != null) {
+      setStudentPoint({ lat: Number(profile.lat), lng: Number(profile.lng) })
+      return undefined
+    }
     let cancelled = false
     geocodeAddress(stop.address).then((point) => { if (!cancelled) setStudentPoint(point) }).catch(() => {})
     return () => { cancelled = true }
-  }, [route?.stops, currentUser.uid])
+  }, [route?.stops, currentUser.uid, profile?.lat, profile?.lng])
   // keep the "x seconds ago" label fresh
   useEffect(() => { const t = setInterval(() => setTick((n) => n + 1), 10000); return () => clearInterval(t) }, [])
 

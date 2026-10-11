@@ -171,9 +171,9 @@ export async function respondToCustomRequest(requestId, status) {
 }
 
 // ---------- Routes / Delivery tracking (lightweight) ----------
-export async function createRoute(messId, deliveryPersonId, date, meal, stops) {
+export async function createRoute(messId, deliveryPersonId, date, meal, stops, messLocation = null) {
   return addDoc(collection(db, 'routes'), {
-    messId, deliveryPersonId, date, meal, stops,
+    messId, deliveryPersonId, date, meal, stops, ...(messLocation ? { messLocation } : {}),
     studentIds: [...new Set(stops.map((st) => st.studentId))], // lets each student read only their own routes
     currentStopIndex: 0,
     status: 'not_started', createdAt: serverTimestamp(),

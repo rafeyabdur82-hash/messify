@@ -69,7 +69,7 @@ export default function Checkout() {
   const [name, setName] = useState(profile?.name || '')
   const [phone, setPhone] = useState(profile?.phone || '')
   const [address, setAddress] = useState(profile?.area || '')
-  const [coords, setCoords] = useState(null) // set only when the address came from the browser location
+  const [coords, setCoords] = useState(profile?.lat != null && profile?.lng != null ? { lat: profile.lat, lng: profile.lng } : null)
   const [landmark, setLandmark] = useState('')
   const [slot, setSlot] = useState('lunch')
   const [note, setNote] = useState('')
@@ -81,7 +81,7 @@ export default function Checkout() {
   const [submitting, setSubmitting] = useState(false)
   const [confirmed, setConfirmed] = useState(null)
 
-  const { location, status: locStatus, detect } = useBrowserLocation({ auto: false })
+  const { location, status: locStatus, detect } = useBrowserLocation({ auto: false, useCache: false })
   const wantsLocation = useRef(false)
 
   useEffect(() => {
@@ -94,9 +94,9 @@ export default function Checkout() {
 
   // Fill the address from the browser location when the student asks for it.
   useEffect(() => {
-    if (wantsLocation.current && locStatus === 'ready' && location?.full) {
+    if (wantsLocation.current && locStatus === 'ready' && location) {
       wantsLocation.current = false
-      setAddress(location.full)
+      if (location.full) setAddress(location.full)
       setCoords({ lat: location.lat, lng: location.lon })
     }
   }, [locStatus, location])
@@ -216,7 +216,7 @@ export default function Checkout() {
               <div className="mt-4">
                 <div className="flex items-end justify-between gap-2">
                   <label className={labelCls} htmlFor="co-address">Hostel / Campus Room Address</label>
-                  <button type="button" onClick={() => { wantsLocation.current = true; if (locStatus === 'ready' && location?.full) { wantsLocation.current = false; setAddress(location.full); setCoords({ lat: location.lat, lng: location.lon }) } else detect() }}
+                  <button type="button" onClick={() => { wantsLocation.current = true; detect() }}
                     className="text-[11px] font-bold text-brand-saffron hover:underline mb-1.5 flex items-center gap-1">
                     <Icon name="my_location" className="text-sm" />{locStatus === 'detecting' ? 'Detecting…' : 'Use my current location'}
                   </button>

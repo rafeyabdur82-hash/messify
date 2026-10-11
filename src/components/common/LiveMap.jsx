@@ -50,7 +50,7 @@ export default function LiveMap({ rider, riderLabel = 'Delivery partner', destin
       originRef.current = null
     }
 
-    if (rider?.lat != null) {
+    if (rider?.lat != null && rider?.lng != null) {
       const pos = [rider.lat, rider.lng]
       if (!riderRef.current) {
         riderRef.current = L.circleMarker(pos, { radius: 11, color: '#fff', weight: 3, fillColor: '#7A2E1D', fillOpacity: 1 }).addTo(map)
@@ -61,7 +61,7 @@ export default function LiveMap({ rider, riderLabel = 'Delivery partner', destin
       points.push(pos)
     }
 
-    if (destination?.lat != null) {
+    if (destination?.lat != null && destination?.lng != null) {
       const pos = [destination.lat, destination.lng]
       if (!destRef.current) {
         destRef.current = L.circleMarker(pos, { radius: 9, color: '#fff', weight: 3, fillColor: '#2B4C4A', fillOpacity: 1 }).addTo(map)
