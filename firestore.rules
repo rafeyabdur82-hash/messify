@@ -1,0 +1,136 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- helpers ----------
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+    function myRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+    function isAdmin() {
+      return isSignedIn() && myRole() == 'admin';
+    }
+
+    // ---------- users ----------
+    // Anyone signed in can read profiles (names/phones on subscriber lists, rider details).
+    // You can create/edit only your own document, you can never choose or change your own
+    // role to admin — admins are made by editing the `role` field in the Firebase console.
+    match /users/{uid} {
+      allow read: if isSignedIn();
+      allow create: if isOwner(uid) && request.resource.data.role in ['student', 'mess', 'delivery'];
+      allow update: if (isOwner(uid) && request.resource.data.role == resource.data.role) || isAdmin();
+      allow delete: if false;
+    }
+
+    // ---------- mess listings & menus ----------
+    match /messProfiles/{messId} {
+      allow read: if true;
+      allow create: if isOwner(messId) && myRole() == 'mess';
+      allow update: if isOwner(messId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /menus/{menuId} {
+      allow read: if true;
+      allow write: if isSignedIn() && menuId.split('_')[0] == request.auth.uid;
+    }
+
+    // ---------- subscriptions (orders) ----------
+    // A student may only create:
+    //   - a pending_payment subscription (activated later by the mess after it verifies the UPI payment),
+    //   - an active Cash-on-Delivery subscription,
+    //   - an active demo subscription for a demo (dummy-*) mess.
+    // After that a student may only pause / resume / cancel. The mess (or admin) controls the rest.
+    match /subscriptions/{subId} {
+      allow read: if isSignedIn() &&
+        (resource.data.studentId == request.auth.uid || resource.data.messId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && request.resource.data.studentId == request.auth.uid && (
+        request.resource.data.status == 'pending_payment' ||
+        (request.resource.data.status == 'active' && request.resource.data.get('paymentMethod', '') == 'cod') ||
+        (request.resource.data.status == 'active' && request.resource.data.messId.matches('dummy-.*'))
+      );
+      allow update: if isSignedIn() && (
+        resource.data.messId == request.auth.uid || isAdmin() ||
+        (resource.data.studentId == request.auth.uid &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']) &&
+          (request.resource.data.status in ['paused', 'cancelled'] ||
+           (request.resource.data.status == 'active' && resource.data.status == 'paused')))
+      );
+    }
+
+    // ---------- skips ----------
+    match /skips/{skipId} {
+      allow read: if isSignedIn() &&
+        (resource.data.studentId == request.auth.uid || resource.data.messId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && request.resource.data.studentId == request.auth.uid;
+    }
+
+    // ---------- ledger (monthly bill) ----------
+    // Doc id is studentId_messId_YYYY-MM. Written by the student (skip credits) and by the
+    // delivery partner (a charge when a tiffin is delivered).
+    match /ledger/{ledgerId} {
+      allow read: if isSignedIn() &&
+        (ledgerId.split('_')[0] == request.auth.uid || ledgerId.split('_')[1] == request.auth.uid || isAdmin());
+      allow write: if isSignedIn() &&
+        (ledgerId.split('_')[0] == request.auth.uid || ledgerId.split('_')[1] == request.auth.uid ||
+         myRole() == 'delivery' || isAdmin());
+    }
+
+    // ---------- custom requests ----------
+    match /customRequests/{reqId} {
+      allow read: if isSignedIn() &&
+        (resource.data.studentId == request.auth.uid || resource.data.messId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && request.resource.data.studentId == request.auth.uid &&
+        request.resource.data.status == 'pending';
+      allow update: if isSignedIn() && (resource.data.messId == request.auth.uid || isAdmin());
+    }
+
+    // ---------- delivery routes + live location ----------
+    // Readable by the mess that made it, the assigned delivery partner, the students on the route
+    // (studentIds), and admins. The delivery partner updates progress and liveLocation.
+    match /routes/{routeId} {
+      allow read: if isSignedIn() && (
+        resource.data.messId == request.auth.uid ||
+        resource.data.deliveryPersonId == request.auth.uid ||
+        isAdmin() ||
+        request.auth.uid in resource.data.studentIds
+      );
+      allow create: if isSignedIn() && request.resource.data.messId == request.auth.uid;
+      allow update: if isSignedIn() &&
+        (resource.data.deliveryPersonId == request.auth.uid || resource.data.messId == request.auth.uid || isAdmin());
+    }
+
+    // ---------- tiffin box QR tracking ----------
+    match /tiffinBoxes/{boxId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && myRole() in ['delivery', 'mess', 'admin'];
+    }
+
+    // ---------- payments (UPI QR proof) ----------
+    match /payments/{paymentId} {
+      allow read: if isSignedIn() &&
+        (resource.data.studentId == request.auth.uid || resource.data.messId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && request.resource.data.studentId == request.auth.uid &&
+        request.resource.data.status == 'pending';
+      allow update: if isSignedIn() && (resource.data.messId == request.auth.uid || isAdmin());
+    }
+
+    // ---------- notifications ----------
+    match /notifications/{notifId} {
+      allow read, update: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn();
+    }
+
+    // ---------- mess <-> delivery partner links ----------
+    match /messDeliveryPartners/{linkId} {
+      allow read: if isSignedIn() && (resource.data.messId == request.auth.uid || resource.data.partnerId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && request.resource.data.messId == request.auth.uid;
+      allow delete: if isSignedIn() && resource.data.messId == request.auth.uid;
+    }
+  }
+}

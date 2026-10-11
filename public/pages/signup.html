@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GharSe - Indian Tiffin &amp; Mess Subscription Platform</title>
+<!-- Google Fonts: Playfair Display & Poppins -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with forms plugin -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration for GharSe Brand Tokens -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#F6EFE0',
+              creamSoft: '#FAF6EE',
+              green: '#0F4D3A',
+              greenLight: '#18634c',
+              saffron: '#E8702A',
+              saffronHover: '#D25F1C',
+              gold: '#E0A526',
+              goldMuted: '#DFC17B',
+              chili: '#D62828',
+              charcoal: '#1F2A24',
+              warmGrey: '#63736A'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Poppins"', 'system-ui', '-apple-system', 'sans-serif']
+          },
+          boxShadow: {
+            'warm-card': '0 12px 36px -4px rgba(15, 77, 58, 0.09), 0 4px 16px -2px rgba(15, 77, 58, 0.05)',
+            'floating-thali': '0 24px 48px -8px rgba(0, 0, 0, 0.35)',
+            'btn-saffron': '0 8px 20px -2px rgba(232, 112, 42, 0.35)'
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles for Mandala Patterns & Form States -->
+<style data-purpose="brand-patterns">
+    /* Subtle decorative mandala watermark */
+    .mandala-bg {
+      background-color: #F6EFE0;
+      background-image: radial-gradient(#0F4D3A 0.6px, transparent 0.6px), radial-gradient(#E0A526 0.6px, #F6EFE0 0.6px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+      background-opacity: 0.04;
+    }
+    
+    .green-mandala-bg {
+      background-color: #0F4D3A;
+      background-image: radial-gradient(rgba(224, 165, 38, 0.14) 0.8px, transparent 0.8px);
+      background-size: 28px 28px;
+    }
+
+    /* Custom hairline border */
+    .gold-hairline {
+      border: 1px solid rgba(224, 165, 38, 0.35);
+    }
+  </style>
+<style data-purpose="form-interactions">
+    /* Form input focus styling */
+    .gharse-input:focus {
+      border-color: #0F4D3A !important;
+      box-shadow: 0 0 0 3px rgba(224, 165, 38, 0.28) !important;
+      outline: none;
+    }
+
+    /* Form error state styling */
+    .gharse-input-error {
+      border-color: #D62828 !important;
+      box-shadow: 0 0 0 3px rgba(214, 40, 40, 0.15) !important;
+    }
+
+    /* Form valid state styling */
+    .gharse-input-valid {
+      border-color: #0F4D3A !important;
+      box-shadow: 0 0 0 3px rgba(15, 77, 58, 0.15) !important;
+    }
+
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F6EFE0;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #DFC17B;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-brand-cream text-brand-charcoal font-sans antialiased selection:bg-brand-saffron selection:text-white">
+<!-- BEGIN: TopViewSwitcher -->
+<!-- Top navigation bar allowing switching between Desktop, Mobile, 3-Role Matrix, and Input States -->
+<header class="sticky top-0 z-50 bg-[#0A3628] text-white border-b border-brand-gold/40 shadow-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center text-brand-green font-bold text-lg shadow-sm">
+          🍲
+        </div>
+<div>
+<span class="font-serif font-bold text-xl tracking-wide text-brand-cream">GharSe</span>
+<span class="text-xs uppercase tracking-wider text-brand-goldMuted block md:inline md:ml-2 font-medium">Design System &amp; Signup Suite</span>
+</div>
+</div>
+<!-- Navigation Tabs to toggle demonstration views -->
+<nav class="flex flex-wrap items-center gap-1.5 p-1 bg-black/25 rounded-xl border border-white/10 text-xs font-medium" data-purpose="view-tabs">
+<button class="px-3.5 py-1.5 rounded-lg transition-all duration-200 bg-brand-saffron text-white shadow font-semibold flex items-center gap-1.5" id="tab-desktop" onclick="switchMasterView('desktop')">
+<span>🖥️</span> Desktop Split-Screen
+        </button>
+<button class="px-3.5 py-1.5 rounded-lg transition-all duration-200 hover:bg-white/10 text-brand-cream/80 flex items-center gap-1.5" id="tab-mobile" onclick="switchMasterView('mobile')">
+<span>📱</span> Mobile View (390px)
+        </button>
+<button class="px-3.5 py-1.5 rounded-lg transition-all duration-200 hover:bg-white/10 text-brand-cream/80 flex items-center gap-1.5" id="tab-matrix" onclick="switchMasterView('matrix')">
+<span>👥</span> 3 Roles Side-by-Side
+        </button>
+<button class="px-3.5 py-1.5 rounded-lg transition-all duration-200 hover:bg-white/10 text-brand-cream/80 flex items-center gap-1.5" id="tab-states" onclick="switchMasterView('states')">
+<span>✨</span> Validation States
+        </button>
+</nav>
+</div>
+</header>
+<!-- END: TopViewSwitcher -->
+<!-- BEGIN: MainContent -->
+<main class="max-w-7xl mx-auto px-3 sm:px-6 py-8">
+<!-- ========================================================================= -->
+<!-- VIEW A: INTERACTIVE DESKTOP SPLIT-SCREEN (Default View) -->
+<!-- ========================================================================= -->
+<section class="transition-all duration-300" data-purpose="desktop-split-screen" id="view-desktop">
+<!-- Intro label bar -->
+<div class="mb-4 flex flex-wrap items-center justify-between text-xs text-brand-warmGrey px-1">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse"></span>
+<span class="font-semibold uppercase tracking-wider text-brand-green">Primary Split Experience</span> • 16:9 Canvas ratio
+        </div>
+<div class="italic text-brand-warmGrey/90">
+          Switch role tabs inside card to test dynamic forms in real-time
+        </div>
+</div>
+<!-- Main Split Card Container (16:9 Ratio representation) -->
+<div class="bg-white rounded-3xl overflow-hidden shadow-2xl border-2 border-brand-gold/40 grid grid-cols-1 lg:grid-cols-12 min-h-[760px]">
+<!-- LEFT HALF: Deep Forest Green (#0F4D3A) Brand Showcase -->
+<div class="lg:col-span-5 green-mandala-bg p-8 sm:p-10 lg:p-12 text-white flex flex-col justify-between relative overflow-hidden">
+<!-- Subtle gold decorative glow circle behind thali -->
+<div class="absolute -top-16 -left-16 w-80 h-80 rounded-full bg-brand-gold/10 blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-10 right-0 w-64 h-64 rounded-full bg-brand-saffron/15 blur-2xl pointer-events-none"></div>
+<!-- Top Brand Header -->
+<div class="relative z-10">
+<div class="flex items-center space-x-3 mb-6">
+<div class="w-12 h-12 rounded-2xl bg-brand-cream flex items-center justify-center text-brand-green shadow-inner border border-brand-gold">
+<!-- Chef Hat SVG Icon -->
+<svg class="w-7 h-7 text-brand-green" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 3a4.5 4.5 0 00-4.47 4.09A4.5 4.5 0 005.5 11.5c0 1.94 1.23 3.6 2.97 4.23V19a1 1 0 001 1h5.06a1 1 0 001-1v-3.27c1.74-.63 2.97-2.29 2.97-4.23a4.5 4.5 0 00-2.03-4.41A4.5 4.5 0 0012 3zm-2.5 15v-1.78a1 1 0 00-.7-.96 2.5 2.5 0 01-1.8-2.4c0-1.38 1.12-2.5 2.5-2.5.24 0 .47.04.7.1a1 1 0 001.2-.55 2.5 2.5 0 014.8 0 1 1 0 001.2.55c.23-.06.46-.1.7-.1 1.38 0 2.5 1.12 2.5 2.5 0 1.15-.79 2.13-1.8 2.4a1 1 0 00-.7.96V18h-8.4z"></path>
+</svg>
+</div>
+<div>
+<h1 class="font-serif font-bold text-2xl tracking-wide text-brand-cream leading-tight">GharSe</h1>
+<p class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Tiffin &amp; Mess Network</p>
+</div>
+</div>
+<!-- Serif Headline -->
+<h2 class="font-serif font-bold text-3xl sm:text-4xl text-brand-cream leading-snug mb-3">
+              Home-style meals, delivered fresh daily.
+            </h2>
+<p class="text-sm text-brand-cream/80 max-w-sm leading-relaxed font-light">
+              Join 5,000+ students and verified homestyle kitchens across Rajkot &amp; Saurashtra campuses.
+            </p>
+</div>
+<!-- Center: Round Indian Thali Imagery from provided Datastore -->
+<div class="relative z-10 my-6 flex flex-col items-center">
+<div class="relative group">
+<!-- Animated ornamental border -->
+<div class="absolute -inset-2 rounded-full border border-dashed border-brand-gold/60 animate-[spin_40s_linear_infinite]"></div>
+<!-- Circular image container -->
+<div class="w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden shadow-floating-thali border-4 border-brand-cream/90 relative bg-brand-greenLight">
+<img alt="Authentic Gujarati &amp; Indian Unlimited Thali with rotli, shaak, dal, rice, farsan and sweets" class="w-full h-full object-cover object-center transform transition duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-mdQOeoI1jopgVF_UN9WcsnIqmyj6uIqNXUTxxOFdmVis3NPsIhv1hs5WGaUFJtMzn3eAAC7HayN2MQsduKROTzRpLmkS1OaQqJa3rQ4FO38gihOTiM3oY1ud8eE600mv3MCoLi1AQSCXntrl64g5-ZundnnE-gFVrOV4S8oyDs5GynbgtpHvySrgSyTyT5Y46rzQFBJNnhwxU9xpaHjFXoS7_6fSTK3r7ZmR3Zyp-9s_1aiNYTBbd0_zIok5nUaSZQ"/>
+</div>
+<!-- Floating badge on thali -->
+<div class="absolute -bottom-2 -right-2 bg-brand-saffron text-white text-[11px] font-bold px-3 py-1.5 rounded-full shadow-lg border-2 border-white flex items-center gap-1">
+<span>🔥</span> Daily Fresh
+              </div>
+</div>
+<!-- Value Proposition Badges -->
+<div class="grid grid-cols-3 gap-2 mt-7 w-full text-center">
+<div class="bg-black/25 backdrop-blur-sm border border-brand-gold/40 rounded-xl p-2">
+<div class="text-sm mb-0.5">🌿</div>
+<div class="font-bold text-[11px] text-brand-gold">100% Shuddh</div>
+<div class="text-[9px] text-white/70">Pure Vegetarian</div>
+</div>
+<div class="bg-black/25 backdrop-blur-sm border border-brand-gold/40 rounded-xl p-2">
+<div class="text-sm mb-0.5">✨</div>
+<div class="font-bold text-[11px] text-brand-gold">FSSAI Grade</div>
+<div class="text-[9px] text-white/70">Steam Sanitised</div>
+</div>
+<div class="bg-black/25 backdrop-blur-sm border border-brand-gold/40 rounded-xl p-2">
+<div class="text-sm mb-0.5">🏡</div>
+<div class="font-bold text-[11px] text-brand-gold">Home Chefs</div>
+<div class="text-[9px] text-white/70">Maa ke haath ka</div>
+</div>
+</div>
+</div>
+<!-- Bottom Testimonial Snippet -->
+<div class="relative z-10 pt-4 border-t border-brand-gold/20">
+<blockquote class="text-xs italic text-brand-cream/90 mb-1 leading-relaxed">
+              "Saved 40 mins daily in finding pure ghar ka khana near Atmiya campus. Unlimited rotli delivery is a game changer!"
+            </blockquote>
+<p class="text-[11px] font-semibold text-brand-gold tracking-wide">
+              — Aarav T., 2nd Year B.Tech • Kalawad Road Hostel
+            </p>
+</div>
+</div>
+<!-- RIGHT HALF: Interactive Elevated Signup Form Card -->
+<div class="lg:col-span-7 mandala-bg p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
+<div class="max-w-xl mx-auto w-full bg-white rounded-2xl p-6 sm:p-8 shadow-warm-card gold-hairline">
+<!-- Card Header -->
+<div class="mb-6">
+<div class="flex items-center justify-between">
+<h2 class="font-serif font-bold text-2xl sm:text-3xl text-brand-charcoal">
+                  Create your account
+                </h2>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-brand-green border border-emerald-200">
+                  ⚡ 60s Signup
+                </span>
+</div>
+<p class="text-xs text-brand-warmGrey mt-1">
+                Takes less than a minute. Choose your profile role below to get started.
+              </p>
+</div>
+<!-- Role Switcher Pills -->
+<div class="mb-6" data-purpose="role-selector">
+<label class="block text-xs font-semibold uppercase tracking-wider text-brand-warmGrey mb-2">
+                I am joining as:
+              </label>
+<div class="grid grid-cols-3 gap-2 p-1.5 bg-brand-creamSoft rounded-xl border border-brand-gold/30">
+<!-- Student Pill -->
+<button class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg text-xs font-semibold transition-all duration-200 bg-brand-green text-white shadow-sm ring-1 ring-brand-gold/50" id="pill-student" onclick="selectRole('student')" type="button">
+<span class="text-sm">🎓</span>
+<span>Student</span>
+</button>
+<!-- Mess Owner Pill -->
+<button class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg text-xs font-semibold transition-all duration-200 text-brand-charcoal hover:bg-white" id="pill-mess" onclick="selectRole('mess')" type="button">
+<span class="text-sm">👨‍🍳</span>
+<span>Mess Owner</span>
+</button>
+<!-- Delivery Partner Pill -->
+<button class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg text-xs font-semibold transition-all duration-200 text-brand-charcoal hover:bg-white" id="pill-delivery" onclick="selectRole('delivery')" type="button">
+<span class="text-sm">🛵</span>
+<span>Delivery</span>
+</button>
+</div>
+</div>
+<!-- Form Wrapper -->
+<form class="space-y-4" id="signup-form" onsubmit="handleFormSubmit(event)">
+<!-- ROW 1: Common for all roles - Full Name & Email -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1" for="desktop-name">
+                    Full Name <span class="text-brand-saffron">*</span>
+</label>
+<input class="gharse-input w-full px-3.5 py-2.5 text-xs rounded-xl border border-stone-300 bg-brand-creamSoft/30 text-brand-charcoal placeholder:text-stone-400 focus:bg-white transition-all" id="desktop-name" placeholder="e.g. Priyank Patel" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1" for="desktop-email">
+                    Email Address <span class="text-brand-saffron">*</span>
+</label>
+<input class="gharse-input w-full px-3.5 py-2.5 text-xs rounded-xl border border-stone-300 bg-brand-creamSoft/30 text-brand-charcoal placeholder:text-stone-400 focus:bg-white transition-all" id="desktop-email" placeholder="name@campus.edu.in" required="" type="email"/>
+</div>
+</div>
+<!-- DYNAMIC ROLE-SPECIFIC FIELDS -->
+<!-- [FIELDSET 1: STUDENT SPECIFIC] -->
+<div class="space-y-4" id="fields-student">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+<!-- Phone with Indian prefix -->
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1" for="student-phone">
+                      Mobile Number <span class="text-brand-saffron">*</span>
+</label>
+<div class="flex">
+<span class="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-stone-300 bg-stone-100 text-stone-600 text-xs font-semibold">
+                        🇮🇳 +91
+                      </span>
+<input class="gharse-input w-full px-3.5 py-2.5 text-xs rounded-r-xl border border-stone-300 bg-brand-creamSoft/30 text-brand-charcoal placeholder:text-stone-400 focus:bg-white transition-all" id="student-phone" maxlength="10" placeholder="98765 43210" type="tel"/>
+</div>
+</div>
+<!-- Campus / Hostel Area -->
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1" for="student-hostel">
+                      Hostel / Campus Area <span class="text-brand-saffron">*</span>
+</label>
+<input class="gharse-input w-full px-3.5 py-2.5 text-xs rounded-xl border border-stone-300 bg-brand-creamSoft/30 text-brand-charcoal placeholder:text-stone-400 focus:bg-white transition-all" id="student-hostel" placeholder="e.g. RK Univ Boys Hostel 2 / Kalawad Rd" type="text"/>
+</div>
+</div>
+<div class="bg-amber-50/70 border border-amber-200/80 rounded-xl p-2.5 text-[11px] text-amber-900 flex items-center gap-2">
+<span>💡</span>
+<span><strong>Student perk:</strong> Free unlimited phulka rotli refills on daily lunch &amp; dinner plans.</span>
+</div>
+</div>
+<!-- [FIELDSET 2: MESS OWNER SPECIFIC (Hidden by default)] -->
+<div class="space-y-4 hidden" id="fields-mess">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1" for="mess-phone">
+                      Business Phone <span class="text-brand-saffron">*</span>
+</label>
+<div class="flex">
+<span class="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-stone-300 bg-stone-100 text-stone-600 text-xs font-semibold">
+                        🇮🇳 +91
+                      </span>
+<input class="gharse-input w-full px-3.5 py-2.5 text-xs rounded-r-xl border border-stone-300 bg-brand-creamSoft/30 text-brand-charcoal placeholder:text-stone-400 focus:bg-white transition-all" id="mess-phone" maxlength="10" placeholder="82386 92705" type="tel"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1" for="mess-name">
+                      Mess / Kitchen Name <span class="text-brand-saffron">*</span>
+</label>
+<input class="gharse-input w-full px-3.5 py-2.5 text-xs rounded-xl border border-stone-300 bg-brand-creamSoft/30 text-brand-charcoal placeholder:text-stone-400 focus:bg-white transition-all" id="mess-name" placeholder="e.g. Annapurna Kitchens" type="text"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1" for="mess-address">
+                    Kitchen Address &amp; Landmark <span class="text-brand-saffron">*</span>
+</label>
+<input class="gharse-input w-full px-3.5 py-2.5 text-xs rounded-xl border border-stone-300 bg-brand-creamSoft/30 text-brand-charcoal placeholder:text-stone-400 focus:bg-white transition-all" id="mess-address" placeholder="Pooja Complex, 1st Floor, Radhanagar-5, Opp. Royal School, Rajkot" type="text"/>
+</div>
+</div>
+<!-- [FIELDSET 3: DELIVERY PARTNER SPECIFIC (Hidden by default)] -->
+<div class="space-y-4 hidden" id="fields-delivery">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1" for="delivery-phone">
+                      WhatsApp Phone <span class="text-brand-saffron">*</span>
+</label>
+<div class="flex">
+<span class="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-stone-300 bg-stone-100 text-stone-600 text-xs font-semibold">
+                        🇮🇳 +91
+                      </span>
+<input class="gharse-input w-full px-3.5 py-2.5 text-xs rounded-r-xl border border-stone-300 bg-brand-creamSoft/30 text-brand-charcoal placeholder:text-stone-400 focus:bg-white transition-all" id="delivery-phone" maxlength="10" placeholder="94081 22345" type="tel"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1" for="delivery-vehicle">
+                      Vehicle Type <span class="text-brand-saffron">*</span>
+</label>
+<select class="gharse-input w-full px-3.5 py-2.5 text-xs rounded-xl border border-stone-300 bg-brand-creamSoft/30 text-brand-charcoal focus:bg-white transition-all" id="delivery-vehicle">
+<option>Two Wheeler / Scooter (Activa / EV)</option>
+<option>Bicycle</option>
+<option>Motorcycle</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1" for="delivery-zone">
+                    Preferred Delivery Campus Hub <span class="text-brand-saffron">*</span>
+</label>
+<select class="gharse-input w-full px-3.5 py-2.5 text-xs rounded-xl border border-stone-300 bg-brand-creamSoft/30 text-brand-charcoal focus:bg-white transition-all" id="delivery-zone">
+<option>Rajkot South Hub (Kalawad Road &amp; Atmiya Circle)</option>
+<option>Rajkot East (RK University &amp; Bhavnagar Hwy)</option>
+<option>Rajkot City Center (Kotecha Chowk &amp; Indira Circle)</option>
+<option>Marwadi University Campus Cluster</option>
+</select>
+</div>
+</div>
+<!-- PASSWORD ROW WITH LIVE STRENGTH METER & TOGGLE EYE -->
+<div>
+<div class="flex items-center justify-between mb-1">
+<label class="block text-xs font-semibold text-brand-charcoal" for="desktop-pass">
+                    Create Password <span class="text-brand-saffron">*</span>
+</label>
+<span class="text-[10px] text-brand-warmGrey">Min. 6 characters</span>
+</div>
+<div class="relative">
+<input class="gharse-input w-full pl-3.5 pr-10 py-2.5 text-xs rounded-xl border border-stone-300 bg-brand-creamSoft/30 text-brand-charcoal placeholder:text-stone-400 focus:bg-white transition-all" id="desktop-pass" oninput="evaluatePasswordStrength(this.value)" placeholder="Choose a strong password" required="" type="password"/>
+<!-- Toggle Visibility Eye -->
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-stone-400 hover:text-stone-700" onclick="togglePasswordVisibility('desktop-pass')" title="Toggle password visibility" type="button">
+<svg class="w-4 h-4" fill="none" id="eye-icon-desktop-pass" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- 3-Bar Password Strength Visual Meter -->
+<div class="mt-2 flex items-center space-x-1.5">
+<div class="h-1 flex-1 rounded-full bg-stone-200 overflow-hidden">
+<div class="h-full w-0 transition-all duration-300 bg-brand-chili" id="meter-bar-1"></div>
+</div>
+<div class="h-1 flex-1 rounded-full bg-stone-200 overflow-hidden">
+<div class="h-full w-0 transition-all duration-300 bg-brand-gold" id="meter-bar-2"></div>
+</div>
+<div class="h-1 flex-1 rounded-full bg-stone-200 overflow-hidden">
+<div class="h-full w-0 transition-all duration-300 bg-emerald-600" id="meter-bar-3"></div>
+</div>
+<span class="text-[10px] font-medium text-stone-400 w-12 text-right" id="meter-text">Weak</span>
+</div>
+</div>
+<!-- TERMS CHECKBOX -->
+<div class="flex items-start space-x-2 pt-1">
+<input class="mt-0.5 h-4 w-4 rounded text-brand-green border-stone-300 focus:ring-brand-green" id="terms-check" required="" type="checkbox"/>
+<label class="text-[11px] text-brand-warmGrey leading-normal" for="terms-check">
+                  I agree to GharSe's 
+                  <a class="text-brand-saffron hover:underline font-medium" href="#terms">Terms of Service</a>, 
+                  <a class="text-brand-saffron hover:underline font-medium" href="#privacy">Privacy Policy</a>, and daily tiffin delivery guidelines.
+                </label>
+</div>
+<!-- ACTION BUTTONS: Primary Saffron CTA + Demo Loading Toggle -->
+<div class="pt-2 flex flex-col sm:flex-row gap-2">
+<button class="flex-1 py-3 px-6 rounded-xl bg-brand-saffron hover:bg-brand-saffronHover text-white font-semibold text-xs tracking-wide shadow-btn-saffron transition-all duration-200 flex items-center justify-center gap-2 group" id="btn-submit" type="submit">
+<span id="btn-text">Create Account</span>
+<svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" id="btn-icon" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<!-- Spinner (hidden by default) -->
+<svg class="w-4 h-4 animate-spin text-white hidden" fill="none" id="btn-spinner" viewbox="0 0 24 24">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8v8H4z" fill="currentColor"></path>
+</svg>
+</button>
+<!-- Quick testing trigger button for Loading State showcase -->
+<button class="px-3 py-2 border border-brand-gold/50 bg-brand-creamSoft rounded-xl text-[11px] font-medium text-brand-charcoal hover:bg-white transition" onclick="toggleButtonLoadingState()" title="Simulate asynchronous account creation" type="button">
+                  Simulate API Spinner
+                </button>
+</div>
+<!-- Bottom Login Link -->
+<div class="text-center pt-3 text-xs text-brand-warmGrey border-t border-stone-100">
+                Already have a GharSe subscription? 
+                <a class="text-brand-saffron font-bold hover:underline ml-1" href="#login">Log in here</a>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- END: DesktopSplitScreen -->
+<!-- ========================================================================= -->
+<!-- VIEW B: MOBILE VIEW (Compact 390px Mobile View Showcase) -->
+<!-- ========================================================================= -->
+<section class="hidden transition-all duration-300" data-purpose="mobile-mockup-view" id="view-mobile">
+<div class="mb-4 text-center max-w-md mx-auto">
+<span class="inline-block px-3 py-1 bg-brand-green/10 text-brand-green rounded-full text-xs font-semibold">
+          📱 390px Mobile Viewport Showcase
+        </span>
+<p class="text-xs text-brand-warmGrey mt-1">High-conversion touch layout optimized for student hostels &amp; mobile onboarding.</p>
+</div>
+<!-- Mobile Device Mockup Frame (390px width) -->
+<div class="max-w-[390px] mx-auto bg-black p-3.5 rounded-[44px] shadow-2xl border-4 border-stone-800">
+<!-- Phone Speaker & Camera Notch -->
+<div class="w-28 h-4 bg-black mx-auto rounded-full mb-2 flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-stone-800 mr-2"></div>
+<div class="w-10 h-1 rounded-full bg-stone-800"></div>
+</div>
+<!-- Phone Screen Content -->
+<div class="bg-brand-cream rounded-[32px] overflow-hidden border border-brand-gold/30">
+<!-- Compact Green Mobile Header -->
+<div class="green-mandala-bg p-5 text-white relative">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center space-x-2">
+<div class="w-7 h-7 rounded-lg bg-brand-cream flex items-center justify-center text-brand-green font-bold text-xs">
+                  🍲
+                </div>
+<span class="font-serif font-bold text-lg text-brand-cream">GharSe</span>
+</div>
+<span class="text-[10px] bg-brand-gold/20 text-brand-gold px-2 py-0.5 rounded-full border border-brand-gold/30">Rajkot</span>
+</div>
+<h3 class="font-serif font-bold text-lg text-white leading-tight">
+              Home-style tiffin, fresh daily.
+            </h3>
+<p class="text-[11px] text-white/80 mt-0.5">Shuddh desi food delivered to your door.</p>
+</div>
+<!-- Mobile Form Card -->
+<div class="p-4 bg-white m-3 rounded-2xl shadow-sm border border-brand-gold/20">
+<h4 class="font-serif font-bold text-lg text-brand-charcoal mb-1">Quick Signup</h4>
+<p class="text-[11px] text-brand-warmGrey mb-3">Under 60 seconds</p>
+<!-- Role Selector for Mobile -->
+<div class="grid grid-cols-3 gap-1 p-1 bg-stone-100 rounded-lg mb-4 text-[10px] font-semibold text-center">
+<button class="py-1.5 rounded-md bg-brand-green text-white shadow-xs">🎓 Student</button>
+<button class="py-1.5 rounded-md text-stone-600">👨‍🍳 Mess</button>
+<button class="py-1.5 rounded-md text-stone-600">🛵 Rider</button>
+</div>
+<!-- Mobile Form Inputs -->
+<div class="space-y-3">
+<div>
+<label class="block text-[10px] font-semibold text-brand-charcoal mb-0.5">Full Name</label>
+<input class="gharse-input w-full p-2 text-xs rounded-lg border border-stone-300" placeholder="e.g. Divyesh Joshi" type="text"/>
+</div>
+<div>
+<label class="block text-[10px] font-semibold text-brand-charcoal mb-0.5">Phone (+91)</label>
+<input class="gharse-input w-full p-2 text-xs rounded-lg border border-stone-300" placeholder="98980 12345" type="tel"/>
+</div>
+<div>
+<label class="block text-[10px] font-semibold text-brand-charcoal mb-0.5">Hostel / Campus</label>
+<input class="gharse-input w-full p-2 text-xs rounded-lg border border-stone-300" placeholder="Atmiya Hostel Blk-C" type="text"/>
+</div>
+<div>
+<label class="block text-[10px] font-semibold text-brand-charcoal mb-0.5">Password</label>
+<input class="gharse-input w-full p-2 text-xs rounded-lg border border-stone-300" placeholder="••••••••" type="password"/>
+</div>
+<div class="flex items-center space-x-1.5 pt-1">
+<input checked="" class="h-3.5 w-3.5 rounded text-brand-green border-stone-300" id="m-terms" type="checkbox"/>
+<label class="text-[9px] text-stone-500" for="m-terms">I agree to terms &amp; daily lunch timing</label>
+</div>
+<button class="w-full py-2.5 bg-brand-saffron text-white rounded-lg font-bold text-xs shadow-md mt-2">
+                Join GharSe Now →
+              </button>
+</div>
+<p class="text-center text-[10px] text-stone-500 mt-3">
+              Already registered? <span class="text-brand-saffron font-bold">Log in</span>
+</p>
+</div>
+<!-- Bottom Home Indicator -->
+<div class="py-2 flex justify-center">
+<div class="w-24 h-1 bg-stone-300 rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: MobileMockupView -->
+<!-- ========================================================================= -->
+<!-- VIEW C: 3 ROLE VARIANTS MATRIX (Side-by-Side Comparison) -->
+<!-- ========================================================================= -->
+<section class="hidden transition-all duration-300" data-purpose="three-roles-matrix" id="view-matrix">
+<div class="mb-6 text-center max-w-xl mx-auto">
+<span class="inline-block px-3 py-1 bg-brand-gold/20 text-brand-green rounded-full text-xs font-semibold border border-brand-gold/40">
+          👥 Role Matrix Comparison
+        </span>
+<h3 class="font-serif font-bold text-2xl text-brand-charcoal mt-1">Specific fields tailored per user role</h3>
+<p class="text-xs text-brand-warmGrey">Demonstrating exact form field differences between Student subscribers, Mess owners, and Delivery riders.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- CARD 1: Student Subscription Form -->
+<article class="bg-white rounded-2xl p-6 shadow-warm-card gold-hairline flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 right-0 w-20 h-20 bg-brand-cream rounded-bl-full -z-0"></div>
+<div class="relative z-10">
+<div class="flex items-center justify-between mb-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-brand-green border border-emerald-300">
+                🎓 Role: Student
+              </span>
+<span class="text-xs text-brand-warmGrey font-medium">B2C User</span>
+</div>
+<h4 class="font-serif font-bold text-lg text-brand-charcoal mb-1">Student Meal Pass</h4>
+<p class="text-xs text-brand-warmGrey mb-4">Special pricing with hostel delivery points.</p>
+<div class="space-y-3 text-xs">
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Full Name</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800">Manan V. Trivedi</div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">College Email</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800">manan.t@marwadiuniv.ac.in</div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Phone (+91)</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800">+91 97234 56789</div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Hostel &amp; Room / Zone</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-brand-gold/60 text-stone-800 font-semibold bg-amber-50/30">
+                  📍 Marwadi University Hostel D, Rm 402
+                </div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Dietary Preference</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800">100% Gujarati Jain / Swaminarayan</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-stone-100">
+<button class="w-full py-2.5 rounded-xl bg-brand-green text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-sm">
+<span>🎓</span> Submit Student Registration
+            </button>
+</div>
+</article>
+<!-- CARD 2: Mess Owner / Kitchen Partner Form -->
+<article class="bg-white rounded-2xl p-6 shadow-warm-card gold-hairline flex flex-col justify-between relative overflow-hidden ring-2 ring-brand-gold/60">
+<div class="absolute top-0 right-0 bg-brand-gold text-brand-charcoal text-[10px] font-bold px-3 py-0.5 rounded-bl-lg">
+            High Demand
+          </div>
+<div class="relative z-10">
+<div class="flex items-center justify-between mb-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
+                👨‍🍳 Role: Mess Owner
+              </span>
+<span class="text-xs text-brand-warmGrey font-medium">B2B Partner</span>
+</div>
+<h4 class="font-serif font-bold text-lg text-brand-charcoal mb-1">Annapurna Kitchen Partner</h4>
+<p class="text-xs text-brand-warmGrey mb-4">List your home kitchen &amp; feed 150+ students.</p>
+<div class="space-y-3 text-xs">
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Owner / Chef Name</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800">Radhaben Shukla</div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Kitchen / Mess Name</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-brand-gold/60 text-stone-800 font-semibold bg-amber-50/30">
+                  🍛 Annapurna Kitchens (Radhanagar)
+                </div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Daily Tiffin Capacity</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800">80 - 150 Thalis / Day</div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">FSSAI Registration Status</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800 flex items-center gap-1">
+<span class="text-emerald-600">✓</span> Valid 14-Digit FSSAI License Verified
+                </div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Oil Guarantee</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800">No Palm Oil • Pure Groundnut Oil</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-stone-100">
+<button class="w-full py-2.5 rounded-xl bg-brand-saffron text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-sm">
+<span>👨‍🍳</span> Register Kitchen Facility
+            </button>
+</div>
+</article>
+<!-- CARD 3: Delivery Partner Form -->
+<article class="bg-white rounded-2xl p-6 shadow-warm-card gold-hairline flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center justify-between mb-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-900 border border-blue-300">
+                🛵 Role: Delivery Partner
+              </span>
+<span class="text-xs text-brand-warmGrey font-medium">Logistics</span>
+</div>
+<h4 class="font-serif font-bold text-lg text-brand-charcoal mb-1">Campus Route Rider</h4>
+<p class="text-xs text-brand-warmGrey mb-4">Earn ₹8,000 - ₹14,000 during lunch &amp; dinner shifts.</p>
+<div class="space-y-3 text-xs">
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Rider Name</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800">Karanbhai Rathod</div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Vehicle Type &amp; Reg. No.</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800">Honda Activa 6G (GJ-03-BW)</div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Shift Window Preference</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800">11:30 AM - 2:00 PM (Lunch Slots)</div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Dedicated Zone</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-brand-gold/60 text-stone-800 font-semibold bg-amber-50/30">
+                  ⚡ Kalawad Road Hostel Cluster (4.5 km)
+                </div>
+</div>
+<div>
+<label class="block font-medium text-stone-600 mb-0.5">Thermal Bag Provided?</label>
+<div class="p-2 rounded-lg bg-stone-50 border border-stone-200 text-stone-800">Yes, Request GharSe HotBox</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-stone-100">
+<button class="w-full py-2.5 rounded-xl bg-stone-800 text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-sm">
+<span>🛵</span> Apply for Campus Delivery
+            </button>
+</div>
+</article>
+</div>
+</section>
+<!-- END: ThreeRolesMatrix -->
+<!-- ========================================================================= -->
+<!-- VIEW D: FORM VALIDATION STATES DEMO -->
+<!-- ========================================================================= -->
+<section class="hidden transition-all duration-300" data-purpose="form-validation-states" id="view-states">
+<div class="mb-6 text-center max-w-xl mx-auto">
+<span class="inline-block px-3 py-1 bg-brand-green text-white rounded-full text-xs font-semibold">
+          ✨ Form Validation &amp; Micro-Interactions
+        </span>
+<h3 class="font-serif font-bold text-2xl text-brand-charcoal mt-1">Design System Component States</h3>
+<p class="text-xs text-brand-warmGrey">Demonstrating focused, error, valid success, and loading button tokens.</p>
+</div>
+<div class="bg-white rounded-2xl p-8 shadow-warm-card gold-hairline max-w-3xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- STATE 1: Default / Normal State -->
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1">
+              1. Default Inactive State
+            </label>
+<input class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-stone-300 bg-brand-creamSoft/30 text-stone-700" placeholder="Enter your student email..." readonly="" type="text" value="student.name@atmiya.edu.in"/>
+<p class="text-[10px] text-brand-warmGrey mt-1">Normal state with soft border and warm neutral background.</p>
+</div>
+<!-- STATE 2: Focused State with Gold / Forest Green Ring -->
+<div>
+<label class="block text-xs font-semibold text-brand-charcoal mb-1">
+              2. Active Focus State (Green + Gold Ring)
+            </label>
+<input class="w-full px-3.5 py-2.5 text-xs rounded-xl border-2 border-brand-green bg-white text-brand-charcoal shadow-[0_0_0_3px_rgba(224,165,38,0.28)]" readonly="" type="text" value="Radhanagar-5, Opp Royal School"/>
+<p class="text-[10px] text-brand-green font-medium mt-1">Deep Forest Green outline with gold hairline ambient aura.</p>
+</div>
+<!-- STATE 3: Error State with Chili Red -->
+<div>
+<label class="block text-xs font-semibold text-brand-chili mb-1 flex items-center justify-between">
+<span>3. Error State (Chili Red)</span>
+<span class="text-[10px] font-bold text-brand-chili">Required</span>
+</label>
+<div class="relative">
+<input class="w-full px-3.5 py-2.5 text-xs rounded-xl border-2 border-brand-chili bg-red-50/20 text-brand-chili pr-9 shadow-[0_0_0_3px_rgba(214,40,40,0.1)]" readonly="" type="text" value="Flat 40, Street invalid"/>
+<span class="absolute right-3 top-2.5 text-brand-chili text-sm font-bold">⚠️</span>
+</div>
+<p class="text-[11px] text-brand-chili font-semibold mt-1 flex items-center gap-1">
+<span>✕</span> Please enter a valid campus hostel address with wing or room number.
+            </p>
+</div>
+<!-- STATE 4: Valid State with Checkmark -->
+<div>
+<label class="block text-xs font-semibold text-emerald-700 mb-1 flex items-center justify-between">
+<span>4. Validated State (Passed)</span>
+<span class="text-[10px] font-bold text-emerald-700">Verified</span>
+</label>
+<div class="relative">
+<input class="w-full px-3.5 py-2.5 text-xs rounded-xl border-2 border-emerald-600 bg-emerald-50/20 text-emerald-900 pr-9 shadow-[0_0_0_3px_rgba(15,77,58,0.1)] font-medium" readonly="" type="text" value="+91 82386 92705"/>
+<span class="absolute right-3 top-2.5 text-emerald-600 text-sm font-bold">✓</span>
+</div>
+<p class="text-[11px] text-emerald-700 font-medium mt-1 flex items-center gap-1">
+<span>✓</span> Phone number is reachable on WhatsApp.
+            </p>
+</div>
+</div>
+<!-- BUTTON STATES -->
+<div class="mt-8 pt-6 border-t border-stone-200">
+<label class="block text-xs font-semibold uppercase tracking-wider text-brand-warmGrey mb-3">
+            Primary Button States
+          </label>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<!-- Default Button -->
+<button class="py-3 px-4 rounded-xl bg-brand-saffron text-white text-xs font-bold shadow-btn-saffron hover:bg-brand-saffronHover transition">
+              Default CTA State →
+            </button>
+<!-- Disabled Button -->
+<button class="py-3 px-4 rounded-xl bg-stone-300 text-stone-500 text-xs font-semibold cursor-not-allowed" disabled="">
+              Disabled (Form Incomplete)
+            </button>
+<!-- Loading Spinner Button -->
+<button class="py-3 px-4 rounded-xl bg-brand-saffron text-white text-xs font-bold flex items-center justify-center gap-2 cursor-wait shadow-btn-saffron">
+<svg class="w-4 h-4 animate-spin text-white" fill="none" viewbox="0 0 24 24">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8v8H4z" fill="currentColor"></path>
+</svg>
+<span>Creating your account...</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: FormValidationStates -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: SiteFooter -->
+<!-- Subtle footer anchoring brand authenticity and Saurashtra culinary heritage -->
+<footer class="mt-12 py-6 border-t border-brand-gold/30 text-center text-xs text-brand-warmGrey">
+<div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+<div class="flex items-center space-x-2">
+<span class="text-brand-saffron">🍲</span>
+<span class="font-serif font-bold text-brand-green">GharSe Kitchens</span>
+<span>— Shuddh Desi Tiffin Subscription System</span>
+</div>
+<div>
+<span>Rajkot • Morbi • Jamnagar campus delivery network</span>
+</div>
+<div class="text-[11px] text-stone-500">
+        FSSAI Licensed Network • 100% Groundnut Oil Guarantee
+      </div>
+</div>
+</footer>
+<!-- END: SiteFooter -->
+<!-- BEGIN: ClientInteractionsScript -->
+<!-- Vanilla JS handles view navigation, role switching, password evaluation, and loading demonstration -->
+<script data-purpose="interaction-handlers">
+    // Master view switcher (Desktop, Mobile, Matrix, States)
+    function switchMasterView(viewId) {
+      const views = ['desktop', 'mobile', 'matrix', 'states'];
+      views.forEach(v => {
+        const section = document.getElementById('view-' + v);
+        const tabBtn = document.getElementById('tab-' + v);
+        if (v === viewId) {
+          section.classList.remove('hidden');
+          tabBtn.className = 'px-3.5 py-1.5 rounded-lg transition-all duration-200 bg-brand-saffron text-white shadow font-semibold flex items-center gap-1.5';
+        } else {
+          section.classList.add('hidden');
+          tabBtn.className = 'px-3.5 py-1.5 rounded-lg transition-all duration-200 hover:bg-white/10 text-brand-cream/80 flex items-center gap-1.5';
+        }
+      });
+    }
+
+    // Role switcher pills (Student, Mess Owner, Delivery Partner)
+    function selectRole(role) {
+      const roles = ['student', 'mess', 'delivery'];
+      
+      roles.forEach(r => {
+        const pill = document.getElementById('pill-' + r);
+        const fields = document.getElementById('fields-' + r);
+        
+        if (r === role) {
+          // Active state styling
+          pill.className = 'flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg text-xs font-semibold transition-all duration-200 bg-brand-green text-white shadow-sm ring-1 ring-brand-gold/50';
+          fields.classList.remove('hidden');
+        } else {
+          // Inactive state styling
+          pill.className = 'flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg text-xs font-semibold transition-all duration-200 text-brand-charcoal hover:bg-white';
+          fields.classList.add('hidden');
+        }
+      });
+    }
+
+    // Password visibility toggle
+    function togglePasswordVisibility(inputId) {
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById('eye-icon-' + inputId);
+      
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />';
+      } else {
+        input.type = 'password';
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />';
+      }
+    }
+
+    // Dynamic 3-Bar Password Strength Evaluator
+    function evaluatePasswordStrength(val) {
+      const bar1 = document.getElementById('meter-bar-1');
+      const bar2 = document.getElementById('meter-bar-2');
+      const bar3 = document.getElementById('meter-bar-3');
+      const text = document.getElementById('meter-text');
+
+      if (!val || val.length === 0) {
+        bar1.style.width = '0%';
+        bar2.style.width = '0%';
+        bar3.style.width = '0%';
+        text.innerText = 'Weak';
+        text.className = 'text-[10px] font-medium text-stone-400 w-12 text-right';
+        return;
+      }
+
+      let score = 0;
+      if (val.length >= 6) score++;
+      if (val.length >= 8 && /[0-9]/.test(val)) score++;
+      if (val.length >= 10 && /[^A-Za-z0-9]/.test(val)) score++;
+
+      if (score === 1 || val.length < 6) {
+        bar1.style.width = '100%';
+        bar2.style.width = '0%';
+        bar3.style.width = '0%';
+        text.innerText = 'Weak';
+        text.className = 'text-[10px] font-semibold text-brand-chili w-12 text-right';
+      } else if (score === 2) {
+        bar1.style.width = '100%';
+        bar2.style.width = '100%';
+        bar3.style.width = '0%';
+        text.innerText = 'Good';
+        text.className = 'text-[10px] font-semibold text-brand-gold w-12 text-right';
+      } else {
+        bar1.style.width = '100%';
+        bar2.style.width = '100%';
+        bar3.style.width = '100%';
+        text.innerText = 'Strong';
+        text.className = 'text-[10px] font-semibold text-emerald-600 w-12 text-right';
+      }
+    }
+
+    // Toggle button spinner demo
+    let isLoading = false;
+    function toggleButtonLoadingState() {
+      const btn = document.getElementById('btn-submit');
+      const txt = document.getElementById('btn-text');
+      const icon = document.getElementById('btn-icon');
+      const spinner = document.getElementById('btn-spinner');
+
+      isLoading = !isLoading;
+
+      if (isLoading) {
+        txt.innerText = 'Creating your account...';
+        icon.classList.add('hidden');
+        spinner.classList.remove('hidden');
+        btn.classList.add('cursor-wait', 'opacity-90');
+      } else {
+        txt.innerText = 'Create Account';
+        icon.classList.remove('hidden');
+        spinner.classList.add('hidden');
+        btn.classList.remove('cursor-wait', 'opacity-90');
+      }
+    }
+
+    // Handle form submit simulation
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      toggleButtonLoadingState();
+      setTimeout(() => {
+        toggleButtonLoadingState();
+        alert('🎉 Welcome to GharSe! Your subscription account is created. We will send lunch menu updates to your registered phone.');
+      }, 1500);
+    }
+  </script>
+<!-- END: ClientInteractionsScript -->
+</body></html>

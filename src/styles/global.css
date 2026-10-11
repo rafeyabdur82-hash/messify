@@ -1,0 +1,8 @@
+img { max-width: 100%; display: block; }
+
+::selection { background: var(--haldi-soft); color: var(--charcoal); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--dahi-dim); }
+::-webkit-scrollbar-thumb { background: var(--sooji); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--charcoal-soft); }

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary":"#9f4200","surface-tint":"#306854","error-container":"#ffdad6","on-surface-variant":"#404944","surface":"#fff9ed","error":"#ba1a1a","on-secondary-container":"#642700","surface-container-high":"#eee8d9","on-primary":"#ffffff","surface-container-low":"#faf3e4","primary-fixed":"#b4efd5","on-error-container":"#93000a","on-secondary-fixed-variant":"#793000","on-primary-fixed":"#002116","background":"#fff9ed","inverse-surface":"#333026","primary":"#003526","on-tertiary-container":"#e2a728","on-error":"#ffffff","tertiary":"#3e2a00","secondary-fixed":"#ffdbcb","on-tertiary":"#ffffff","inverse-primary":"#98d3b9","on-tertiary-fixed":"#271900","tertiary-fixed":"#ffdea8","surface-dim":"#e0d9cb","tertiary-fixed-dim":"#fabc3e","surface-variant":"#e9e2d3","surface-container-lowest":"#ffffff","surface-bright":"#fff9ed","outline":"#707974","on-tertiary-fixed-variant":"#5e4200","outline-variant":"#bfc9c2","surface-container":"#f4edde","on-secondary-fixed":"#341100","secondary-fixed-dim":"#ffb692","inverse-on-surface":"#f7f0e1","primary-container":"#0f4d3a","on-primary-container":"#83bda4","secondary-container":"#fd8039","primary-fixed-dim":"#98d3b9","on-surface":"#1e1c13","on-background":"#1e1c13","on-secondary":"#ffffff","on-primary-fixed-variant":"#14503d","surface-container-highest":"#e9e2d3","tertiary-container":"#5a3f00"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-sm":"0.5rem","space-xl":"2.5rem","margin":"2rem","gutter":"1rem","margin-mobile":"1rem","space-lg":"1.5rem","space-md":"1rem","gutter-mobile":"0.75rem","space-xs":"0.25rem"},fontFamily:{"headline-lg":["Playfair Display"],"display-hero":["Playfair Display"],"display-hero-mobile":["Playfair Display"],"headline-sm":["Playfair Display"],"body-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-md":["Playfair Display"],"script-accent":["Playfair Display"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Playfair Display"],"label-xs":["Plus Jakarta Sans"]},fontSize:{"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"700"}],"display-hero":["48px",{"lineHeight":"56px","fontWeight":"800"}],"display-hero-mobile":["34px",{"lineHeight":"42px","fontWeight":"800"}],"headline-sm":["20px",{"lineHeight":"26px","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-md":["24px",{"lineHeight":"30px","fontWeight":"700"}],"script-accent":["22px",{"lineHeight":"28px","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"500"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"18px","fontWeight":"700"}],"headline-lg-mobile":["26px",{"lineHeight":"32px","fontWeight":"700"}],"label-xs":["10px",{"lineHeight":"14px","fontWeight":"700"}]}}}};</script></head><body class="bg-background text-on-surface font-body-md text-body-md"><aside class="fixed left-0 top-0 h-full w-72 bg-primary-container z-50 flex flex-col justify-between py-space-md shadow-[4px_0_24px_rgba(15,77,58,0.2)]"><div class="flex flex-col"><div class="px-space-lg pt-space-xs pb-space-md"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-full bg-surface flex items-center justify-center text-primary-container"><span class="material-symbols-outlined text-xl">skillet</span></div><div class="flex flex-col"><div class="flex items-baseline gap-1"><span class="font-headline-sm text-headline-sm text-on-primary font-bold">GharSe</span><span class="font-script-accent text-script-accent text-on-tertiary-container italic">tiffin</span></div><span class="self-start px-space-xs py-0.5 rounded-full bg-primary text-on-tertiary-container font-label-xs text-label-xs uppercase tracking-widest">Student Portal</span></div></div></div><nav class="flex flex-col gap-1 px-space-md mt-space-sm" data-active-classes="bg-primary text-on-tertiary-container font-semibold shadow-sm"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-on-primary transition-all" data-path="home" href="#"><span class="material-symbols-outlined text-xl">cottage</span><span class="font-body-md text-body-md">Home</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-on-primary transition-all" data-path="browse-messes" href="#"><span class="material-symbols-outlined text-xl">storefront</span><span class="font-body-md text-body-md">Browse Messes</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg transition-all bg-primary text-on-tertiary-container font-semibold shadow-sm" data-path="my-subscription" href="#"><span class="material-symbols-outlined text-xl">card_membership</span><span class="font-body-md text-body-md">My Subscription</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-on-primary transition-all" data-path="skip-meals" href="#"><span class="material-symbols-outlined text-xl">event_busy</span><span class="font-body-md text-body-md">Skip Meals</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-on-primary transition-all" data-path="custom-order" href="#"><span class="material-symbols-outlined text-xl">soup_kitchen</span><span class="font-body-md text-body-md">Custom Order</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-on-primary transition-all" data-path="billing" href="#"><span class="material-symbols-outlined text-xl">receipt_long</span><span class="font-body-md text-body-md">Billing</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-on-primary transition-all" data-path="track-delivery" href="#"><span class="material-symbols-outlined text-xl">moped</span><span class="font-body-md text-body-md">Track Delivery</span></a></nav></div><div class="px-space-md space-y-1"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-on-primary transition-all" data-path="profile" href="#"><span class="material-symbols-outlined text-xl">badge</span><span class="font-body-md text-body-md">Profile</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary hover:text-on-primary transition-all" data-path="login" href="#"><span class="material-symbols-outlined text-xl">logout</span><span class="font-body-md text-body-md">Logout</span></a></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-md z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-sm"><span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Rajkot Campus Active Plan:</span><span class="px-space-xs py-0.5 rounded bg-surface-container-high text-primary font-label-md text-label-md">Kathiyawadi Shahi Dawat (Lunch &amp; Dinner)</span></div><div class="flex items-center gap-space-lg"><button class="relative p-2 rounded-full hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-on-surface">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 bg-secondary-container text-on-primary font-label-xs text-label-xs rounded-full flex items-center justify-center font-bold">3</span></button><div class="flex items-center gap-space-sm pl-space-xs"><div class="text-right hidden sm:block"><p class="font-label-lg text-label-lg text-on-surface leading-tight">Meet Patel</p><p class="font-label-xs text-label-xs text-on-surface-variant">MU Hosteller • Pass #GHR-9402</p></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1U1i3W8d8QG6lu8G4Jgo4tX3W0-ecWoWgcjzJbHtzzfo7arriFNxYQQJ-LG-wzD1p0aFttHL1BO-amGS52RmYo4reNKA-HHlQLVyKEFOsRIz7N6sJP-b959CFVTkMQdL0GqLCfC8xfEyxnKL_gbvOZEjTi0mmzkIVI5SvlF5Tkx-xfJoxmqSyJUujNfUmF5RBjqaIcKTO0B0jOPJvTTx25jJb6IZK8SC8w6zWN4XFMu4YTsBsPqaixSWR4"/></div></div></header><main class="relative pt-16 bg-background w-full px-space-lg min-h-screen"><div class="flex flex-col w-full pb-16 space-y-8">
+<!-- Top Welcome Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-surface-container-low p-space-lg rounded-xl shadow-sm relative overflow-hidden">
+<div class="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-surface-container-high/60 pointer-events-none"></div>
+<div class="flex flex-col space-y-1 z-10">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full bg-primary text-on-tertiary-container font-label-xs text-label-xs uppercase tracking-widest">Kathiyawadi Thali Pass</span>
+<span class="text-on-surface-variant font-label-md text-label-md">• Thursday, 21 Nov 2024</span>
+</div>
+<div class="flex flex-wrap items-baseline gap-x-3">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Good afternoon, Aarav Trivedi</h1>
+<span class="font-script-accent text-script-accent text-secondary italic">Ghar Ka Khana Ready Hai!</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-md text-body-md pt-0.5">
+<span class="material-symbols-outlined text-primary text-base">location_on</span>
+<span>Hostel: RK Univ Boys Hostel 2, Room 314 • Tramba, Rajkot</span>
+</div>
+</div>
+<!-- Live Quick Status Strip -->
+<div class="flex items-center gap-3 z-10">
+<div class="bg-surface-container-highest/80 px-4 py-2.5 rounded-lg flex items-center gap-3 shadow-xs">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-label-xs text-label-xs text-on-surface-variant uppercase">Refund Credits</p>
+<p class="font-headline-sm text-headline-sm text-primary leading-tight font-bold">₹240 <span class="text-xs font-normal text-on-surface-variant font-body-sm">(3 Pauses)</span></p>
+</div>
+</div>
+<button class="bg-secondary hover:bg-on-secondary-container text-on-primary px-4 py-3 rounded-lg font-label-lg text-label-lg flex items-center gap-2 shadow-sm transition-all transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-base">add_card</span>
+<span>Recharge Pass</span>
+</button>
+</div>
+</div>
+<!-- AI Nutrition Tip Bar -->
+<div class="bg-surface-container rounded-xl p-space-md shadow-sm relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start md:items-center gap-3.5">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-primary uppercase tracking-wide">AI Nutrition &amp; Ayurvedic Health Tip</span>
+<span class="bg-secondary-container/20 text-on-secondary-container px-2 py-0.2 rounded-full font-label-xs text-label-xs font-bold">Rajkot Climate Advisory</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+          Today's Kathiyawadi lunch contains freshly roasted green garlic and cold-churned cumin buttermilk (chaas), formulated to boost gut flora in midday Rajkot warmth. Remember to hydrate with 2 glasses of lukewarm water!
+        </p>
+</div>
+</div>
+<div class="flex items-center gap-2 shrink-0 self-end md:self-auto">
+<span class="font-label-xs text-label-xs text-on-surface-variant">Calorie est: 620 kcal</span>
+<div class="w-2 h-2 rounded-full bg-surface-tint"></div>
+<span class="font-label-xs text-label-xs text-surface-tint font-bold">100% Satvik Digest</span>
+</div>
+</div>
+<!-- Bento Section: Subscription Booklet Pass (Left) & Delivery Live Tracker (Right) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Active Subscription Booklet Pass -->
+<div class="lg:col-span-5 flex flex-col justify-between bg-primary-container text-on-primary p-space-lg rounded-xl shadow-md relative overflow-hidden">
+<!-- Decorative background filigree -->
+<div class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-primary/40 pointer-events-none"></div>
+<div class="absolute right-4 bottom-4 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-9xl">temple_hindu</span>
+</div>
+<div class="relative z-10 space-y-4">
+<!-- Mess Header -->
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface flex items-center justify-center text-primary-container shadow-inner">
+<span class="material-symbols-outlined text-2xl">soup_kitchen</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-primary leading-tight">Annapurna Kitchens</h3>
+<span class="material-symbols-outlined text-on-tertiary-container text-base" title="Certified Pure Veg Mess">verified</span>
+</div>
+<p class="font-label-xs text-label-xs text-on-primary-container tracking-wider uppercase">Tiffin Co. • Mahadev Vadi Main Rd, Rajkot</p>
+</div>
+</div>
+<span class="bg-secondary-container text-on-primary px-2.5 py-1 rounded font-label-xs text-label-xs tracking-wider uppercase font-bold">Active</span>
+</div>
+<!-- Plan Specifications -->
+<div class="bg-primary/60 p-space-md rounded-lg space-y-3 shadow-inner">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-primary-container">Subscribed Tier</span>
+<span class="font-label-lg text-label-lg text-on-tertiary-container">Monthly Unlimited Full Pass</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-primary-container">Meal Schedule</span>
+<span class="font-label-md text-label-md text-on-primary">Standard Lunch &amp; Dinner (7 Days)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-primary-container">Validity Horizon</span>
+<span class="font-label-md text-label-md text-on-primary">Valid till 28 Nov 2024</span>
+</div>
+<!-- Progress Ring/Bar of Days remaining -->
+<div class="pt-2">
+<div class="flex justify-between text-label-xs font-label-xs mb-1.5">
+<span class="text-on-primary-container">Pass Duration Consumption</span>
+<span class="text-on-tertiary-container font-bold">22 of 30 Days Remaining</span>
+</div>
+<div class="w-full bg-primary rounded-full h-2.5 overflow-hidden">
+<div class="bg-secondary-container h-full rounded-full transition-all duration-500" style="width: 73.3%"></div>
+</div>
+</div>
+</div>
+<!-- Trust Badges Checklist from Annapurna flyer -->
+<div class="grid grid-cols-2 gap-2 text-label-xs font-label-xs text-on-primary-container pt-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-on-tertiary-container text-sm">check_circle</span>
+<span>100% Groundnut Oil Only</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-on-tertiary-container text-sm">check_circle</span>
+<span>Zero Palm Oil Guarantee</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-on-tertiary-container text-sm">check_circle</span>
+<span>Soft Rotlis &amp; Unlimited Refill</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-on-tertiary-container text-sm">check_circle</span>
+<span>FSSAI Hygiene Grade A+</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="relative z-10 pt-5 flex items-center gap-3">
+<button class="flex-1 bg-secondary hover:bg-on-secondary-container text-on-primary py-3 rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-base">autorenew</span>
+<span>Renew Plan</span>
+</button>
+<button class="px-4 py-3 bg-surface text-primary hover:bg-surface-container-high rounded-lg font-label-lg text-label-lg transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">swap_horiz</span>
+<span>Change Mess</span>
+</button>
+</div>
+</div>
+<!-- Live Delivery Stepper (Lunch Track) -->
+<div class="lg:col-span-7 flex flex-col justify-between bg-surface-container-low p-space-lg rounded-xl shadow-sm">
+<div>
+<div class="flex flex-wrap items-center justify-between gap-2 pb-4">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-secondary-container/15 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">moped</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Live Tiffin Tracking</h3>
+<span class="px-2 py-0.5 rounded bg-surface-tint/15 text-surface-tint font-label-xs text-label-xs font-bold uppercase animate-pulse">In Transit</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lunch Batch #4 • ETA 12:45 PM at RK Hostel Security Gate</p>
+</div>
+</div>
+<!-- OTP Badge -->
+<div class="flex items-center gap-2 bg-surface p-2 rounded-lg shadow-xs">
+<div class="text-right">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase block">Hostel Gate OTP</span>
+<span class="font-headline-sm text-headline-sm font-bold tracking-widest text-secondary">4892</span>
+</div>
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant" title="Copy OTP" type="button">
+<span class="material-symbols-outlined text-base">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Stop-by-stop Progress Bar Stepper -->
+<div class="py-4">
+<div class="relative flex items-center justify-between">
+<!-- Connecting lines -->
+<div class="absolute left-6 right-6 top-5 h-1 bg-surface-container-highest -z-0"></div>
+<div class="absolute left-6 w-2/3 top-5 h-1 bg-surface-tint -z-0"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center z-10">
+<div class="w-10 h-10 rounded-full bg-surface-tint text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-base">check</span>
+</div>
+<span class="font-label-md text-label-md text-primary mt-2">Cooked Fresh</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">11:30 AM</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center z-10">
+<div class="w-10 h-10 rounded-full bg-surface-tint text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-base">check</span>
+</div>
+<span class="font-label-md text-label-md text-primary mt-2">Sealed Tiffin</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">12:00 PM</span>
+</div>
+<!-- Step 3 (Active) -->
+<div class="flex flex-col items-center z-10">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-primary flex items-center justify-center shadow-md animate-bounce">
+<span class="material-symbols-outlined text-base">local_shipping</span>
+</div>
+<span class="font-label-md text-label-md text-secondary font-bold mt-2">On the Way</span>
+<span class="font-label-xs text-label-xs text-secondary font-semibold">12:20 PM</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center z-10">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-base">meeting_room</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant mt-2">At Hostel Gate</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Est. 12:45 PM</span>
+</div>
+</div>
+</div>
+<!-- Rider Contact Row -->
+<div class="mt-4 p-space-sm bg-surface rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary">
+              RB
+            </div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Ramesh Barad (Delivery Partner)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hero Electric Scooter • Route: Tramba Bypass</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<a class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-highest hover:bg-surface-container text-primary font-label-md text-label-md rounded-md transition-colors" href="tel:+919876512340">
+<span class="material-symbols-outlined text-base">call</span>
+<span>Call (+91 98765 12340)</span>
+</a>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-md hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-lg">message</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Delivery Helper Note -->
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-surface-tint text-base">shelves</span>
+          Delivery dropping to Hostel 2 Reception Shelf #B-14.
+        </span>
+<a class="text-secondary font-label-md text-label-md hover:underline flex items-center gap-0.5" href="#">
+<span>Map Route</span>
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Today's Meals Section Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pt-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-xs text-label-xs uppercase tracking-widest text-secondary font-bold">Annapurna Special Menu</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Cooked with Cold-Pressed Groundnut Oil</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">Today's Meal Thalis</h2>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-script-accent text-script-accent text-on-tertiary-container italic">Soft Phulkas &amp; Pure Ghee</span>
+<button class="text-primary font-label-lg text-label-lg hover:underline flex items-center gap-1" type="button">
+<span>View Full Weekly Chart</span>
+<span class="material-symbols-outlined text-base">calendar_month</span>
+</button>
+</div>
+</div>
+<!-- Today's Meals Split: Lunch Card & Dinner Card -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Lunch Thali Card -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-tint text-on-primary font-label-xs text-label-xs uppercase font-bold">Lunch Thali</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-primary font-label-xs text-label-xs">12:30 PM - 2:00 PM</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mt-1">Kathiyawadi Shahi Dawat</h3>
+</div>
+<!-- Status Pill -->
+<span class="px-3 py-1 rounded-full bg-secondary-container/20 text-on-secondary-container font-label-xs text-label-xs font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-ping"></span>
+          Out for Delivery
+        </span>
+</div>
+<!-- Thali Photo & Items Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-4 my-2">
+<div class="sm:col-span-5 relative group">
+<img class="w-full h-40 object-cover rounded-lg shadow-sm" data-alt="Authentic traditional Gujarati Kathiyawadi full thali meal served in a round stainless steel plate, with bowls of ringna no olo, bataka nu shaak, dal, bhat, four ghee brushed rotlis, and a chilled copper glass of masala chaas buttermilk, soft ambient sunlight on vintage wooden table, professional editorial food photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcwNeteRGs75Cb9Bs_HItGIomPU6U0-4dXDDT7nk-M6KNLum3WrRxBNt75pUPX_b-uS6T9b22i846YjbNw9MTjaOe5J7VoiTBzvEkWzKwxmhVWZWuStrKTu2kMKpeTyVJd7QIWjyK-xL3tsLB9ey-dqG451_MHonWnSPvSlzWa2N4Q5xbQBYRHsotDTNqdmcuZfcpBKbmN26s8REQwE3en07JQx7l138xOjpHTNmA"/>
+<div class="absolute bottom-1.5 left-1.5 bg-primary/80 backdrop-blur-xs text-on-primary font-label-xs text-label-xs px-2 py-0.5 rounded">
+            Pure Desi Ghee
+          </div>
+</div>
+<div class="sm:col-span-7 flex flex-col justify-center space-y-1.5">
+<p class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider font-semibold">Today's Curated Items:</p>
+<ul class="space-y-1 text-on-surface font-body-md text-body-md">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-semibold">Smoky Ringna No Olo</span> (Bhaad roasted)
+            </li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Rasa Vala Bataka Nu Shaak</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>4 Phulkas with A2 Gir Cow Ghee</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Surati Dal-Bhat &amp; Masala Chaas</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Skip Meal State (Locked for lunch) -->
+<div class="mt-4 pt-4 bg-surface-container rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">lock_clock</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Meal Pause Locked</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cutoff was 10:00 AM (Dispatch initiated)</p>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded bg-surface-container-highest text-outline font-label-md text-label-md cursor-not-allowed" disabled="" type="button">
+          Skip Locked
+        </button>
+</div>
+</div>
+<!-- Dinner Thali Card -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-xs text-label-xs uppercase font-bold">Dinner Thali</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-primary font-label-xs text-label-xs">7:45 PM - 9:30 PM</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mt-1">Kathiyawadi Desi Rasoi</h3>
+</div>
+<!-- Status Pill -->
+<span class="px-3 py-1 rounded-full bg-surface-container-highest text-primary font-label-xs text-label-xs font-semibold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+          Kitchen Prep: 6:00 PM
+        </span>
+</div>
+<!-- Thali Photo & Items Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-4 my-2">
+<div class="sm:col-span-5 relative group">
+<img class="w-full h-40 object-cover rounded-lg shadow-sm" data-alt="Rustic dinner plate with fresh hot bajra rotla melting white homemade butter makhan, rich sev tameta nu shaak curry with fresh coriander, comforting moong dal khichdi and yellow gujarati kadhi, warm evening golden hour lighting, authentic Indian kitchen vibe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgkSU781NX2PxNn9fMHvc9wGm4A5Gs3LtnKxId6bVJUZKbZWLmLv79nNvaa9b_l0_Gx4JiPr1Fo1J5CfstYtaIiBcvm6lpnQQBh5olSAbJW9fucROsf0V-GhvxFpDKVT7KHrKpqosSFDxTF_S4_IMeR3otFKXL2DA2nEMxUyo1avmUAryfshWTzhyvaWLxyiXlsIYZOs4cFWHDEaHjfxWy7hFC_jMRBEofzpyhoBc"/>
+<div class="absolute bottom-1.5 left-1.5 bg-primary/80 backdrop-blur-xs text-on-primary font-label-xs text-label-xs px-2 py-0.5 rounded">
+            Fresh Bajra Rotla
+          </div>
+</div>
+<div class="sm:col-span-7 flex flex-col justify-center space-y-1.5">
+<p class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider font-semibold">Today's Evening Menu:</p>
+<ul class="space-y-1 text-on-surface font-body-md text-body-md">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-semibold">Kathiyawadi Sev Tameta Nu Shaak</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>2 Hot Bajra Rotla with Safed Makhan</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Moong Dal Khichdi &amp; Sweet Kadhi</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Sambharo, Fried Marcha &amp; Gud</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Interactive Skip Toggle for Dinner -->
+<div class="mt-4 pt-4 bg-surface-container rounded-lg p-space-sm flex items-center justify-between transition-colors" id="dinnerSkipContainer">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">savings</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Skip this Dinner?</p>
+<p class="font-body-sm text-body-sm text-secondary">Pause before 5:00 PM for instant ₹60 wallet credit</p>
+</div>
+</div>
+<button class="px-4 py-2 rounded-lg bg-secondary hover:bg-on-secondary-container text-on-primary font-label-md text-label-md shadow-xs transition-all active:scale-95 flex items-center gap-1.5" id="skipDinnerBtn" onclick="toggleDinnerSkip()" type="button">
+<span class="material-symbols-outlined text-base">event_busy</span>
+<span id="skipBtnText">Skip Meal</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Physical Print Metaphor: Tear-Off Coupon Offer Card Inspired by Image -->
+<div class="bg-primary text-on-primary rounded-xl shadow-md overflow-hidden relative">
+<div class="p-space-lg flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Left side: Promotional banner with handwritten style -->
+<div class="space-y-2 max-w-xl">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded bg-on-tertiary-container text-on-primary-fixed font-label-xs text-label-xs uppercase font-extrabold tracking-wider">Campus Special Voucher</span>
+<span class="text-on-primary-container font-label-md text-label-md">Valid for RK University Students</span>
+</div>
+<h3 class="font-headline-md text-headline-md leading-tight">Super Delicious Kathiyawadi Meals Delivered Fresh Daily</h3>
+<p class="font-body-md text-body-md text-on-primary-container">
+          Zero palm oil, authentic groundnut oil preparations, and unlimited warm rotlis. Buy a 30-Day Booklet Pass for your hostel roommates and get ₹100 flat wallet cash back.
+        </p>
+<div class="flex items-center gap-4 pt-2">
+<div class="flex items-center gap-1 text-on-tertiary-container font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-base">call</span>
+<span>Helpline: (+91) 82386 92705</span>
+</div>
+<span class="text-on-primary-container">•</span>
+<span class="text-on-primary-container font-body-sm text-body-sm">Pooja Complex, Mahadev Vadi Main Rd</span>
+</div>
+</div>
+<!-- Right side: Perforated Tear-off Coupon Booklet -->
+<div class="w-full md:w-auto bg-surface text-on-surface p-space-md rounded-xl shadow-lg relative flex flex-col justify-between shrink-0">
+<div class="flex items-center justify-between pb-3">
+<span class="font-label-xs text-label-xs tracking-widest text-on-surface-variant uppercase font-bold">EXCLUSIVE PASS</span>
+<span class="bg-secondary-container text-on-primary font-label-xs text-label-xs px-2 py-0.5 rounded font-bold">₹100 FLAT OFF</span>
+</div>
+<div class="py-2 text-center">
+<p class="font-body-xs text-xs text-on-surface-variant uppercase tracking-wider">30 Passes Booklet</p>
+<div class="flex items-baseline justify-center gap-2 mt-1">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">₹2,400</span>
+<span class="font-body-md text-body-md text-error line-through">₹2,500</span>
+</div>
+<p class="font-label-xs text-label-xs text-surface-tint font-bold mt-1">Only ₹80 per Unlimited Thali</p>
+</div>
+<div class="pt-3">
+<button class="w-full bg-secondary hover:bg-on-secondary-container text-on-primary py-2.5 px-4 rounded-lg font-label-md text-label-md transition-colors shadow-xs" type="button">
+            Apply Campus Pass
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Shortcuts Bento Footer -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<!-- Shortcut 1 -->
+<a class="bg-surface-container-low hover:bg-surface-container p-space-md rounded-xl shadow-xs transition-all flex items-center gap-3.5 group" href="#">
+<div class="w-11 h-11 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-xl">event_upcoming</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-primary group-hover:text-secondary transition-colors">Pause Multi-Day Calendar</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Going home for the weekend? Pre-pause meals</p>
+</div>
+</a>
+<!-- Shortcut 2 -->
+<a class="bg-surface-container-low hover:bg-surface-container p-space-md rounded-xl shadow-xs transition-all flex items-center gap-3.5 group" href="#">
+<div class="w-11 h-11 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-xl">tune</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-primary group-hover:text-secondary transition-colors">Custom Dietary Request</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Request less green chillies, no onion, or extra roti</p>
+</div>
+</a>
+<!-- Shortcut 3 -->
+<a class="bg-surface-container-low hover:bg-surface-container p-space-md rounded-xl shadow-xs transition-all flex items-center gap-3.5 group" href="#">
+<div class="w-11 h-11 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-xl">receipt_long</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-primary group-hover:text-secondary transition-colors">Download Pass Receipt</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tax invoice &amp; mess attendance breakdown</p>
+</div>
+</a>
+</div>
+</div>
+<script>
+  let isDinnerSkipped = false;
+  function toggleDinnerSkip() {
+    isDinnerSkipped = !isDinnerSkipped;
+    const btn = document.getElementById('skipDinnerBtn');
+    const btnText = document.getElementById('skipBtnText');
+    const container = document.getElementById('dinnerSkipContainer');
+    
+    if (isDinnerSkipped) {
+      btn.className = 'px-4 py-2 rounded-lg bg-surface-tint hover:bg-primary text-on-primary font-label-md text-label-md shadow-xs transition-all active:scale-95 flex items-center gap-1.5';
+      btnText.textContent = 'Skipped (₹60 Added)';
+      container.classList.add('bg-surface-container-highest');
+    } else {
+      btn.className = 'px-4 py-2 rounded-lg bg-secondary hover:bg-on-secondary-container text-on-primary font-label-md text-label-md shadow-xs transition-all active:scale-95 flex items-center gap-1.5';
+      btnText.textContent = 'Skip Meal';
+      container.classList.remove('bg-surface-container-highest');
+    }
+  }
+</script></main></div></body></html>

@@ -1,0 +1,80 @@
+:root {
+  /* Color: spice-tin palette, not the generic cream/terracotta AI default */
+  --masala: #7A2E1D;        /* deep masala brick - primary */
+  --masala-dark: #5C2015;
+  --haldi: #E8A33D;         /* turmeric gold - accent/highlight */
+  --haldi-soft: #F5D48B;
+  --tamarind: #2B4C4A;      /* deep tamarind teal - counter accent, trust/tech */
+  --tamarind-light: #4A7570;
+  --dahi: #FBF6EE;          /* dahi/curd white - background */
+  --dahi-dim: #F3EBDC;
+  --sooji: #EFE4CE;         /* semolina - card borders */
+  --charcoal: #2A2320;      /* tandoor charcoal - text */
+  --charcoal-soft: #6B5F55;
+  --success: #3F7D4F;
+  --danger: #B23A2E;
+  --white: #FFFFFF;
+
+  /* Type */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(42, 35, 32, 0.06), 0 1px 3px rgba(42, 35, 32, 0.08);
+  --shadow-md: 0 4px 12px rgba(42, 35, 32, 0.08), 0 2px 4px rgba(42, 35, 32, 0.06);
+  --shadow-lg: 0 12px 32px rgba(42, 35, 32, 0.14), 0 4px 8px rgba(42, 35, 32, 0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--dahi);
+  color: var(--charcoal);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--charcoal);
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--tamarind);
+  outline-offset: 2px;
+}
+
+.mono { font-family: var(--font-mono); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..800&amp;family=Plus+Jakarta+Sans:ital,wght@0,400..700;1,400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; } .mandala-bg { background-color: #fff9ed; background-image: radial-gradient(#e0a526 0.75px, transparent 0.75px), radial-gradient(#e0a526 0.75px, #fff9ed 0.75px); background-size: 30px 30px; background-position: 0 0, 15px 15px; opacity: 0.98; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "surface-container": "#f4edde",
+        "on-error-container": "#93000a",
+        "tertiary-container": "#5a3f00",
+        "inverse-primary": "#98d3b9",
+        "primary": "#003526",
+        "outline": "#707974",
+        "inverse-surface": "#333026",
+        "error": "#ba1a1a",
+        "on-secondary-fixed-variant": "#793000",
+        "primary-fixed-dim": "#98d3b9",
+        "outline-variant": "#bfc9c2",
+        "secondary-container": "#fd8039",
+        "inverse-on-surface": "#f7f0e1",
+        "on-secondary-container": "#642700",
+        "secondary": "#9f4200",
+        "on-primary-container": "#83bda4",
+        "on-error": "#ffffff",
+        "primary-fixed": "#b4efd5",
+        "surface": "#fff9ed",
+        "surface-dim": "#e0d9cb",
+        "on-secondary": "#ffffff",
+        "on-background": "#1e1c13",
+        "tertiary": "#3e2a00",
+        "surface-container-highest": "#e9e2d3",
+        "on-tertiary-container": "#e2a728",
+        "surface-container-low": "#faf3e4",
+        "on-surface-variant": "#404944",
+        "on-tertiary": "#ffffff",
+        "error-container": "#ffdad6",
+        "surface-tint": "#306854",
+        "tertiary-fixed-dim": "#fabc3e",
+        "tertiary-fixed": "#ffdea8",
+        "background": "#fff9ed",
+        "surface-container-high": "#eee8d9",
+        "on-surface": "#1e1c13",
+        "surface-bright": "#fff9ed",
+        "on-tertiary-fixed-variant": "#5e4200",
+        "primary-container": "#0f4d3a",
+        "secondary-fixed": "#ffdbcb",
+        "on-primary-fixed": "#002116",
+        "on-primary": "#ffffff",
+        "on-primary-fixed-variant": "#14503d",
+        "on-secondary-fixed": "#341100",
+        "on-tertiary-fixed": "#271900",
+        "surface-container-lowest": "#ffffff",
+        "surface-variant": "#e9e2d3",
+        "secondary-fixed-dim": "#ffb692"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "gutter": "1rem",
+        "space-xs": "0.25rem",
+        "space-lg": "1.5rem",
+        "space-xl": "2.5rem",
+        "gutter-mobile": "0.75rem",
+        "space-sm": "0.5rem",
+        "margin": "2rem",
+        "margin-mobile": "1rem",
+        "space-md": "1rem"
+      },
+      "fontFamily": {
+        "script-accent": [
+          "Playfair Display"
+        ],
+        "body-md": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-md": [
+          "Playfair Display"
+        ],
+        "body-lg": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-lg": [
+          "Playfair Display"
+        ],
+        "display-hero-mobile": [
+          "Playfair Display"
+        ],
+        "label-lg": [
+          "Plus Jakarta Sans"
+        ],
+        "label-md": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-lg-mobile": [
+          "Playfair Display"
+        ],
+        "display-hero": [
+          "Playfair Display"
+        ],
+        "label-xs": [
+          "Plus Jakarta Sans"
+        ],
+        "body-sm": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-sm": [
+          "Playfair Display"
+        ]
+      },
+      "fontSize": {
+        "script-accent": [
+          "22px",
+          {
+            "lineHeight": "28px",
+            "fontWeight": "400"
+          }
+        ],
+        "body-md": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "400"
+          }
+        ],
+        "headline-md": [
+          "24px",
+          {
+            "lineHeight": "30px",
+            "fontWeight": "700"
+          }
+        ],
+        "body-lg": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "500"
+          }
+        ],
+        "headline-lg": [
+          "32px",
+          {
+            "lineHeight": "40px",
+            "fontWeight": "700"
+          }
+        ],
+        "display-hero-mobile": [
+          "34px",
+          {
+            "lineHeight": "42px",
+            "fontWeight": "800"
+          }
+        ],
+        "label-lg": [
+          "14px",
+          {
+            "lineHeight": "18px",
+            "fontWeight": "700"
+          }
+        ],
+        "label-md": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "600"
+          }
+        ],
+        "headline-lg-mobile": [
+          "26px",
+          {
+            "lineHeight": "32px",
+            "fontWeight": "700"
+          }
+        ],
+        "display-hero": [
+          "48px",
+          {
+            "lineHeight": "56px",
+            "fontWeight": "800"
+          }
+        ],
+        "label-xs": [
+          "10px",
+          {
+            "lineHeight": "14px",
+            "fontWeight": "700"
+          }
+        ],
+        "body-sm": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "400"
+          }
+        ],
+        "headline-sm": [
+          "20px",
+          {
+            "lineHeight": "26px",
+            "fontWeight": "600"
+          }
+        ]
+      }
+    }
+  }
+}</script></head><body class="bg-background font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-primary-container z-50 flex flex-col justify-between py-6 px-4 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-6"><div class="px-4 flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center"><span class="material-symbols-outlined text-primary text-[24px]">lunch_dining</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-surface font-bold tracking-tight">GharSe</span><span class="font-label-xs text-label-xs text-on-tertiary-container uppercase tracking-widest font-semibold">Mess Owner Portal</span></div></div><div class="w-full h-px bg-outline-variant/20"></div><nav class="flex flex-col gap-1.5" data-active-classes="text-on-tertiary-container font-bold relative before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-1.5 before:bg-secondary-container before:rounded-full bg-primary/40"><a aria-current="page" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-on-tertiary-container font-bold relative before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-1.5 before:bg-secondary-container before:rounded-full bg-primary/40" data-path="home" href="#"><span class="material-symbols-outlined text-[20px]">home</span><span>Home</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-inverse-on-surface/80 hover:bg-primary hover:text-on-primary transition-colors font-label-lg text-label-lg" data-path="meals" href="#"><span class="material-symbols-outlined text-[20px]">restaurant_menu</span><span>Meals</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-inverse-on-surface/80 hover:bg-primary hover:text-on-primary transition-colors font-label-lg text-label-lg" data-path="orders" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span>Orders</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-inverse-on-surface/80 hover:bg-primary hover:text-on-primary transition-colors font-label-lg text-label-lg" data-path="payments" href="#"><span class="material-symbols-outlined text-[20px]">payments</span><span>Payments</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-inverse-on-surface/80 hover:bg-primary hover:text-on-primary transition-colors font-label-lg text-label-lg" data-path="delivery" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span>Delivery</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-inverse-on-surface/80 hover:bg-primary hover:text-on-primary transition-colors font-label-lg text-label-lg" data-path="profile" href="#"><span class="material-symbols-outlined text-[20px]">store</span><span>Profile</span></a></nav></div><div class="px-2"><a class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-inverse-on-surface/70 hover:bg-primary hover:text-on-primary transition-colors font-label-md text-label-md" data-path="logout" href="#"><span class="material-symbols-outlined text-[20px]">logout</span><span>Logout</span></a></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/90 backdrop-blur-xl z-40 flex items-center justify-between px-8 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-secondary-container"></div><span class="font-label-lg text-label-lg text-on-surface-variant font-bold tracking-wide uppercase">Portal Overview</span></div><div class="flex items-center gap-6"><button class="relative p-2 rounded-full hover:bg-surface-container text-on-surface-variant transition-colors flex items-center justify-center" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-secondary-container rounded-full ring-2 ring-surface"></span></button><div class="h-8 w-px bg-outline-variant/30"></div><div class="flex items-center gap-3"><div class="flex flex-col text-right"><span class="font-label-lg text-label-lg text-on-surface font-bold">Sunita Patel</span><span class="font-body-sm text-body-sm text-on-surface-variant">Annapurna Kitchens</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-20 bg-surface mandala-bg min-h-screen px-8 pb-12"><div class="flex flex-col w-full text-on-surface">
+<!-- Interactive View Switcher Toolbar (High-Utility Top Navigation) -->
+<header class="sticky top-0 z-30 bg-surface/95 backdrop-blur-md px-4 py-3 shadow-sm rounded-xl mb-6">
+<div class="flex flex-wrap items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-primary text-on-primary">
+<span class="material-symbols-outlined text-base">storefront</span>
+</span>
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight">GharSe Kitchens</span>
+<span class="bg-surface-container px-2.5 py-0.5 rounded-full font-label-xs text-label-xs text-secondary font-bold uppercase tracking-wider">Owner Portal</span>
+</div>
+<!-- Segmented View Tabs -->
+<nav class="flex flex-wrap items-center gap-1.5 p-1 bg-surface-container rounded-xl text-on-surface-variant font-label-md text-label-md" id="view-tabs">
+<button class="px-3 py-1.5 rounded-lg transition-all font-bold bg-primary text-on-primary shadow-sm flex items-center gap-1.5" data-tab="home" onclick="switchView('home')" type="button">
+<span class="material-symbols-outlined text-base">dashboard</span>
+<span>1. Home</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg transition-all hover:bg-surface-container-high hover:text-on-surface flex items-center gap-1.5" data-tab="meals" onclick="switchView('meals')" type="button">
+<span class="material-symbols-outlined text-base">restaurant_menu</span>
+<span>2. Meals</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg transition-all bg-secondary-container text-on-secondary-container hover:brightness-105 font-bold flex items-center gap-1" onclick="openAddMealDrawer()" type="button">
+<span class="material-symbols-outlined text-base">add_circle</span>
+<span>3. + Add Meal</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg transition-all hover:bg-surface-container-high hover:text-on-surface flex items-center gap-1.5" data-tab="orders" onclick="switchView('orders')" type="button">
+<span class="material-symbols-outlined text-base">receipt_long</span>
+<span>4. Orders</span>
+<span class="bg-secondary text-on-secondary text-[10px] px-1.5 py-0.2 rounded-full font-bold">148</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg transition-all hover:bg-surface-container-high hover:text-on-surface flex items-center gap-1.5" data-tab="payments" onclick="switchView('payments')" type="button">
+<span class="material-symbols-outlined text-base">account_balance_wallet</span>
+<span>5. Payments</span>
+<span class="bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.2 rounded-full font-bold">3</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg transition-all hover:bg-surface-container-high hover:text-on-surface flex items-center gap-1.5" data-tab="delivery" onclick="switchView('delivery')" type="button">
+<span class="material-symbols-outlined text-base">local_shipping</span>
+<span>6. Delivery</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg transition-all hover:bg-surface-container-high hover:text-on-surface flex items-center gap-1.5" data-tab="profile" onclick="switchView('profile')" type="button">
+<span class="material-symbols-outlined text-base">qr_code_2</span>
+<span>7. Profile &amp; QR</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg transition-all bg-surface-container-highest text-primary hover:bg-surface-dim font-bold flex items-center gap-1.5" data-tab="mobile" onclick="switchView('mobile')" type="button">
+<span class="material-symbols-outlined text-base">smartphone</span>
+<span>8. Mobile Suite</span>
+</button>
+</nav>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- 1. HOME DASHBOARD VIEW                                                    -->
+<!-- ========================================================================= -->
+<section class="view-panel flex flex-col gap-6" id="view-home">
+<!-- Greeting & Quick Banner -->
+<div class="relative overflow-hidden rounded-2xl bg-primary-container text-on-primary p-6 md:p-8 shadow-md">
+<div class="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-surface-tint/20 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-headline-lg text-headline-lg text-tertiary-fixed font-bold">Kem Cho, Sunita Ben!</span>
+<span class="text-2xl">👋</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-primary-container max-w-xl">
+            Here is what's cooking at <strong class="text-surface font-semibold">Annapurna Kitchens</strong> today. Morning prep is 85% packed. Delivery dispatch begins at 12:15 PM.
+          </p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-5 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container hover:brightness-105 font-label-lg text-label-lg font-bold shadow-md flex items-center gap-2 transition-transform active:scale-95" onclick="openAddMealDrawer()" type="button">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+<span>+ Add Special Meal</span>
+</button>
+<button class="px-4 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg font-medium hover:bg-primary/80 transition-colors flex items-center gap-1.5" onclick="switchView('orders')" type="button">
+<span class="material-symbols-outlined text-lg">list_alt</span>
+<span>View Orders</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 4 Stats Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Stat 1 -->
+<div class="bg-surface-container rounded-2xl p-5 shadow-sm transition hover:shadow-md flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium uppercase tracking-wider">Today's Orders</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">room_service</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface font-extrabold">148</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">Thalis</span>
+</div>
+<div class="flex items-center gap-1.5 mt-2 font-label-sm text-label-md text-emerald-700">
+<span class="material-symbols-outlined text-sm font-bold">trending_up</span>
+<span class="font-semibold">↑ 12% vs yesterday</span>
+</div>
+<div class="mt-2 text-xs text-on-surface-variant flex gap-2 font-body-sm">
+<span><strong>92</strong> Lunch</span>
+<span>•</span>
+<span><strong>56</strong> Dinner</span>
+</div>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface-container rounded-2xl p-5 shadow-sm transition hover:shadow-md flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium uppercase tracking-wider">Active Subscribers</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">loyalty</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface font-extrabold">84</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">Students</span>
+</div>
+<div class="flex items-center gap-1.5 mt-2 font-label-md text-label-md text-emerald-700">
+<span class="material-symbols-outlined text-sm font-bold">verified</span>
+<span class="font-semibold">72 Monthly Passes</span>
+</div>
+<div class="mt-2 text-xs text-on-surface-variant flex gap-2 font-body-sm">
+<span><strong>12</strong> Weekly</span>
+<span>•</span>
+<span><strong>98%</strong> Retention</span>
+</div>
+</div>
+</div>
+<!-- Stat 3 (Attention) -->
+<div class="bg-amber-50 rounded-2xl p-5 shadow-sm transition hover:shadow-md flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-amber-900 font-semibold uppercase tracking-wider">Pending UPI Verify</span>
+<span class="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center text-amber-800">
+<span class="material-symbols-outlined text-lg">pending_actions</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-amber-950 font-extrabold">3</span>
+<span class="font-headline-sm text-headline-sm text-amber-900 font-normal">Receipts</span>
+</div>
+<div class="flex items-center gap-1.5 mt-2 font-label-md text-label-md text-amber-800 font-bold">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>₹4,200 pending check</span>
+</div>
+<button class="mt-2 text-xs font-bold text-secondary hover:underline flex items-center gap-1" onclick="switchView('payments')" type="button">
+<span>Review now</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Stat 4 -->
+<div class="bg-surface-container rounded-2xl p-5 shadow-sm transition hover:shadow-md flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium uppercase tracking-wider">Monthly Revenue</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">currency_rupee</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg text-on-surface font-extrabold">₹86,450</span>
+</div>
+<div class="flex items-center gap-1.5 mt-2 font-label-md text-label-md text-emerald-700">
+<span class="material-symbols-outlined text-sm font-bold">check_circle</span>
+<span class="font-semibold">Payout in 2 days</span>
+</div>
+<div class="mt-2 text-xs text-on-surface-variant flex gap-2 font-body-sm">
+<span>Cycle: 1-30 Nov</span>
+<span>•</span>
+<span>3% GharSe fee</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Dual Grid: Today's Menu vs Needs Attention -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left 2 Cols: Today's Menu Highlight -->
+<div class="lg:col-span-2 bg-surface-container rounded-2xl p-6 shadow-sm flex flex-col gap-5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary-container"></span>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Today's Kitchen Schedule</h2>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full font-medium">Thursday, 21 Nov 2024</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Lunch Card -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-xs text-label-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-100 text-amber-900">Lunch Slot (12:00 - 2:00 PM)</span>
+<span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Live Prep
+                </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Kathiyawadi Shahi Thali</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Ringna No Olo, Sev Tameta, 4 Ghee Phulkas, Gujarati Dal-Bhat, Chaas glass &amp; Jaggery.</p>
+<div class="flex items-center gap-2 mt-3 text-xs font-semibold text-primary">
+<span class="material-symbols-outlined text-sm">soup_kitchen</span>
+<span>92 portions prepared / 100 max</span>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">₹90 <span class="text-xs font-normal text-on-surface-variant">/ thali</span></span>
+<button class="text-xs font-bold text-primary hover:text-secondary flex items-center gap-1" onclick="switchView('meals')" type="button">
+<span>Manage Dish</span>
+<span class="material-symbols-outlined text-xs">edit</span>
+</button>
+</div>
+</div>
+<!-- Dinner Card -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-xs text-label-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-100 text-indigo-900">Dinner Slot (7:30 - 9:30 PM)</span>
+<span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Booking Open
+                </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Kathi Desi Rotla Thali</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Tawa Bajra Rotlo with White Butter, Lasaniya Bateta, Rajwadi Kadhi Khichdi, Masala Chaas.</p>
+<div class="flex items-center gap-2 mt-3 text-xs font-semibold text-primary">
+<span class="material-symbols-outlined text-sm">timer</span>
+<span>Cutoff: 5:00 PM (56 orders booked)</span>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">₹100 <span class="text-xs font-normal text-on-surface-variant">/ thali</span></span>
+<button class="text-xs font-bold text-primary hover:text-secondary flex items-center gap-1" onclick="switchView('meals')" type="button">
+<span>Manage Dish</span>
+<span class="material-symbols-outlined text-xs">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Banner tip -->
+<div class="p-3.5 rounded-xl bg-surface-container-high flex items-center justify-between text-xs text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-base">lightbulb</span>
+<span>Student tip: Bajra Rotlo dinner orders increase by 30% when notified before 4:00 PM.</span>
+</div>
+<button class="font-bold text-primary hover:underline" type="button">Send Broadcast SMS</button>
+</div>
+</div>
+<!-- Right 1 Col: Needs Attention & Quick Approvals -->
+<div class="bg-surface-container rounded-2xl p-6 shadow-sm flex flex-col justify-between gap-4">
+<div>
+<div class="flex items-center justify-between mb-3">
+<h2 class="font-headline-md text-headline-md text-amber-950 font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-600">notification_important</span>
+<span>Needs Attention</span>
+</h2>
+<span class="bg-amber-200 text-amber-900 font-bold text-xs px-2 py-0.5 rounded-full">3 action items</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">
+            Verify offline UPI screenshots to activate student passes before afternoon delivery.
+          </p>
+<!-- List of pending checks -->
+<div class="flex flex-col gap-2.5" id="home-quick-approvals">
+<!-- Item 1 -->
+<div class="p-3 bg-surface-container-lowest rounded-xl flex items-center justify-between" id="quick-aarav">
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Aarav Trivedi</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Monthly Pass • ₹1,300 • HDFC</p>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-lg text-xs font-bold hover:bg-emerald-200 transition" onclick="quickVerify('quick-aarav', 'Aarav Trivedi')" type="button">Approve</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-3 bg-surface-container-lowest rounded-xl flex items-center justify-between" id="quick-rohan">
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Rohan Mehta</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Monthly Pass • ₹1,450 • GPay</p>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-lg text-xs font-bold hover:bg-emerald-200 transition" onclick="quickVerify('quick-rohan', 'Rohan Mehta')" type="button">Approve</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-3 bg-surface-container-lowest rounded-xl flex items-center justify-between" id="quick-priya">
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Priya Patel</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Dinner 15-Days • ₹1,450 • Paytm</p>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-lg text-xs font-bold hover:bg-emerald-200 transition" onclick="quickVerify('quick-priya', 'Priya Patel')" type="button">Approve</button>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-2.5 px-4 rounded-xl bg-secondary-container text-on-secondary-container hover:brightness-105 font-label-lg text-label-lg font-bold flex items-center justify-center gap-1.5 transition" onclick="switchView('payments')" type="button">
+<span>Review All Payments (3)</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 2. MEALS MANAGER & EMPTY STATE VIEW                                       -->
+<!-- ========================================================================= -->
+<section class="view-panel hidden flex flex-col gap-6" id="view-meals">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary font-bold">Daily Menu &amp; Meals</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage daily thali variations, portions, pricing and dietary flags.</p>
+</div>
+<div class="flex items-center gap-3">
+<!-- Date Selector -->
+<div class="flex items-center bg-surface-container rounded-xl p-1 shadow-sm font-label-md text-label-md">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant" type="button">
+<span class="material-symbols-outlined text-base">chevron_left</span>
+</button>
+<span class="px-3 font-bold text-primary">Today (Thu, 21 Nov)</span>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant" type="button">
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+<button class="px-4 py-2 rounded-xl bg-secondary-container text-on-secondary-container font-label-lg text-label-lg font-bold shadow-sm hover:brightness-105 flex items-center gap-1.5 transition" onclick="openAddMealDrawer()" type="button">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>+ Add Meal</span>
+</button>
+</div>
+</div>
+<!-- Meal Type Filter Tabs -->
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold shadow-sm" type="button">All Slots (3)</button>
+<button class="px-4 py-2 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md font-semibold" type="button">Lunch (2)</button>
+<button class="px-4 py-2 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md font-semibold" type="button">Dinner (1)</button>
+</div>
+<!-- Meal Cards List -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: Kathiyawadi Shahi Thali -->
+<div class="bg-surface-container rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between transition hover:shadow-md">
+<div>
+<div class="relative h-48 w-full bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Traditional Gujarati Kathiyawadi Shahi Thali served in stainless steel dishes on a rustic wooden table in warm golden lighting, featuring ringna no olo, sev tameta subzi, fresh ghee rotlis, and a glass of buttermilk chaas." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDng3A9FNq6bDoQsJbWfFkRGz8pqsVF_bDE48y0iHF0uEzujd8vdLOW2o2VQFCcND1_GtCjzz8yY432OqRmI_R6oB4LZ7XhcLSAAw_emdjsnubej4YP7miVawaXt_TVUt8RgW5q5FpDAigx8jRYV-3tM9tXSsbEkN1cPnnIMH5hDuwvE1c8OSQl_S-6-cFy3wGHZeeJirjtSlMp5FKTvdPr0Y38OG9_MQJsgewocmcDCNOYUJf8a3_h"/>
+<span class="absolute top-3 left-3 bg-primary text-on-primary font-label-xs text-label-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider shadow">Lunch Slot</span>
+<span class="absolute top-3 right-3 bg-surface/90 backdrop-blur-sm text-emerald-800 font-label-xs text-label-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1 shadow">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span> Pure Veg
+            </span>
+</div>
+<div class="p-5">
+<div class="flex items-start justify-between gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Kathiyawadi Shahi Thali</h3>
+<span class="font-headline-sm text-headline-sm text-secondary font-extrabold">₹90</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">Traditional Saurashtra delicacy spiced with fresh country garlic and slow-cooked over firewood aroma.</p>
+<!-- Item Chips -->
+<div class="flex flex-wrap gap-1.5 mt-3">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Ringna No Olo</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Sev Tameta</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">4 Phulkas (A2 Ghee)</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Gujarati Dal-Bhat</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Chaas</span>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-2 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-on-surface-variant">Available</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-dim text-xs font-medium" type="button">Edit</button>
+<button class="p-1.5 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-error hover:bg-surface-dim text-xs font-medium" type="button">Hide</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Radhe Satvik Jain Thali -->
+<div class="bg-surface-container rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between transition hover:shadow-md">
+<div>
+<div class="relative h-48 w-full bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Satvik Jain Thali with fresh green vegetable curries, steamed fragrant basmati rice, crispy papad, and whole wheat flatbreads arranged in brass bowls." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb6cHqpNfiWHw6NUJeC4WJMkury8l7fUqmY9-Qt47m_t8kA-j_c6o0mG9tdjyr6-_RopK99eNMHb7Nhde9YBeTs8V641HwhtSCqpbYRV9erZX4Acsff0GVc-Ky1ZkikXQcMpwWkSjKE5sStW7nuEB7zmFZrjTs7aERWF2UVPxHDjNPrwomLj7oaTCPCG8KvpBNTM24p3Im672afI8j7rZsDj98iatS3Qm72OzVf-yhk31R6rScJXEM"/>
+<span class="absolute top-3 left-3 bg-primary text-on-primary font-label-xs text-label-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider shadow">Lunch Slot</span>
+<span class="absolute top-3 right-3 bg-surface/90 backdrop-blur-sm text-emerald-800 font-label-xs text-label-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1 shadow">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span> No Onion/Garlic
+            </span>
+</div>
+<div class="p-5">
+<div class="flex items-start justify-between gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Radhe Satvik Jain Thali</h3>
+<span class="font-headline-sm text-headline-sm text-secondary font-extrabold">₹90</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">Gentle, restorative digestive meal made strictly complying with Jain dietary principles.</p>
+<!-- Item Chips -->
+<div class="flex flex-wrap gap-1.5 mt-3">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Galka nu Shaak</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Dudhi Chana Dal</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">5 Phulkas</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Basmati Rice</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Roast Papad</span>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-2 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-on-surface-variant">Available</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-dim text-xs font-medium" type="button">Edit</button>
+<button class="p-1.5 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-error hover:bg-surface-dim text-xs font-medium" type="button">Hide</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Desi Bajra Rotla Dinner Special -->
+<div class="bg-surface-container rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between transition hover:shadow-md">
+<div>
+<div class="relative h-48 w-full bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Rustic dinner plate with thick hot millet bajra rotlo topped with melting white butter, spicy baingan bharta, and yellow sweet-sour kadhi khichdi on a brass platter." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4fkYGGF58xFKXwFOJVxToAeGREqvgGtwUOm0paQVymppMkILOh7uzi_wy8_OdIBE1GQEulGPx1sKKTfNev8IWkmg8vcafHHQU6ZpljMP_HjufHwpbV6nmklbpiilwwgmqFtI_s7DXbkZ7mUKWThRGJcQ1kcef6WUEhu39cRxBrJlcHuzxqonuDPdb1QvUZaIiAex7CBUZ7toOTPlTU6L9kGfeW-F25P-BtG0NRHNMr8w9NC9HG_ci"/>
+<span class="absolute top-3 left-3 bg-primary-container text-on-primary-container font-label-xs text-label-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider shadow">Dinner Special</span>
+<span class="absolute top-3 right-3 bg-surface/90 backdrop-blur-sm text-emerald-800 font-label-xs text-label-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1 shadow">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span> Desi Makhan
+            </span>
+</div>
+<div class="p-5">
+<div class="flex items-start justify-between gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Desi Bajra Rotla Dinner</h3>
+<span class="font-headline-sm text-headline-sm text-secondary font-extrabold">₹100</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">Clay oven roasted millet bread lathered with pure house-churned white butter.</p>
+<!-- Item Chips -->
+<div class="flex flex-wrap gap-1.5 mt-3">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Bajra Rotlo (2)</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Safed Makhan</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Ringna Olo</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-xs font-medium text-on-surface">Kadhi Khichdi</span>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-2 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-on-surface-variant">Available</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-dim text-xs font-medium" type="button">Edit</button>
+<button class="p-1.5 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-error hover:bg-surface-dim text-xs font-medium" type="button">Hide</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Friendly Empty State Preview (Dinner secondary slot or tomorrow) -->
+<div class="bg-surface-container-low rounded-2xl p-8 flex flex-col items-center justify-center text-center max-w-xl mx-auto shadow-sm">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-secondary mb-3">
+<span class="material-symbols-outlined text-3xl">ramen_dining</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">No Late-Night Snack Scheduled</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-md">
+        Want to offer late-night library study boxes (Poha, Methi Thepla &amp; Chai) for university exam week?
+      </p>
+<button class="mt-4 px-4 py-2 rounded-xl bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold hover:brightness-105 transition flex items-center gap-1" onclick="openAddMealDrawer()" type="button">
+<span class="material-symbols-outlined text-base">add</span>
+<span>+ Quick Add Night Menu</span>
+</button>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 3. ADD MEAL SLIDE-IN PANEL (Drawer Overlay)                              -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 overflow-hidden pointer-events-none transition-opacity duration-300 opacity-0 bg-inverse-surface/40 backdrop-blur-sm" id="add-meal-drawer">
+<div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+<div class="w-screen max-w-md bg-surface p-6 shadow-2xl flex flex-col justify-between overflow-y-auto transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto" id="drawer-panel">
+<!-- Drawer Header -->
+<div class="flex items-center justify-between pb-4">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container"></span>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Add New Meal</h2>
+</div>
+<button class="p-1.5 rounded-full hover:bg-surface-container text-on-surface-variant transition" onclick="closeAddMealDrawer()" type="button">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<!-- Form Elements -->
+<form class="flex flex-col gap-4 py-2" onsubmit="event.preventDefault(); handleSaveMeal();">
+<!-- Meal Photo Upload -->
+<div>
+<label class="block font-label-sm text-label-md text-on-surface font-semibold mb-1">Meal Cover Photo</label>
+<div class="p-4 rounded-xl bg-surface-container flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container-high transition">
+<span class="material-symbols-outlined text-3xl text-secondary mb-1">add_a_photo</span>
+<p class="font-label-sm text-label-md text-on-surface font-bold">Click to upload meal photo</p>
+<p class="text-[11px] text-on-surface-variant">or select from pre-verified Gujarati Thali stock templates</p>
+</div>
+</div>
+<!-- Meal Name -->
+<div>
+<label class="block font-label-sm text-label-md text-on-surface font-semibold mb-1" for="drawer-name">Meal Name</label>
+<input class="w-full px-3.5 py-2.5 rounded-xl bg-surface-container font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:shadow-sm" id="drawer-name" placeholder="e.g. Kathiyawadi Special Rotla Thali" type="text" value="Kathiyawadi Special Rotla Thali"/>
+</div>
+<!-- Slot Radio Buttons -->
+<div>
+<label class="block font-label-sm text-label-md text-on-surface font-semibold mb-1.5">Meal Slot</label>
+<div class="grid grid-cols-2 gap-2">
+<label class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container cursor-pointer has-[:checked]:bg-primary has-[:checked]:text-on-primary">
+<input checked="" class="accent-secondary" name="meal_slot" type="radio"/>
+<span class="font-label-md text-label-md font-semibold">Lunch (12-2 PM)</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container cursor-pointer has-[:checked]:bg-primary has-[:checked]:text-on-primary">
+<input class="accent-secondary" name="meal_slot" type="radio"/>
+<span class="font-label-md text-label-md font-semibold">Dinner (7-9 PM)</span>
+</label>
+</div>
+</div>
+<!-- Included Item Chips -->
+<div>
+<label class="block font-label-sm text-label-md text-on-surface font-semibold mb-1">Items Included in Thali</label>
+<div class="flex flex-wrap gap-1.5 mb-2" id="chip-container">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-high text-xs font-semibold text-on-surface">
+                4 Phulkas <button class="text-on-surface-variant hover:text-error" onclick="this.parentElement.remove()" type="button">✕</button>
+</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-high text-xs font-semibold text-on-surface">
+                Sev Tameta <button class="text-on-surface-variant hover:text-error" onclick="this.parentElement.remove()" type="button">✕</button>
+</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-high text-xs font-semibold text-on-surface">
+                Ringna Olo <button class="text-on-surface-variant hover:text-error" onclick="this.parentElement.remove()" type="button">✕</button>
+</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-high text-xs font-semibold text-on-surface">
+                Chaas <button class="text-on-surface-variant hover:text-error" onclick="this.parentElement.remove()" type="button">✕</button>
+</span>
+</div>
+<div class="flex gap-2">
+<input class="flex-1 px-3 py-1.5 text-xs rounded-lg bg-surface-container text-on-surface focus:outline-none" id="new-item-input" placeholder="Type item (e.g. Masala Papad)" type="text"/>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high font-bold text-xs text-primary hover:bg-surface-dim" onclick="addChipItem()" type="button">+ Add</button>
+</div>
+</div>
+<!-- Price & Daily Limit in Grid -->
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-label-sm text-label-md text-on-surface font-semibold mb-1" for="drawer-price">Price per Meal</label>
+<div class="relative">
+<span class="absolute left-3 top-2.5 text-on-surface-variant font-bold text-sm">₹</span>
+<input class="w-full pl-7 pr-3 py-2 rounded-xl bg-surface-container text-on-surface font-bold text-sm focus:outline-none" id="drawer-price" type="number" value="90"/>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-md text-on-surface font-semibold mb-1" for="drawer-portions">Max Portions</label>
+<input class="w-full px-3 py-2 rounded-xl bg-surface-container text-on-surface font-semibold text-sm focus:outline-none" id="drawer-portions" type="number" value="120"/>
+</div>
+</div>
+<!-- Dietary & Unlimited Refill Switches -->
+<div class="space-y-2 pt-1">
+<div class="flex items-center justify-between p-2.5 rounded-xl bg-emerald-50 text-emerald-950">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-700 text-lg">spa</span>
+<span class="font-label-md text-label-md font-bold">100% Shuddh Shakahari (Pure Veg)</span>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded-xl bg-surface-container">
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Unlimited Roti &amp; Dal Refills</p>
+<p class="text-[11px] text-on-surface-variant">Applicable for mess hall dine-in students</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-8 h-4.5 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-secondary-container"></div>
+</label>
+</div>
+</div>
+</form>
+<!-- Drawer Footer Buttons -->
+<div class="pt-4 flex items-center gap-3">
+<button class="flex-1 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md font-bold transition" onclick="closeAddMealDrawer()" type="button">Cancel</button>
+<button class="flex-1 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container hover:brightness-105 font-label-md text-label-md font-bold shadow transition flex items-center justify-center gap-1" onclick="handleSaveMeal()" type="button">
+<span class="material-symbols-outlined text-base">check</span>
+<span>Publish Meal</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 4. ORDERS SCREEN (Today, Subs, Custom Requests)                           -->
+<!-- ========================================================================= -->
+<section class="view-panel hidden flex flex-col gap-6" id="view-orders">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary font-bold">Orders &amp; Custom Requests</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Live kitchen order stream, meal customizations and hostel delivery notes.</p>
+</div>
+<!-- Quick stats pill -->
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-xl shadow-sm text-xs font-bold text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<span>Kitchen Live: 148 Orders in Queue</span>
+</div>
+</div>
+<!-- Sub-tabs for Orders -->
+<div class="flex items-center gap-2 p-1 bg-surface-container rounded-xl w-fit">
+<button class="order-subtab px-4 py-2 rounded-lg font-bold text-xs bg-primary text-on-primary shadow-sm" id="btn-tab-today" onclick="switchOrderTab('tab-today')" type="button">Today's Dispatch (148)</button>
+<button class="order-subtab px-4 py-2 rounded-lg font-bold text-xs text-on-surface-variant hover:text-on-surface" id="btn-tab-subs" onclick="switchOrderTab('tab-subs')" type="button">Monthly Subscribers (84)</button>
+<button class="order-subtab px-4 py-2 rounded-lg font-bold text-xs text-on-surface-variant hover:text-on-surface flex items-center gap-1.5" id="btn-tab-custom" onclick="switchOrderTab('tab-custom')" type="button">
+<span>Student Notes</span>
+<span class="bg-secondary text-on-secondary text-[10px] px-1.5 py-0.2 rounded-full">2 Pending</span>
+</button>
+</div>
+<!-- Sub-tab Content: Today's Orders Table -->
+<div class="order-panel flex flex-col bg-surface-container rounded-2xl shadow-sm overflow-hidden" id="tab-today">
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container-high text-on-surface-variant uppercase font-label-xs text-label-xs tracking-wider">
+<tr>
+<th class="px-5 py-3.5">Student / Pass #</th>
+<th class="px-5 py-3.5">Hostel &amp; Room</th>
+<th class="px-5 py-3.5">Meal Selected</th>
+<th class="px-5 py-3.5">Slot</th>
+<th class="px-5 py-3.5">Payment</th>
+<th class="px-5 py-3.5">Status</th>
+<th class="px-5 py-3.5 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<tr class="hover:bg-surface-container-low transition">
+<td class="px-5 py-4">
+<span class="font-bold text-on-surface block">Aarav Trivedi</span>
+<span class="text-xs text-on-surface-variant">Pass #9402 • Monthly</span>
+</td>
+<td class="px-5 py-4 font-medium text-on-surface">RK Univ Boys Hostel 2, Room 304</td>
+<td class="px-5 py-4">Kathiyawadi Shahi Thali</td>
+<td class="px-5 py-4"><span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 text-xs font-bold">Lunch</span></td>
+<td class="px-5 py-4"><span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">UPI Verified</span></td>
+<td class="px-5 py-4"><span class="inline-flex items-center gap-1 text-xs font-bold text-primary"><span class="w-2 h-2 rounded-full bg-primary"></span> Packed</span></td>
+<td class="px-5 py-4 text-right">
+<button class="p-1 rounded-lg hover:bg-surface-container-high text-on-surface-variant" type="button"><span class="material-symbols-outlined text-base">print</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition">
+<td class="px-5 py-4">
+<span class="font-bold text-on-surface block">Kavya Shah</span>
+<span class="text-xs text-on-surface-variant">Pass #8812 • Monthly</span>
+</td>
+<td class="px-5 py-4 font-medium text-on-surface">Marwadi Campus Block A, #112</td>
+<td class="px-5 py-4">Radhe Satvik Jain Thali</td>
+<td class="px-5 py-4"><span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 text-xs font-bold">Lunch</span></td>
+<td class="px-5 py-4"><span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">Auto-Pass</span></td>
+<td class="px-5 py-4"><span class="inline-flex items-center gap-1 text-xs font-bold text-amber-800"><span class="w-2 h-2 rounded-full bg-amber-500"></span> In Kitchen</span></td>
+<td class="px-5 py-4 text-right">
+<button class="p-1 rounded-lg hover:bg-surface-container-high text-on-surface-variant" type="button"><span class="material-symbols-outlined text-base">print</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition">
+<td class="px-5 py-4">
+<span class="font-bold text-on-surface block">Manish Dave</span>
+<span class="text-xs text-on-surface-variant">Daily Single Order</span>
+</td>
+<td class="px-5 py-4 font-medium text-on-surface">Atmiya Hostel Gate, Wing B</td>
+<td class="px-5 py-4">Kathiyawadi Shahi Thali</td>
+<td class="px-5 py-4"><span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 text-xs font-bold">Lunch</span></td>
+<td class="px-5 py-4"><span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">COD Cash</span></td>
+<td class="px-5 py-4"><span class="inline-flex items-center gap-1 text-xs font-bold text-blue-700"><span class="w-2 h-2 rounded-full bg-blue-500"></span> Dispatched</span></td>
+<td class="px-5 py-4 text-right">
+<button class="p-1 rounded-lg hover:bg-surface-container-high text-on-surface-variant" type="button"><span class="material-symbols-outlined text-base">print</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Sub-tab Content: Custom Requests -->
+<div class="order-panel hidden grid grid-cols-1 md:grid-cols-2 gap-4" id="tab-custom">
+<!-- Request 1 -->
+<div class="bg-surface-container rounded-2xl p-5 shadow-sm flex flex-col justify-between" id="note-aarav">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">Aarav Trivedi (Pass #9402)</span>
+<span class="text-xs bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">Dinner Special Note</span>
+</div>
+<div class="mt-3 p-3 rounded-xl bg-surface-container-lowest font-body-md text-body-md text-on-surface italic">
+            "Ben, please add extra lasan ni chutney with bajra rotlo, and kindly make the dal less sweet and not too spicy today."
+          </div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-end gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-error font-bold text-xs hover:bg-error-container" onclick="handleNoteAction('note-aarav', 'Rejected')" type="button">Decline</button>
+<button class="px-4 py-1.5 rounded-lg bg-primary text-on-primary font-bold text-xs hover:bg-primary/90 flex items-center gap-1" onclick="handleNoteAction('note-aarav', 'Accepted')" type="button">
+<span class="material-symbols-outlined text-sm">check</span>
+<span>Accept Instruction</span>
+</button>
+</div>
+</div>
+<!-- Request 2 -->
+<div class="bg-surface-container rounded-2xl p-5 shadow-sm flex flex-col justify-between" id="note-kavya">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">Kavya Shah (Pass #8812)</span>
+<span class="text-xs bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">Diet Swap</span>
+</div>
+<div class="mt-3 p-3 rounded-xl bg-surface-container-lowest font-body-md text-body-md text-on-surface italic">
+            "Please send 2 extra phulkas instead of rice. I do not eat rice on Thursdays."
+          </div>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-end gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-error font-bold text-xs hover:bg-error-container" onclick="handleNoteAction('note-kavya', 'Rejected')" type="button">Decline</button>
+<button class="px-4 py-1.5 rounded-lg bg-primary text-on-primary font-bold text-xs hover:bg-primary/90 flex items-center gap-1" onclick="handleNoteAction('note-kavya', 'Accepted')" type="button">
+<span class="material-symbols-outlined text-sm">check</span>
+<span>Accept Instruction</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Sub-tab Content: Subscribers Placeholder -->
+<div class="order-panel hidden bg-surface-container rounded-2xl p-6 shadow-sm" id="tab-subs">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Active Monthly Subscription Passes (84)</h3>
+<button class="text-xs font-bold text-secondary flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-sm">download</span> Export Pass Holders (CSV)
+        </button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        All 84 subscribers have confirmed slots. 72 take 2 meals/day, 12 take Lunch only. Mess pass booklets are validated automatically upon monthly UPI verification.
+      </p>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 5. PAYMENTS & COMMISSION VIEW                                             -->
+<!-- ========================================================================= -->
+<section class="view-panel hidden flex flex-col gap-6" id="view-payments">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary font-bold">Payments &amp; Settlements</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Review direct UPI screenshot submissions and inspect weekly bank deposits.</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs">Direct Mess Payout Active</span>
+</div>
+</div>
+<!-- Top Settlement Summary Box -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-surface-container rounded-2xl p-5 shadow-sm">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Gross Collected (Nov Cycle)</span>
+<p class="font-headline-lg text-headline-lg text-on-surface font-extrabold mt-1">₹86,450.00</p>
+<p class="text-xs text-on-surface-variant mt-1">Directly received into Sunita Ben's UPI</p>
+</div>
+<div class="bg-surface-container rounded-2xl p-5 shadow-sm">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">GharSe Platform Fee (3%)</span>
+<p class="font-headline-lg text-headline-lg text-secondary font-extrabold mt-1">- ₹2,593.50</p>
+<p class="text-xs text-on-surface-variant mt-1">Transparent lowest mess maintenance rate</p>
+</div>
+<div class="bg-primary text-on-primary rounded-2xl p-5 shadow-sm">
+<span class="font-label-md text-label-md text-on-primary-container font-medium">Net Mess Revenue</span>
+<p class="font-headline-lg text-headline-lg text-tertiary-fixed font-extrabold mt-1">₹83,856.50</p>
+<p class="text-xs text-on-primary-container mt-1">Settled every Monday to HDFC A/C ••9205</p>
+</div>
+</div>
+<!-- Pending Verification Stream -->
+<div class="bg-surface-container rounded-2xl p-6 shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-amber-950 font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-600">verified_user</span>
+<span>Pending UPI Verifications (3)</span>
+</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Students submitted UPI transaction screenshots. Verify UTR against your passbook.</p>
+</div>
+</div>
+<!-- Verification Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="payments-grid">
+<!-- Receipt Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between" id="pay-card-1">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Aarav Trivedi</h3>
+<span class="text-xs text-on-surface-variant">Monthly Both Meals</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">₹1,300</span>
+</div>
+<div class="mt-3 p-2.5 rounded-lg bg-surface-container text-xs font-mono text-on-surface">
+<span class="text-on-surface-variant block text-[10px] uppercase font-sans">UTR / Transaction Ref:</span>
+<span class="font-bold">419208492048</span>
+</div>
+<!-- Preview thumbnail modal trigger -->
+<button class="mt-2.5 w-full py-1.5 rounded-lg bg-surface-container text-xs font-semibold text-primary hover:bg-surface-container-high flex items-center justify-center gap-1" onclick="alert('Viewing Aarav Trivedi UPI receipt: ₹1,300 transferred to gharsekitchen@hdfcbank on 21 Nov 09:14 AM.')" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span>Inspect Receipt Screenshot</span>
+</button>
+</div>
+<div class="mt-4 pt-3 flex items-center gap-2">
+<button class="flex-1 py-1.5 rounded-lg bg-rose-50 text-error text-xs font-bold hover:bg-rose-100" onclick="rejectPayment('pay-card-1')" type="button">Reject</button>
+<button class="flex-1 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 flex items-center justify-center gap-1" onclick="approvePayment('pay-card-1')" type="button">
+<span class="material-symbols-outlined text-sm">check</span> Approve
+            </button>
+</div>
+</div>
+<!-- Receipt Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between" id="pay-card-2">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Rohan Mehta</h3>
+<span class="text-xs text-on-surface-variant">Monthly Executive Thali</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">₹1,450</span>
+</div>
+<div class="mt-3 p-2.5 rounded-lg bg-surface-container text-xs font-mono text-on-surface">
+<span class="text-on-surface-variant block text-[10px] uppercase font-sans">UTR / Transaction Ref:</span>
+<span class="font-bold">419283719401</span>
+</div>
+<button class="mt-2.5 w-full py-1.5 rounded-lg bg-surface-container text-xs font-semibold text-primary hover:bg-surface-container-high flex items-center justify-center gap-1" onclick="alert('Viewing Rohan Mehta UPI receipt: ₹1,450 transferred to gharsekitchen@hdfcbank on 21 Nov 08:42 AM.')" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span>Inspect Receipt Screenshot</span>
+</button>
+</div>
+<div class="mt-4 pt-3 flex items-center gap-2">
+<button class="flex-1 py-1.5 rounded-lg bg-rose-50 text-error text-xs font-bold hover:bg-rose-100" onclick="rejectPayment('pay-card-2')" type="button">Reject</button>
+<button class="flex-1 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 flex items-center justify-center gap-1" onclick="approvePayment('pay-card-2')" type="button">
+<span class="material-symbols-outlined text-sm">check</span> Approve
+            </button>
+</div>
+</div>
+<!-- Receipt Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between" id="pay-card-3">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Priya Patel</h3>
+<span class="text-xs text-on-surface-variant">15-Days Dinner Pass</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">₹1,450</span>
+</div>
+<div class="mt-3 p-2.5 rounded-lg bg-surface-container text-xs font-mono text-on-surface">
+<span class="text-on-surface-variant block text-[10px] uppercase font-sans">UTR / Transaction Ref:</span>
+<span class="font-bold">419259201948</span>
+</div>
+<button class="mt-2.5 w-full py-1.5 rounded-lg bg-surface-container text-xs font-semibold text-primary hover:bg-surface-container-high flex items-center justify-center gap-1" onclick="alert('Viewing Priya Patel UPI receipt: ₹1,450 transferred to gharsekitchen@hdfcbank on 20 Nov 10:15 PM.')" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span>Inspect Receipt Screenshot</span>
+</button>
+</div>
+<div class="mt-4 pt-3 flex items-center gap-2">
+<button class="flex-1 py-1.5 rounded-lg bg-rose-50 text-error text-xs font-bold hover:bg-rose-100" onclick="rejectPayment('pay-card-3')" type="button">Reject</button>
+<button class="flex-1 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 flex items-center justify-center gap-1" onclick="approvePayment('pay-card-3')" type="button">
+<span class="material-symbols-outlined text-sm">check</span> Approve
+            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 6. DELIVERY SCREEN (Routes, Partners, Tiffin Boxes)                       -->
+<!-- ========================================================================= -->
+<section class="view-panel hidden flex flex-col gap-6" id="view-delivery">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary font-bold">Hostel Delivery &amp; Logistics</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage lunch &amp; dinner batch routes, riders, and insulated tiffin inventory.</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-surface-container px-3 py-1.5 rounded-xl font-bold text-xs text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">two_wheeler</span>
+<span>Rider Dispatches in 28 mins</span>
+</span>
+</div>
+</div>
+<!-- Delivery Sequence Bento -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Route 1: Stop Sequence -->
+<div class="lg:col-span-2 bg-surface-container rounded-2xl p-6 shadow-sm flex flex-col gap-5">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Lunch Route 1: Kalawad Road Campuses</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">92 Stainless-steel 3-tier tiffin boxes sorted by drop-off sequence.</p>
+</div>
+<span class="bg-primary text-on-primary px-2.5 py-1 rounded-lg text-xs font-bold">12:15 PM Dispatch</span>
+</div>
+<div class="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-outline-variant">
+<!-- Stop 1 -->
+<div class="relative">
+<span class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-secondary-container ring-4 ring-surface"></span>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex items-center justify-between">
+<div>
+<span class="font-label-xs text-label-xs font-bold uppercase text-secondary">Stop 1 • 12:30 PM</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">RK University Boys Hostel 2</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">42 Tiffins • Handover to Warden Office &amp; Security</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">All 42 Ready</span>
+</div>
+</div>
+<!-- Stop 2 -->
+<div class="relative">
+<span class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-secondary-container ring-4 ring-surface"></span>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex items-center justify-between">
+<div>
+<span class="font-label-xs text-label-xs font-bold uppercase text-secondary">Stop 2 • 12:50 PM</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Marwadi Campus Block A &amp; C</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">32 Tiffins • Reception desk common rack</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">Packing 4 left</span>
+</div>
+</div>
+<!-- Stop 3 -->
+<div class="relative">
+<span class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-secondary-container ring-4 ring-surface"></span>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex items-center justify-between">
+<div>
+<span class="font-label-xs text-label-xs font-bold uppercase text-secondary">Stop 3 • 01:10 PM</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Atmiya Hostel Gate</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">18 Tiffins • Individual student handovers</p>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-xs font-bold">Queued</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Assigned Delivery Partner Card -->
+<div class="bg-surface-container rounded-2xl p-6 shadow-sm flex flex-col justify-between gap-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-bold mb-1">Assigned Fleet Rider</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Dedicated partner for Annapurna Kitchens morning &amp; evening batch.</p>
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-lg">
+              RB
+            </div>
+<div>
+<p class="font-label-lg text-label-lg font-bold text-on-surface">Ramesh Barad</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hero Splendor (GJ-03-EK-4819)</p>
+<span class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Active on Route
+              </span>
+</div>
+</div>
+<!-- Invite new partner -->
+<div class="mt-6">
+<label class="block font-label-md text-label-md font-bold text-on-surface mb-1.5" for="rider-invite-email">Link Backup Delivery Boy</label>
+<div class="flex gap-2">
+<input class="flex-1 px-3 py-2 rounded-xl bg-surface-container-lowest text-xs text-on-surface focus:outline-none" id="rider-invite-email" placeholder="Rider phone or email" type="text"/>
+<button class="px-3 py-2 rounded-xl bg-secondary-container text-on-secondary-container font-bold text-xs hover:brightness-105" onclick="alert('Invite link sent via SMS to delivery partner!')" type="button">Invite</button>
+</div>
+</div>
+</div>
+<!-- Tiffin Inventory Tracker -->
+<div class="p-4 rounded-xl bg-surface-container-high flex items-center justify-between">
+<div>
+<span class="text-xs text-on-surface-variant uppercase font-bold">Tiffin Inventory</span>
+<p class="font-headline-sm text-headline-sm font-extrabold text-on-surface">174 / 200 In Circulation</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-2xl">takeout_dining</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 7. MESS PROFILE & QR VIEW                                                 -->
+<!-- ========================================================================= -->
+<section class="view-panel hidden flex flex-col gap-6" id="view-profile">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary font-bold">Mess Kitchen Profile &amp; QR</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your public listing, direct subscription UPI QR, and physical dining standees.</p>
+</div>
+<button class="px-4 py-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold shadow flex items-center gap-1.5 hover:bg-primary/90 transition" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-base">print</span>
+<span>Print Counter QR Standee</span>
+</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left 2 Cols: Profile Form & Kitchen Credentials -->
+<div class="lg:col-span-2 bg-surface-container rounded-2xl p-6 shadow-sm flex flex-col gap-5">
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Public Kitchen Listing</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-sm text-label-md text-on-surface font-semibold mb-1" for="mess-name-input">Mess / Kitchen Trade Name</label>
+<input class="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none" id="mess-name-input" type="text" value="Annapurna Kitchens &amp; Tiffin Co."/>
+</div>
+<div>
+<label class="block font-label-sm text-label-md text-on-surface font-semibold mb-1" for="mess-phone-input">Registered Phone / WhatsApp</label>
+<input class="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none" id="mess-phone-input" type="text" value="+91 82386 92705"/>
+</div>
+<div class="md:col-span-2">
+<label class="block font-label-sm text-label-md text-on-surface font-semibold mb-1" for="mess-addr-input">Kitchen Address (For Student Dine-in)</label>
+<input class="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none" id="mess-addr-input" type="text" value="Radhanagar-5, Mahadev Vadi Main Rd, Near RK Univ Ring Road, Rajkot, Gujarat"/>
+</div>
+</div>
+<div class="pt-3">
+<label class="block font-label-sm text-label-md text-on-surface font-semibold mb-2">Kitchen Badges &amp; Assurances</label>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">verified</span> FSSAI Certified (#20723038000182)
+            </span>
+<span class="px-3 py-1 rounded-full bg-amber-100 text-amber-900 font-bold text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">water_drop</span> 100% Cold-Pressed Groundnut Oil
+            </span>
+<span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 font-bold text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">no_food</span> No Palm Oil Guarantee
+            </span>
+<span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-900 font-bold text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">soup_kitchen</span> Open Homestyle Kitchen
+            </span>
+</div>
+</div>
+<!-- Google Maps Integration Embed Container with explicit data-location -->
+<div class="pt-2">
+<label class="block font-label-sm text-label-md text-on-surface font-semibold mb-2">Live Kitchen Geolocation for Hostels</label>
+<div class="w-full h-44 bg-cover bg-center rounded-xl relative overflow-hidden flex items-end p-4 shadow-sm" data-location="Rajkot, Gujarat, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCg7_daS6ou1krnThSkddAr6vqEUsKZvDDjc3TLbU5pBPLinKNF2SP4o5fQuRZCs17_AvbIn13Sjq42l5YwZb6mHAwSjAS7HV9c4uR9zuIezw4Vgc4h3o8ktuVTQbARbVK6ishBI7o7BAbR7gzchwQrKRe_OVxjEBHll9QiEz3GAcea7ZHb8L6hZPCO0jixGaN4DKeW_ruMCfTOsAmgjQg0LnYU2Y-FDrTrRB88AmSqBmW0kVGzqTG5')">
+<div class="bg-surface/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-bold text-primary shadow">
+              📍 Annapurna Kitchens • Radhanagar-5, Rajkot
+            </div>
+</div>
+</div>
+</div>
+<!-- Right 1 Col: Authenticated UPI Standee Preview (from prompt image inspiration) -->
+<div class="bg-surface-container rounded-2xl p-6 shadow-sm flex flex-col items-center justify-between text-center">
+<div class="w-full">
+<span class="font-label-xs text-label-xs font-bold uppercase text-secondary tracking-widest block mb-2">Dining Hall Counter QR</span>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-4">Direct Subscription Standee</h3>
+<!-- Golden Framed QR Code Replica Card -->
+<div class="w-full max-w-[260px] mx-auto bg-surface-container-lowest p-5 rounded-2xl shadow-md border border-amber-300 relative">
+<div class="flex items-center justify-center gap-1.5 text-primary mb-2">
+<span class="material-symbols-outlined text-xl">soup_kitchen</span>
+<span class="font-headline-sm text-sm font-extrabold tracking-tight">GharSe Kitchen</span>
+</div>
+<!-- Stylized QR Image Placeholder inspired by reference input -->
+<div class="w-44 h-44 mx-auto rounded-xl overflow-hidden bg-surface-dim p-2 flex items-center justify-center">
+<img class="w-full h-full object-contain" data-alt="Traditional Indian mess table QR code standee poster with ornamental golden vintage filigree border, central crisp digital QR code, and GharSe Kitchen branding for UPI scan and pay." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2-NvqpwySpwtK5-ZlXVGMap8biMjRLj-El9HeklORfaSkUImnVyM_SfCtxymrjOm4UrHOa9V-CY3VC0I6sSpliL5PRgVMjA9hY785Tq74SZ_WP8TVoMWUKuIDrgya467Qju9BUEq_D3C0PF843Y_1YsctrIZxTbhMC4MmKUhjb1U8tbLQbbNwdtebJWH7ohSD0mbH0kcg0a_XAdoUVfqwrotj-CcgF_P87nket7NIysroFzJO0IKT"/>
+</div>
+<div class="mt-3">
+<p class="font-label-md text-xs font-extrabold text-on-surface uppercase tracking-wider">SCAN &amp; PAY</p>
+<p class="text-[11px] text-on-surface-variant font-mono">UPI: gharsekitchen@hdfcbank</p>
+<div class="flex items-center justify-center gap-2 mt-2 opacity-80 text-[10px] font-bold text-on-surface-variant">
+<span>BHIM</span> • <span>GPay</span> • <span>Paytm</span>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full mt-6 space-y-2">
+<button class="w-full py-2.5 rounded-xl bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold hover:brightness-105 transition flex items-center justify-center gap-1.5 shadow" onclick="alert('Downloading high-resolution 300DPI Counter Standee PDF for printing.')" type="button">
+<span class="material-symbols-outlined text-base">file_download</span>
+<span>Download High-Res PDF Standee</span>
+</button>
+<p class="text-[11px] text-on-surface-variant">Recommended for A4 or acrylic tabletop stands in mess hall.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 8. MOBILE SUITE COMPARISON VIEW (Side-by-Side 390px Previews)            -->
+<!-- ========================================================================= -->
+<section class="view-panel hidden flex flex-col gap-6" id="view-mobile">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary font-bold">Mobile Viewport Previews</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Exact responsive rendering as seen by Sunita Ben on her smartphone during busy kitchen hours.</p>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container font-bold text-xs text-primary">390px × 780px Simulated Mockups</span>
+</div>
+<!-- 3 Mobile Screens Side-by-Side -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center">
+<!-- Mobile Mockup 1: Mobile Home -->
+<div class="w-[360px] h-[720px] bg-surface rounded-[40px] shadow-2xl p-4 flex flex-col justify-between overflow-hidden relative">
+<!-- Phone Top Notch -->
+<div class="w-28 h-4 bg-inverse-surface/90 rounded-full mx-auto mb-2"></div>
+<div class="flex-1 overflow-y-auto space-y-4 pr-1">
+<!-- Mobile Header -->
+<div class="flex items-center justify-between pt-1">
+<div>
+<span class="text-xs font-bold text-secondary uppercase">Annapurna Kitchens</span>
+<h4 class="font-headline-sm text-base text-primary font-bold">Kem Cho, Sunita Ben 👋</h4>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary text-xs font-bold">
+              SP
+            </div>
+</div>
+<!-- Mobile Stats Grid (2x2) -->
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-surface-container p-3 rounded-xl">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Orders</span>
+<p class="font-headline-sm text-lg font-bold text-on-surface">148</p>
+<span class="text-[10px] text-emerald-700 font-semibold">↑ 12% today</span>
+</div>
+<div class="bg-surface-container p-3 rounded-xl">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Passes</span>
+<p class="font-headline-sm text-lg font-bold text-on-surface">84</p>
+<span class="text-[10px] text-emerald-700 font-semibold">Students</span>
+</div>
+<div class="bg-amber-100/70 p-3 rounded-xl">
+<span class="text-[10px] text-amber-900 font-bold uppercase">Pending</span>
+<p class="font-headline-sm text-lg font-bold text-amber-950">3 Check</p>
+<span class="text-[10px] text-amber-800 font-bold">₹4,200 UPI</span>
+</div>
+<div class="bg-surface-container p-3 rounded-xl">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Revenue</span>
+<p class="font-headline-sm text-lg font-bold text-secondary">₹86.4k</p>
+<span class="text-[10px] text-on-surface-variant">Nov month</span>
+</div>
+</div>
+<!-- Active Today Meal Mini Card -->
+<div class="bg-surface-container-lowest p-3.5 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="text-[10px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">Lunch • Live</span>
+<span class="text-xs font-extrabold text-secondary">₹90</span>
+</div>
+<h5 class="font-label-md text-sm font-bold text-on-surface">Kathiyawadi Shahi Thali</h5>
+<p class="text-[11px] text-on-surface-variant mt-0.5">Ringna Olo, Sev Tameta, 4 Ghee Phulkas, Chaas.</p>
+<div class="mt-2.5 flex items-center justify-between text-[11px] font-bold">
+<span class="text-emerald-800">92 Packed</span>
+<span class="text-secondary cursor-pointer hover:underline">Edit Menu →</span>
+</div>
+</div>
+<!-- Quick Alert -->
+<div class="p-3 rounded-xl bg-amber-50 flex items-center justify-between">
+<span class="text-[11px] font-bold text-amber-900">3 student receipts need approval</span>
+<button class="text-[10px] font-bold px-2 py-1 bg-secondary-container text-on-secondary-container rounded-lg" type="button">Check</button>
+</div>
+</div>
+<!-- Mobile Bottom Nav 5-Tabs Bar -->
+<div class="pt-2 bg-surface flex items-center justify-around font-label-xs text-[10px] text-on-surface-variant">
+<div class="flex flex-col items-center text-primary font-bold">
+<span class="material-symbols-outlined text-lg">home</span>
+<span>Home</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">restaurant</span>
+<span>Meals</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">receipt</span>
+<span>Orders</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span>Pay</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+<span>More</span>
+</div>
+</div>
+</div>
+<!-- Mobile Mockup 2: Mobile Meals List with Floating Action -->
+<div class="w-[360px] h-[720px] bg-surface rounded-[40px] shadow-2xl p-4 flex flex-col justify-between overflow-hidden relative">
+<div class="w-28 h-4 bg-inverse-surface/90 rounded-full mx-auto mb-2"></div>
+<div class="flex-1 overflow-y-auto space-y-3 pr-1 relative">
+<div class="flex items-center justify-between pt-1">
+<h4 class="font-headline-sm text-base text-primary font-bold">Daily Meals</h4>
+<span class="text-xs bg-surface-container px-2 py-0.5 rounded font-bold text-on-surface">Thu, 21 Nov</span>
+</div>
+<!-- Slot Filter Chips -->
+<div class="flex gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-primary text-on-primary text-[10px] font-bold">All (3)</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-[10px] font-bold">Lunch (2)</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-[10px] font-bold">Dinner (1)</span>
+</div>
+<!-- Mini Meal Card 1 -->
+<div class="bg-surface-container rounded-xl p-3 flex gap-3">
+<div class="w-16 h-16 rounded-lg bg-surface-dim overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Traditional Gujarati thali meal box lunch preview." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLaurXfCp5XcjnLfY0TDq1oUD2FKvw5gvfJKw1exoXxz4r_FhEuv9Dupz1FB2Dlny-oEtTV_A4zq3Ttd1kLbEKFnGccEQNbLllOB3vTxYl9c1r1h38FAhLXAupFvl17YwtnPQzVn0VOIyhrTsPh0jLJOY14-pJcpRQuVcyY1IMuPNoHlpeuXupJeFy70xNLM6PWV5OjUX-52PnE6Sd0lGJW33o_FvqEDhX2Jhkl32JKG5QYyeI8F7b"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between">
+<p class="font-label-md text-xs font-bold text-on-surface truncate">Kathiyawadi Thali</p>
+<span class="font-bold text-xs text-secondary">₹90</span>
+</div>
+<p class="text-[10px] text-on-surface-variant truncate">4 Phulkas, Sev Tameta, Chaas</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Available</span>
+<span class="text-[10px] text-primary font-bold cursor-pointer">Edit</span>
+</div>
+</div>
+</div>
+<!-- Mini Meal Card 2 -->
+<div class="bg-surface-container rounded-xl p-3 flex gap-3">
+<div class="w-16 h-16 rounded-lg bg-surface-dim overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Satvik Jain vegetarian thali without onions or garlic in stainless bowls." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDhX4R9u5h1SVu_rBYJo-0bduGrMJIJ_hLuudL_rqCuYjy5ZDxPKEiI3cvG_rTG5ZPZ0exxlo_wOAl_gLz8vq8nJ-qctSDAXo91OZAI9u9Gddkl4IjpedLeBNsn_G9g4vDVEHqjtMMdWXFZL9R18lApER7G4nvPLpa_JDSp5Lo29sqDQZg2zaXX6ldNkzMWIvz83rm13cvZxYJ-FEjKMLeoboVRaAfUBRBkODVLI_EW8G862Ri4aJA"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between">
+<p class="font-label-md text-xs font-bold text-on-surface truncate">Satvik Jain Thali</p>
+<span class="font-bold text-xs text-secondary">₹90</span>
+</div>
+<p class="text-[10px] text-on-surface-variant truncate">Galka Shaak, 5 Phulkas, Rice</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Available</span>
+<span class="text-[10px] text-primary font-bold cursor-pointer">Edit</span>
+</div>
+</div>
+</div>
+<!-- Mini Meal Card 3 -->
+<div class="bg-surface-container rounded-xl p-3 flex gap-3">
+<div class="w-16 h-16 rounded-lg bg-surface-dim overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Bajra millet rotlo with white butter and ringna no olo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUH9SR5mc-lZYGxjKRCZRca1lc0d_-AkRpF4MUIx0N6j2A1xsct-ROZMi5wlVCK5p0nXYwl9HTdoPPYHcmGhZ5NYL2K6s2qYXl39ClRcFsJD7IOQbrwlRCRyeKxEavTyAvTnAzei09gZoVj0XWjYWPszuT2rj2SUcb1r4qKNqu2y5HRMApImunxL87IqlWpYBujxQJEnzClHZ28W_sYh_L30JVLrParo80QVFeEIll9h4hnL4oEyoH"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between">
+<p class="font-label-md text-xs font-bold text-on-surface truncate">Bajra Rotla Dinner</p>
+<span class="font-bold text-xs text-secondary">₹100</span>
+</div>
+<p class="text-[10px] text-on-surface-variant truncate">Rotlo, Safed Makhan, Olo</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Available</span>
+<span class="text-[10px] text-primary font-bold cursor-pointer">Edit</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Add Meal FAB -->
+<button class="absolute bottom-14 right-6 w-11 h-11 rounded-full bg-secondary-container text-on-secondary-container shadow-lg flex items-center justify-center font-bold" type="button">
+<span class="material-symbols-outlined text-xl">add</span>
+</button>
+<div class="pt-2 bg-surface flex items-center justify-around font-label-xs text-[10px] text-on-surface-variant">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">home</span>
+<span>Home</span>
+</div>
+<div class="flex flex-col items-center text-primary font-bold">
+<span class="material-symbols-outlined text-lg">restaurant</span>
+<span>Meals</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">receipt</span>
+<span>Orders</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span>Pay</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+<span>More</span>
+</div>
+</div>
+</div>
+<!-- Mobile Mockup 3: Mobile Add Meal Bottom Sheet -->
+<div class="w-[360px] h-[720px] bg-surface rounded-[40px] shadow-2xl p-4 flex flex-col justify-between overflow-hidden relative">
+<div class="w-28 h-4 bg-inverse-surface/90 rounded-full mx-auto mb-2"></div>
+<div class="flex-1 overflow-y-auto space-y-3 pr-1">
+<div class="flex items-center justify-between pt-1">
+<h4 class="font-headline-sm text-base text-primary font-bold">Add New Meal</h4>
+<span class="material-symbols-outlined text-on-surface-variant text-lg">close</span>
+</div>
+<div class="bg-surface-container p-3 rounded-xl text-center">
+<span class="material-symbols-outlined text-2xl text-secondary">photo_camera</span>
+<p class="text-[11px] font-bold text-on-surface">Upload Thali Photo</p>
+</div>
+<div>
+<label class="block text-[11px] font-bold text-on-surface mb-1">Meal Title</label>
+<input class="w-full px-3 py-1.5 rounded-lg bg-surface-container text-xs text-on-surface" type="text" value="Kathiyawadi Shahi Thali"/>
+</div>
+<div>
+<label class="block text-[11px] font-bold text-on-surface mb-1">Slot</label>
+<div class="grid grid-cols-2 gap-2 text-xs">
+<span class="p-2 rounded-lg bg-primary text-on-primary font-bold text-center">● Lunch</span>
+<span class="p-2 rounded-lg bg-surface-container text-on-surface font-semibold text-center">○ Dinner</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div>
+<label class="block text-[11px] font-bold text-on-surface mb-1">Price</label>
+<input class="w-full px-3 py-1.5 rounded-lg bg-surface-container text-xs font-bold text-on-surface" type="text" value="₹ 90"/>
+</div>
+<div>
+<label class="block text-[11px] font-bold text-on-surface mb-1">Max Thalis</label>
+<input class="w-full px-3 py-1.5 rounded-lg bg-surface-container text-xs text-on-surface" type="text" value="120"/>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-emerald-50 text-emerald-900 text-[11px] font-bold flex items-center justify-between">
+<span>Pure Veg Assurance</span>
+<span class="material-symbols-outlined text-sm text-emerald-700">check_circle</span>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-secondary-container text-on-secondary-container font-label-md text-xs font-bold shadow mt-2" type="button">
+            Publish to Students
+          </button>
+</div>
+<div class="pt-2 bg-surface flex items-center justify-around font-label-xs text-[10px] text-on-surface-variant">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">home</span>
+<span>Home</span>
+</div>
+<div class="flex flex-col items-center text-primary font-bold">
+<span class="material-symbols-outlined text-lg">restaurant</span>
+<span>Meals</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">receipt</span>
+<span>Orders</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span>Pay</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+<span>More</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- ========================================================================= -->
+<!-- Interactive Logic & Micro-interactions Script                            -->
+<!-- ========================================================================= -->
+<script>
+  // 1. Tab Switching Function
+  function switchView(viewName) {
+    // Hide all view panels
+    const panels = document.querySelectorAll('.view-panel');
+    panels.forEach(p => p.classList.add('hidden'));
+
+    // Show target view panel
+    const target = document.getElementById('view-' + viewName);
+    if (target) {
+      target.classList.remove('hidden');
+    }
+
+    // Update active state in view tabs
+    const buttons = document.querySelectorAll('#view-tabs button');
+    buttons.forEach(btn => {
+      const tabAttr = btn.getAttribute('data-tab');
+      if (tabAttr === viewName) {
+        btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm', 'font-bold');
+        btn.classList.remove('hover:bg-surface-container-high', 'text-on-surface-variant');
+      } else if (tabAttr) {
+        btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        btn.classList.add('text-on-surface-variant');
+      }
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // 2. Add Meal Slide-in Drawer Controls
+  function openAddMealDrawer() {
+    const drawer = document.getElementById('add-meal-drawer');
+    const panel = document.getElementById('drawer-panel');
+    if (drawer && panel) {
+      drawer.classList.remove('pointer-events-none', 'opacity-0');
+      drawer.classList.add('opacity-100');
+      panel.classList.remove('translate-x-full');
+      panel.classList.add('translate-x-0');
+    }
+  }
+
+  function closeAddMealDrawer() {
+    const drawer = document.getElementById('add-meal-drawer');
+    const panel = document.getElementById('drawer-panel');
+    if (drawer && panel) {
+      drawer.classList.add('opacity-0', 'pointer-events-none');
+      drawer.classList.remove('opacity-100');
+      panel.classList.add('translate-x-full');
+      panel.classList.remove('translate-x-0');
+    }
+  }
+
+  // 3. Add Item Chip in Add Meal Form
+  function addChipItem() {
+    const input = document.getElementById('new-item-input');
+    const val = input.value.trim();
+    if (!val) return;
+
+    const container = document.getElementById('chip-container');
+    const span = document.createElement('span');
+    span.className = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-high text-xs font-semibold text-on-surface';
+    span.innerHTML = `${val} <button type="button" onclick="this.parentElement.remove()" class="text-on-surface-variant hover:text-error">✕</button>`;
+    container.appendChild(span);
+    input.value = '';
+  }
+
+  function handleSaveMeal() {
+    closeAddMealDrawer();
+    alert('Thali Meal published successfully to all GharSe students!');
+    switchView('meals');
+  }
+
+  // 4. Quick Verify and Action Helpers
+  function quickVerify(elementId, studentName) {
+    const el = document.getElementById(elementId);
+    if (el) {
+      el.classList.add('bg-emerald-50', 'transition-all', 'duration-500');
+      el.innerHTML = `
+        <div class="flex items-center gap-2 py-1">
+          <span class="material-symbols-outlined text-emerald-700 text-sm font-bold">check_circle</span>
+          <span class="text-xs font-bold text-emerald-900">${studentName}'s pass activated!</span>
+        </div>
+      `;
+      setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => el.remove(), 300);
+      }, 1500);
+    }
+  }
+
+  // 5. Orders Sub-Tabs
+  function switchOrderTab(tabId) {
+    document.querySelectorAll('.order-panel').forEach(p => p.classList.add('hidden'));
+    document.getElementById(tabId).classList.remove('hidden');
+
+    document.querySelectorAll('.order-subtab').forEach(btn => {
+      btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+      btn.classList.add('text-on-surface-variant');
+    });
+
+    const activeBtn = document.getElementById('btn-' + tabId);
+    if (activeBtn) {
+      activeBtn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+      activeBtn.classList.remove('text-on-surface-variant');
+    }
+  }
+
+  function handleNoteAction(cardId, action) {
+    const card = document.getElementById(cardId);
+    if (card) {
+      card.innerHTML = `
+        <div class="p-6 text-center">
+          <span class="material-symbols-outlined text-2xl ${action === 'Accepted' ? 'text-emerald-700' : 'text-error'}">
+            ${action === 'Accepted' ? 'done_all' : 'cancel'}
+          </span>
+          <p class="font-bold text-xs mt-1 text-on-surface">${action} student instruction</p>
+        </div>
+      `;
+      setTimeout(() => {
+        card.style.opacity = '0';
+        setTimeout(() => card.remove(), 300);
+      }, 1200);
+    }
+  }
+
+  // 6. Payment Approval / Rejection
+  function approvePayment(cardId) {
+    const c = document.getElementById(cardId);
+    if (c) {
+      c.innerHTML = `
+        <div class="p-8 text-center flex flex-col items-center justify-center">
+          <span class="material-symbols-outlined text-3xl text-emerald-700">verified</span>
+          <p class="font-bold text-sm text-emerald-900 mt-2">Verified & Pass Unlocked!</p>
+          <span class="text-xs text-on-surface-variant">Receipt matched with bank statement</span>
+        </div>
+      `;
+      setTimeout(() => {
+        c.style.opacity = '0';
+        setTimeout(() => c.remove(), 400);
+      }, 1600);
+    }
+  }
+
+  function rejectPayment(cardId) {
+    const reason = prompt("Enter rejection reason for student:", "UTR reference mismatch or missing credit");
+    if (reason) {
+      const c = document.getElementById(cardId);
+      if (c) {
+        c.innerHTML = `
+          <div class="p-6 text-center">
+            <span class="material-symbols-outlined text-2xl text-error">error</span>
+            <p class="font-bold text-xs text-error mt-1">Payment Rejected</p>
+            <span class="text-[11px] text-on-surface-variant">SMS notification sent to re-upload receipt</span>
+          </div>
+        `;
+        setTimeout(() => {
+          c.style.opacity = '0';
+          setTimeout(() => c.remove(), 400);
+        }, 1500);
+      }
+    }
+  }
+</script></main></div></body></html>

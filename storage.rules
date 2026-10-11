@@ -1,0 +1,26 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Payment screenshots: any signed-in user can upload (students submitting
+    // proof); anyone signed in can view (mess owner reviewing, admin auditing).
+    match /payment-screenshots/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    // Mess payment QR codes: publicly readable (students need to see them
+    // before logging in isn't required, but keeping it simple as signed-in-only
+    // read is fine since Browse Mess itself requires login). Only the mess
+    // owner can upload their own QR (enforced by matching the filename to their uid).
+    match /payment-qr/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+        && fileName.matches(request.auth.uid + '\\..*')
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+  }
+}

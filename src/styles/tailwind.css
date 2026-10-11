@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Manrope', sans-serif; background: #FBF6EE; overflow-x: hidden; }
+h1, h2, h3, h4 { font-family: 'Fraunces', serif; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #F3EBDC; }
+::-webkit-scrollbar-thumb { background: #EFE4CE; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #6B5F55; }
+
+::selection { background: #F5D48B; color: #2A2320; }
+
+/* Scroll-reveal (JS toggles .in-view via IntersectionObserver — see useReveal hook) */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+.reveal-delay-1.in-view { transition-delay: .08s; }
+.reveal-delay-2.in-view { transition-delay: .16s; }
+.reveal-delay-3.in-view { transition-delay: .24s; }
+.reveal-delay-4.in-view { transition-delay: .32s; }
+.reveal-delay-5.in-view { transition-delay: .4s; }
+.reveal-delay-6.in-view { transition-delay: .48s; }
+
+.lift { transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; }
+.lift:hover { transform: translateY(-6px) scale(1.012); box-shadow: 0 20px 40px rgba(122,46,29,.16); }
+
+.btn-glow { position: relative; overflow: hidden; }
+.btn-glow::after {
+  content: ''; position: absolute; top: 0; left: -75%; width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.5), transparent);
+  transform: skewX(-20deg);
+}
+.btn-glow:hover::after { animation: shimmer-slide .9s ease; }
+@keyframes shimmer-slide { from { left: -75%; } to { left: 130%; } }
+
+.grain-underline { position: relative; display: inline-block; }
+.grain-underline::after {
+  content: ''; position: absolute; left: 0; bottom: -4px; width: 100%; height: 8px;
+  background: rgba(232,163,61,.55); border-radius: 4px; z-index: -1;
+  transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.22,1,.36,1);
+}
+.grain-underline.in-view::after, .in-view .grain-underline::after { transform: scaleX(1); }
+
+.steam { position: absolute; width: 4px; height: 20px; background: rgba(255,255,255,.7); border-radius: 4px; filter: blur(2px); }
+.steam:nth-child(1) { left: 30%; animation: steam 2.4s ease-in-out infinite; }
+.steam:nth-child(2) { left: 50%; animation: steam 2.4s ease-in-out infinite .6s; }
+.steam:nth-child(3) { left: 70%; animation: steam 2.4s ease-in-out infinite 1.2s; }
+@keyframes steam { 0% { opacity: 0; transform: translateY(0) scaleX(1); } 30% { opacity: .6; } 100% { opacity: 0; transform: translateY(-30px) scaleX(1.4); } }
+
+.navbar-blur { backdrop-filter: blur(10px); background: rgba(251,246,238,.85); }
+
+.skip-btn:active { transform: scale(.94); }
+
+.spinner { width: 24px; height: 24px; border: 3px solid #EFE4CE; border-top-color: #7A2E1D; border-radius: 50%; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Material Symbols helpers (login / admin / student designs) */
+.icon-fill { font-variation-settings: 'FILL' 1; }
+.portal-theme { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: #fff9ed; color: #1e1c13; }
+.portal-theme h1, .portal-theme h2, .portal-theme h3, .portal-theme h4 { font-family: 'Playfair Display', Georgia, serif; }
+
+/* Scrolling long text (header location pill) */
+@keyframes locationScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+button:hover [style*="locationScroll"] { animation-play-state: paused !important; }
+
+/* Messify marketing theme — scope with .messify-theme on a page wrapper */
+.messify-theme { font-family: 'Poppins', system-ui, sans-serif; color: #1F2A24; }
+.messify-theme h1, .messify-theme h2, .messify-theme h3, .messify-theme h4 { font-family: 'Playfair Display', Georgia, serif; }
+.bg-indian-pattern {
+  background-color: #F6EFE0;
+  background-image: radial-gradient(#0F4D3A 0.8px, transparent 0.8px), radial-gradient(#E8702A 0.8px, #F6EFE0 0.8px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
+.ticket-card { position: relative; }
+.ticket-card::before, .ticket-card::after {
+  content: ''; position: absolute; width: 22px; height: 22px; background-color: #F6EFE0;
+  border-radius: 50%; top: 50%; transform: translateY(-50%); z-index: 10;
+}
+.ticket-card::before { left: -11px; }
+.ticket-card::after { right: -11px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

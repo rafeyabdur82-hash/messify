@@ -1,0 +1,1023 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GharSe - Super Delicious Indian Meals Delivered Fresh Daily</title>
+<!-- Google Fonts: Playfair Display, Poppins, Caveat -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Forms & Container Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#F6EFE0',
+              creamLight: '#FCF8F2',
+              forest: '#0F4D3A',
+              forestDark: '#0A3427',
+              forestLight: '#18644D',
+              saffron: '#E8702A',
+              saffronHover: '#D35D18',
+              gold: '#E0A526',
+              goldLight: '#F5C966',
+              chili: '#D62828',
+              charcoal: '#1F2A24'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['Poppins', 'system-ui', 'sans-serif'],
+            script: ['Caveat', 'cursive']
+          },
+          backgroundImage: {
+            'mandala-pattern': "radial-gradient(#0F4D3A 0.75px, transparent 0.75px), radial-gradient(#E8702A 0.75px, #F6EFE0 0.75px)"
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Typography and Pattern Styles -->
+<style data-purpose="custom-typography-and-decor">
+    body {
+      background-color: #F6EFE0;
+      color: #1F2A24;
+      font-family: 'Poppins', sans-serif;
+    }
+    .font-serif-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    .font-script-callout {
+      font-family: 'Caveat', cursive;
+    }
+    /* Subtle Indian decorative dot grid */
+    .bg-indian-pattern {
+      background-color: #F6EFE0;
+      background-image: radial-gradient(#0F4D3A 0.8px, transparent 0.8px), radial-gradient(#E8702A 0.8px, #F6EFE0 0.8px);
+      background-size: 32px 32px;
+      background-position: 0 0, 16px 16px;
+    }
+    /* Ticket notch effect */
+    .ticket-card {
+      position: relative;
+    }
+    .ticket-card::before, .ticket-card::after {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background-color: #F6EFE0;
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+    .ticket-card::before { left: -11px; }
+    .ticket-card::after { right: -11px; }
+  </style>
+</head>
+<body class="bg-indian-pattern min-h-screen text-brand-charcoal antialiased pb-16 md:pb-0">
+<!-- BEGIN: Sticky Navigation Bar -->
+<header class="sticky top-0 z-50 w-full shadow-lg">
+  <!-- Top Announcement Bar -->
+  <div class="bg-brand-gold text-brand-forestDark px-4 py-2 text-xs sm:text-sm font-semibold flex items-center justify-between border-b border-brand-gold/40 relative">
+    <div class="flex-1 text-center">
+      <span class="">🎟 Special Pass: ₹50 OFF on your first tiffin plan.</span>
+      <a href="#coupon-banner" class="ml-1.5 underline font-bold hover:text-black transition-colors">Claim now →</a>
+    </div>
+    <button type="button" onclick="this.parentElement.remove()" aria-label="Close announcement" class="text-brand-forestDark hover:text-black font-bold text-base px-2 leading-none transition-colors">
+      ✕
+    </button>
+  </div>
+
+  <!-- Streamlined Navigation Bar -->
+  <nav class="bg-brand-forest text-white border-b border-brand-gold/30 py-3.5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a class="flex items-center space-x-3 group" href="#">
+        <div class="w-11 h-11 rounded-full bg-brand-gold p-1 flex items-center justify-center shadow-md border-2 border-amber-200">
+          <svg class="w-6 h-6 text-brand-forest fill-current" viewBox="0 0 24 24">
+            <path d="M18.5 7.5A3.5 3.5 0 0 0 15 4c-.38 0-.74.07-1.08.18A4.98 4.98 0 0 0 5 7.5C5 8.16 5.17 8.78 5.47 9.32A3.5 3.5 0 0 0 3.5 12.5C3.5 14.43 5.07 16 7 16h10a4 4 0 0 0 4-4c0-1.84-1.25-3.39-2.97-3.85c.3-.51.47-1.1.47-1.65zM6 18h12v2H6v-2z"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-2xl font-extrabold tracking-wider text-brand-gold uppercase font-serif-heading leading-tight">GHARSE</span>
+          <span class="text-[9px] tracking-widest text-amber-200/90 font-medium uppercase">HERITAGE MESS NETWORK</span>
+        </div>
+      </a>
+
+      <!-- Right-side Actions: City Selector, Login, Find My Mess CTA -->
+      <div class="flex items-center space-x-3 sm:space-x-5">
+        <!-- City Selector Pill -->
+        <div class="flex items-center space-x-1.5 bg-brand-forestDark px-3 py-1.5 rounded-full border border-brand-gold/40 text-xs shadow-inner">
+          <svg class="w-3.5 h-3.5 text-brand-saffron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+          <select aria-label="Select City" class="bg-transparent text-brand-gold font-semibold focus:outline-none cursor-pointer py-0 border-none pr-5 text-xs">
+            <option class="bg-brand-forest text-white" selected="" value="rajkot">Rajkot</option>
+            <option class="bg-brand-forest text-white" value="ahmedabad">Ahmedabad</option>
+            <option class="bg-brand-forest text-white" value="pune">Pune</option>
+          </select>
+        </div>
+
+        <!-- Login Link Button -->
+        <a href="#login" class="text-sm font-semibold text-amber-100 hover:text-white transition-colors px-2 py-1">
+          Login
+        </a>
+
+        <!-- Primary CTA Button -->
+        <a href="#messes" class="bg-brand-saffron hover:bg-brand-saffronHover text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all transform hover:-translate-y-0.5 inline-flex items-center">
+          Find My Mess
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<!-- END: Sticky Navigation Bar -->
+<!-- BEGIN: Hero Section -->
+<section class="relative pt-8 pb-16 lg:pt-14 lg:pb-20 overflow-hidden" data-purpose="hero-banner">
+<!-- Subtle floating chili & spice decorations in background -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Top Script Accent -->
+<div class="text-center mb-4">
+<span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-saffron/15 text-brand-saffron font-script-callout text-2xl font-bold tracking-wide">
+          ✨ Super Delicious Indian Meals Fresh Daily
+        </span>
+</div>
+<!-- Main Headline -->
+<div class="text-center max-w-4xl mx-auto mb-8">
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-forest font-serif-heading leading-tight sm:leading-tight">
+          Delicious Indian Meals <br class="hidden sm:inline">
+<span class="text-brand-forest underline decoration-brand-gold decoration-wavy decoration-2">Delivered Fresh Daily</span>
+</h1>
+<p class="mt-4 text-base sm:text-lg text-brand-charcoal/80 max-w-2xl mx-auto font-sans leading-relaxed">
+          Subscribe to verified, hygienic local messes. Pay seamlessly via UPI. 
+          Enjoy pure Gujarati &amp; North Indian food with unlimited refills and zero palm oil.
+        </p>
+<!-- Action CTAs -->
+<div class="mt-6 flex flex-wrap justify-center items-center gap-4">
+<a class="px-7 py-3.5 rounded-full bg-brand-saffron hover:bg-brand-saffronHover text-white font-bold text-base shadow-lg shadow-orange-700/20 transition-all transform hover:-translate-y-0.5 flex items-center gap-2" href="#messes">
+<span class="">Find a Mess Near Me</span>
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<a class="px-7 py-3.5 rounded-full border-2 border-brand-forest text-brand-forest hover:bg-brand-forest hover:text-white font-bold text-base transition-colors" href="#for-owners">
+            Become a Mess Partner
+          </a>
+</div>
+</div>
+<!-- Search & Locality Filter Card -->
+<div class="max-w-4xl mx-auto bg-white/90 backdrop-blur-sm p-4 sm:p-5 rounded-2xl shadow-xl border-2 border-brand-gold/40 mb-12">
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+<!-- Locality Selector -->
+<div class="sm:col-span-5 relative">
+<label class="block text-xs font-bold text-brand-forest uppercase tracking-wider mb-1">Locality / College Campus</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-brand-forest/60">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+<input class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-300 focus:border-brand-forest focus:ring-1 focus:ring-brand-forest font-medium text-brand-charcoal" type="text" value="Radhanagar-5, Opp Royal School, Rajkot">
+</div>
+</div>
+<!-- Meal Type Preference -->
+<div class="sm:col-span-4">
+<label class="block text-xs font-bold text-brand-forest uppercase tracking-wider mb-1">Cuisine / Diet Type</label>
+<select aria-label="Cuisine or Diet Preference" class="w-full py-2 px-3 text-sm rounded-lg border border-gray-300 focus:border-brand-forest focus:ring-1 focus:ring-brand-forest font-medium text-brand-charcoal">
+<option>Pure Veg Gujarati Thali</option>
+<option>Kathiyawadi Unlimited</option>
+<option>Strict Jain (No Onion/Garlic)</option>
+<option>North Indian Executive</option>
+</select>
+</div>
+<!-- Submit Button -->
+<div class="sm:col-span-3 sm:mt-5">
+<button class="w-full py-2.5 px-4 bg-brand-forest hover:bg-brand-forestDark text-brand-gold font-bold text-sm rounded-lg transition-colors flex items-center justify-center gap-2 shadow">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">Explore Menus</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Centerpiece Visual: Stainless Steel Thali with Callout Arrows (Strictly using IMAGE_1) -->
+<div class="relative max-w-4xl mx-auto mt-6">
+<!-- Callout 1: Top-Left (No Palm Oil) -->
+<div class="hidden md:flex absolute -top-4 left-4 lg:left-0 z-20 flex-col items-end text-right max-w-[210px]">
+<span class="font-bold text-lg text-brand-forest font-serif-heading leading-snug">No Palm Oil.</span>
+<span class="text-sm font-semibold text-brand-charcoal">Only Fresh Groundnut Oil.</span>
+<!-- Curved Arrow Pointer -->
+<svg class="w-16 h-12 text-brand-saffron mt-1 transform rotate-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 80 50">
+<path d="M10,10 Q50,15 65,40"></path>
+<polygon fill="currentColor" points="65,40 56,36 68,32"></polygon>
+</svg>
+</div>
+<!-- Callout 2: Bottom-Left (Soft Rotli & Refills) -->
+<div class="hidden md:flex absolute bottom-8 left-4 lg:left-2 z-20 flex-col items-start text-left max-w-[210px]">
+<svg class="w-16 h-12 text-brand-saffron mb-1 transform -rotate-45" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 80 50">
+<path d="M10,40 Q30,10 65,15"></path>
+<polygon fill="currentColor" points="65,15 54,12 60,24"></polygon>
+</svg>
+<span class="font-bold text-lg text-brand-forest font-serif-heading leading-snug">Soft Rotli &amp; Shaak</span>
+<span class="text-sm font-semibold text-brand-chili">&amp; Unlimited Refills</span>
+</div>
+<!-- Callout 3: Top-Right (Pure Ingredients) -->
+<div class="hidden md:flex absolute -top-4 right-4 lg:right-0 z-20 flex-col items-start text-left max-w-[210px]">
+<span class="font-bold text-lg text-brand-forest font-serif-heading leading-snug">Pure Ingredients,</span>
+<span class="text-sm font-semibold text-brand-charcoal">No Compromise</span>
+<!-- Curved Arrow Pointer -->
+<svg class="w-16 h-12 text-brand-saffron mt-1 transform -rotate-12 scale-x-[-1]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 80 50">
+<path d="M10,10 Q50,15 65,40"></path>
+<polygon fill="currentColor" points="65,40 56,36 68,32"></polygon>
+</svg>
+</div>
+<!-- Callout 4: Bottom-Right (Pure Vegetarian Family Friendly) -->
+<div class="hidden md:flex absolute bottom-8 right-4 lg:right-2 z-20 flex-col items-start text-left max-w-[220px]">
+<svg class="w-16 h-12 text-brand-saffron mb-1 transform rotate-180 scale-y-[-1]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 80 50">
+<path d="M10,10 Q45,15 65,35"></path>
+<polygon fill="currentColor" points="65,35 56,31 68,27"></polygon>
+</svg>
+<span class="font-bold text-lg text-brand-forest font-serif-heading leading-snug">Pure Vegetarian</span>
+<span class="text-sm font-semibold text-brand-charcoal">Hygienic &amp; Family Friendly</span>
+</div>
+<!-- High-Resolution Image Container from Provided Flyer https://lh3.googleusercontent.com/aida-public/AB6AXuD1qVSb1gJ4FjBFPdtylKwGkeMEuS-s60ZHcvTOKYG1G-dVvM2Y_yQo4LoVAt4H4pza_S_zU6lQjTZpQbFOtGJ8eekLVsbbACtFSqijAudIEn06DotmpuGK20OgdYA-KCEdmn16ki4kP1cL7Sqo1FDqd1MPHIlFIwMiE6skreOiQebfkHvbpYk8wdohcqMwD_YZH58CD71eStkcfks0mpxiqH4bEBiMX4xA3Orb18T7fDvP3spZt6EP -->
+<div class="relative mx-auto w-full max-w-[580px] rounded-3xl overflow-hidden shadow-2xl border-4 border-brand-gold/60 bg-white">
+<img alt="Authentic Annapurna Kitchens Gujarati Unlimited Thali with rotli, shaak, dal, rice, farsan, and sweets" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500" height="838" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1qVSb1gJ4FjBFPdtylKwGkeMEuS-s60ZHcvTOKYG1G-dVvM2Y_yQo4LoVAt4H4pza_S_zU6lQjTZpQbFOtGJ8eekLVsbbACtFSqijAudIEn06DotmpuGK20OgdYA-KCEdmn16ki4kP1cL7Sqo1FDqd1MPHIlFIwMiE6skreOiQebfkHvbpYk8wdohcqMwD_YZH58CD71eStkcfks0mpxiqH4bEBiMX4xA3Orb18T7fDvP3spZt6EP" width="843">
+<!-- Badge overlay -->
+<div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-brand-forest/90 backdrop-blur-md px-6 py-2 rounded-full border border-brand-gold text-white text-xs sm:text-sm font-semibold shadow-lg flex items-center gap-2 whitespace-nowrap">
+<span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-ping"></span>
+<span class="">Serving Hot &amp; Fresh in Rajkot Today</span>
+</div>
+</div>
+<!-- Mobile Note below Thali -->
+<div class="grid grid-cols-2 gap-2 mt-4 md:hidden text-center text-xs font-semibold">
+<div class="bg-white/70 p-2 rounded-lg border border-brand-gold/30">🌿 100% Groundnut Oil</div>
+<div class="bg-white/70 p-2 rounded-lg border border-brand-gold/30">✨ Unlimited Rotli Refills</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: Live Stats & Trust Bar -->
+<section class="bg-brand-forest text-white py-6 border-y-2 border-brand-gold shadow-md" data-purpose="trust-ribbon">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center items-center divide-y md:divide-y-0 md:divide-x divide-brand-gold/30">
+<!-- Support Phone -->
+<div class="pt-2 md:pt-0 flex flex-col items-center">
+<div class="flex items-center gap-2 text-brand-gold font-bold text-lg sm:text-xl">
+<svg class="w-6 h-6 text-brand-saffron" fill="currentColor" viewBox="0 0 24 24">
+<path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
+</svg>
+<span class="">(+91) 82386 92705</span>
+</div>
+<span class="text-xs text-amber-100/80 mt-1 uppercase tracking-wider">Direct Mess Helpline</span>
+</div>
+<!-- Campus Messes -->
+<div class="pt-2 md:pt-0 flex flex-col items-center">
+<div class="text-2xl sm:text-3xl font-extrabold text-brand-gold font-serif-heading">50+ Messes</div>
+<span class="text-xs text-amber-100/80 mt-1 uppercase tracking-wider">Verified Campus Kitchens</span>
+</div>
+<!-- 100% Pure Veg -->
+<div class="pt-2 md:pt-0 flex flex-col items-center">
+<div class="flex items-center gap-1.5 text-green-300 font-bold text-lg sm:text-xl">
+<svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="">100% Shuddh Shakahari</span>
+</div>
+<span class="text-xs text-amber-100/80 mt-1 uppercase tracking-wider">Hygienic Groundnut Oil Only</span>
+</div>
+<!-- Daily Live Prep -->
+<div class="pt-2 md:pt-0 flex flex-col items-center">
+<div class="text-xl sm:text-2xl font-bold text-amber-100 font-serif-heading">Live Menu Updates</div>
+<span class="text-xs text-amber-100/80 mt-1 uppercase tracking-wider">Cooked Fresh Every Morning &amp; Evening</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Live Stats & Trust Bar -->
+<!-- BEGIN: Today's Fresh Menu & Popular Messes -->
+<section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-purpose="popular-messes-list" id="messes">
+<!-- Section Heading -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-brand-forest/20">
+<div>
+<span class="text-brand-saffron font-script-callout text-2xl font-bold">Cooked with love &amp; purity</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-brand-forest font-serif-heading">Today's Fresh Mess Menus</h2>
+</div>
+<!-- Meal Time Toggle Tabs -->
+<div class="mt-4 md:mt-0 inline-flex p-1 bg-brand-forest/10 rounded-xl border border-brand-forest/20">
+<button class="px-5 py-2 rounded-lg bg-brand-forest text-brand-gold font-bold text-xs uppercase tracking-wider shadow">
+          ☀️ Lunch Thali (12 PM - 3 PM)
+        </button>
+<button class="px-5 py-2 rounded-lg text-brand-forest hover:bg-white/60 font-semibold text-xs uppercase tracking-wider transition-colors">
+          🌙 Dinner Thali (7:30 PM - 10:30 PM)
+        </button>
+</div>
+</div>
+<!-- Messes Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Mess Card 1: Annapurna Kitchens (Direct from flyer) -->
+<div class="bg-white rounded-2xl overflow-hidden border-2 border-brand-gold/60 shadow-lg hover:shadow-2xl transition-all group flex flex-col">
+<div class="bg-brand-forest p-4 text-white relative">
+<span class="absolute top-3 right-3 bg-brand-gold text-brand-forestDark text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">★ 4.9 (420+ Reviews)</span>
+<h3 class="text-xl font-bold font-serif-heading text-amber-200">Annapurna Kitchens</h3>
+<p class="text-xs text-amber-100/80 mt-0.5">Pooja Complex, Mahadev Vadi Main Rd, Rajkot</p>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-bold uppercase tracking-wider text-green-700 bg-green-100 px-2.5 py-1 rounded">Pure Gujarati Thali</span>
+<span class="text-lg font-extrabold text-brand-chili">₹60 <span class="text-xs font-normal text-gray-500 line-through">₹110</span></span>
+</div>
+<p class="text-xs text-gray-600 mb-4 leading-relaxed">
+<strong>Today's Menu:</strong> Ringna No Olo, Bataka Nu Shaak, Gujarati Dal, Steamed Bhat, 4 Soft Phulka Rotli, Crispy Farsan &amp; Masala Chaas.
+            </p>
+<div class="flex flex-wrap gap-1.5 mb-4 text-[11px]">
+<span class="bg-brand-cream text-brand-forest px-2 py-0.5 rounded font-medium">Groundnut Oil</span>
+<span class="bg-brand-cream text-brand-forest px-2 py-0.5 rounded font-medium">Unlimited Refills</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-brand-saffron hover:bg-brand-saffronHover text-white font-bold text-xs uppercase tracking-wider transition-colors shadow">
+            Book Lunch / Subscribe Pass
+          </button>
+</div>
+</div>
+<!-- Mess Card 2: Shree Krishna Dining Hall -->
+<div class="bg-white rounded-2xl overflow-hidden border border-brand-gold/40 shadow-lg hover:shadow-2xl transition-all flex flex-col">
+<div class="bg-brand-forestDark p-4 text-white relative">
+<span class="absolute top-3 right-3 bg-brand-gold text-brand-forestDark text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">★ 4.8 (380+ Reviews)</span>
+<h3 class="text-xl font-bold font-serif-heading text-amber-200">Shree Krishna Dining</h3>
+<p class="text-xs text-amber-100/80 mt-0.5">University Road, Near Saurashtra Gate</p>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-2.5 py-1 rounded">Kathiyawadi Special</span>
+<span class="text-lg font-extrabold text-brand-forest">₹70 <span class="text-xs font-normal text-gray-500">/ meal</span></span>
+</div>
+<p class="text-xs text-gray-600 mb-4 leading-relaxed">
+<strong>Today's Menu:</strong> Sev Tameta Nu Shaak, Ringna Bharthu, 2 Desi Bajra Rotla with Fresh Butter, Lasaniya Marcha, Kadhi &amp; Gulab Jamun.
+            </p>
+<div class="flex flex-wrap gap-1.5 mb-4 text-[11px]">
+<span class="bg-brand-cream text-brand-forest px-2 py-0.5 rounded font-medium">Desi Makhan</span>
+<span class="bg-brand-cream text-brand-forest px-2 py-0.5 rounded font-medium">Sweet Included</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forestDark text-brand-gold font-bold text-xs uppercase tracking-wider transition-colors shadow">
+            Book Lunch / Subscribe Pass
+          </button>
+</div>
+</div>
+<!-- Mess Card 3: Radhe Tiffin Service (Jain Homely) -->
+<div class="bg-white rounded-2xl overflow-hidden border border-brand-gold/40 shadow-lg hover:shadow-2xl transition-all flex flex-col">
+<div class="bg-brand-forest p-4 text-white relative">
+<span class="absolute top-3 right-3 bg-brand-gold text-brand-forestDark text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">★ 4.9 (510+ Reviews)</span>
+<h3 class="text-xl font-bold font-serif-heading text-amber-200">Radhe Homely Tiffin</h3>
+<p class="text-xs text-amber-100/80 mt-0.5">Radhanagar Circle, Mahadev Vadi</p>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded">100% Jain Friendly</span>
+<span class="text-lg font-extrabold text-brand-forest">₹65 <span class="text-xs font-normal text-gray-500">/ meal</span></span>
+</div>
+<p class="text-xs text-gray-600 mb-4 leading-relaxed">
+<strong>Today's Menu:</strong> Galka Nu Shaak, Dudhi Chana Dal, 5 Soft Phulka with Ghee, Jeera Rice, Tomato Saaru, Papad &amp; Kheer. No Root Veg.
+            </p>
+<div class="flex flex-wrap gap-1.5 mb-4 text-[11px]">
+<span class="bg-brand-cream text-brand-forest px-2 py-0.5 rounded font-medium">No Onion/Garlic</span>
+<span class="bg-brand-cream text-brand-forest px-2 py-0.5 rounded font-medium">Doorstep Delivery</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forestDark text-brand-gold font-bold text-xs uppercase tracking-wider transition-colors shadow">
+            Book Lunch / Subscribe Pass
+          </button>
+</div>
+</div>
+<!-- Mess Card 4: Mahavir Bhojanalay -->
+<div class="bg-white rounded-2xl overflow-hidden border border-brand-gold/40 shadow-lg hover:shadow-2xl transition-all flex flex-col">
+<div class="bg-brand-forestDark p-4 text-white relative">
+<span class="absolute top-3 right-3 bg-brand-gold text-brand-forestDark text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">★ 4.7 (290+ Reviews)</span>
+<h3 class="text-xl font-bold font-serif-heading text-amber-200">Mahavir Bhojanalay</h3>
+<p class="text-xs text-amber-100/80 mt-0.5">Kalawad Road, Opp. Reliance Mall</p>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-bold uppercase tracking-wider text-orange-800 bg-orange-100 px-2.5 py-1 rounded">Executive Thali</span>
+<span class="text-lg font-extrabold text-brand-forest">₹75 <span class="text-xs font-normal text-gray-500">/ meal</span></span>
+</div>
+<p class="text-xs text-gray-600 mb-4 leading-relaxed">
+<strong>Today's Menu:</strong> Shahi Paneer, Mix Veg Handi, Dal Fry, Jeera Rice, 4 Butter Tawa Roti, Boondi Raita, Salad &amp; Sweet Mohanthal.
+            </p>
+<div class="flex flex-wrap gap-1.5 mb-4 text-[11px]">
+<span class="bg-brand-cream text-brand-forest px-2 py-0.5 rounded font-medium">AC Dine-in</span>
+<span class="bg-brand-cream text-brand-forest px-2 py-0.5 rounded font-medium">North + Guj</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forestDark text-brand-gold font-bold text-xs uppercase tracking-wider transition-colors shadow">
+            Book Lunch / Subscribe Pass
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Today's Fresh Menu & Popular Messes -->
+<!-- BEGIN: Choose Your Plan (Coupon-Style Subscription Passes) -->
+<section class="py-16 bg-brand-creamLight border-y border-brand-gold/40" data-purpose="subscription-plans" id="plans">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Plan Header -->
+<div class="text-center max-w-3xl mx-auto mb-14">
+<span class="text-brand-saffron font-script-callout text-2xl font-bold">Unbeatable Student &amp; Executive Pricing</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-brand-forest font-serif-heading">Transparent Monthly Meal Passes</h2>
+<p class="mt-2 text-sm sm:text-base text-gray-600">
+          Pause anytime. Zero cancellation penalty. Unused meal credits automatically rollover to next month or refund to UPI.
+        </p>
+</div>
+<!-- Passes Cards with Perforated Ticket Style -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+<!-- Card 1: Weekly Trial -->
+<div class="ticket-card bg-white rounded-3xl p-7 border-2 border-dashed border-brand-forest/40 shadow-lg flex flex-col justify-between relative">
+<!-- Scissors icon indicator -->
+<div class="absolute -top-3 left-8 bg-white px-2 text-brand-forest text-xs font-mono font-bold flex items-center gap-1">
+<span class="">✂️ TRIAL PASS</span>
+</div>
+<div>
+<h3 class="text-xl font-bold font-serif-heading text-brand-forest">Weekly Trial Pass</h3>
+<p class="text-xs text-gray-500 mt-1">14 Consecutive Meals (Lunch &amp; Dinner)</p>
+<div class="my-6">
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-extrabold text-brand-forest">₹999</span>
+<span class="text-base text-brand-chili line-through font-bold">₹1,200</span>
+</div>
+<span class="text-xs text-green-700 font-semibold">Save ₹201 this week (₹71 / meal)</span>
+</div>
+<ul class="space-y-3 text-xs text-gray-700 border-t border-gray-100 pt-5">
+<li class="flex items-center gap-2">
+<svg class="w-4 h-4 text-brand-forest flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+<span class="">7 Days unlimited lunch &amp; dinner</span>
+</li>
+<li class="flex items-center gap-2">
+<svg class="w-4 h-4 text-brand-forest flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+<span class="">Free Trial Sweet dish on Day 1</span>
+</li>
+<li class="flex items-center gap-2">
+<svg class="w-4 h-4 text-brand-forest flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+<span class="">Skip up to 2 meals with app notification</span>
+</li>
+</ul>
+</div>
+<div class="mt-8 pt-4 border-t border-dashed border-gray-200">
+<button class="w-full py-3 rounded-full bg-brand-forest hover:bg-brand-forestDark text-white font-bold text-xs uppercase tracking-wider transition-colors">
+              Subscribe via UPI (₹999)
+            </button>
+</div>
+</div>
+<!-- Card 2: Featured Full Month Pass -->
+<div class="ticket-card bg-brand-forest text-white rounded-3xl p-7 border-2 border-brand-gold shadow-2xl flex flex-col justify-between relative transform -translate-y-2">
+<!-- Featured Badge -->
+<div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brand-gold text-brand-forestDark text-xs font-extrabold uppercase px-4 py-1 rounded-full shadow border-2 border-amber-200 flex items-center gap-1">
+<span class="">👑 Most Popular Student Choice</span>
+</div>
+<div>
+<div class="flex justify-between items-start mt-2">
+<div>
+<h3 class="text-2xl font-bold font-serif-heading text-amber-200">Monthly Full Pass</h3>
+<p class="text-xs text-amber-100/80 mt-1">60 Meals Booklet (Lunch + Dinner)</p>
+</div>
+<span class="bg-brand-chili text-white text-[10px] uppercase font-extrabold px-2 py-0.5 rounded">₹900 OFF</span>
+</div>
+<div class="my-6">
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-extrabold text-brand-gold font-serif-heading">₹3,600</span>
+<span class="text-base text-red-300 line-through font-bold">₹4,500</span>
+</div>
+<span class="text-xs text-amber-200 font-semibold">Just ₹60 / unlimited hearty meal!</span>
+</div>
+<ul class="space-y-3 text-xs text-amber-50 border-t border-brand-gold/30 pt-5">
+<li class="flex items-center gap-2">
+<svg class="w-4 h-4 text-brand-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+<span class="">Full 30-Day unlimited dining or tiffin</span>
+</li>
+<li class="flex items-center gap-2">
+<svg class="w-4 h-4 text-brand-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+<span class="">Free Sunday Farsan &amp; Sweet Specials</span>
+</li>
+<li class="flex items-center gap-2">
+<svg class="w-4 h-4 text-brand-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+<span class="">10 Meal Skips allowed with 1-tap rollover</span>
+</li>
+<li class="flex items-center gap-2">
+<svg class="w-4 h-4 text-brand-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+<span class="">Dedicated Mess Manager Whatsapp Support</span>
+</li>
+</ul>
+</div>
+<div class="mt-8 pt-4 border-t border-dashed border-brand-gold/40">
+<button class="w-full py-3.5 rounded-full bg-brand-saffron hover:bg-brand-saffronHover text-white font-extrabold text-sm uppercase tracking-wider transition-colors shadow-lg">
+              Get Pass via GPay / PhonePe
+            </button>
+</div>
+</div>
+<!-- Card 3: Lunch Only 30 Passes Booklet (from flyer) -->
+<div class="ticket-card bg-white rounded-3xl p-7 border-2 border-dashed border-brand-forest/40 shadow-lg flex flex-col justify-between relative">
+<!-- Scissors icon indicator -->
+<div class="absolute -top-3 left-8 bg-white px-2 text-brand-forest text-xs font-mono font-bold flex items-center gap-1">
+<span class="">✂️ 30 PASSES BOOKLET</span>
+</div>
+<div>
+<h3 class="text-xl font-bold font-serif-heading text-brand-forest">Monthly Lunch Booklet</h3>
+<p class="text-xs text-gray-500 mt-1">30 Individual Lunch Passes (Flexible Use)</p>
+<div class="my-6">
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-extrabold text-brand-forest">₹1,800</span>
+<span class="text-base text-brand-chili line-through font-bold">₹2,200</span>
+</div>
+<span class="text-xs text-green-700 font-semibold">Flat ₹60 per plate (Struck from ₹110)</span>
+</div>
+<ul class="space-y-3 text-xs text-gray-700 border-t border-gray-100 pt-5">
+<li class="flex items-center gap-2">
+<svg class="w-4 h-4 text-brand-forest flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+<span class="">30 Lunch passes valid for 45 calendar days</span>
+</li>
+<li class="flex items-center gap-2">
+<svg class="w-4 h-4 text-brand-forest flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+<span class="">Perfect for Office Goers &amp; College Students</span>
+</li>
+<li class="flex items-center gap-2">
+<svg class="w-4 h-4 text-brand-forest flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+<span class="">Shareable with roommates or classmates</span>
+</li>
+</ul>
+</div>
+<div class="mt-8 pt-4 border-t border-dashed border-gray-200">
+<button class="w-full py-3 rounded-full bg-brand-forest hover:bg-brand-forestDark text-white font-bold text-xs uppercase tracking-wider transition-colors">
+              Subscribe via UPI (₹1,800)
+            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Choose Your Plan -->
+<!-- BEGIN: How It Works in 4 Steps -->
+<section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-purpose="how-it-works-workflow" id="how-it-works">
+<div class="text-center max-w-3xl mx-auto mb-12">
+<span class="text-brand-saffron font-script-callout text-2xl font-bold">Fast &amp; Simple</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-brand-forest font-serif-heading">How GharSe Works in 4 Steps</h2>
+<p class="text-sm text-gray-600 mt-2">From finding the best local bhojanalay to enjoying steaming rotlis every day.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+<!-- Step 1 -->
+<div class="bg-white p-6 rounded-2xl border border-brand-gold/40 shadow text-center relative flex flex-col items-center">
+<div class="w-14 h-14 rounded-2xl bg-brand-forest text-brand-gold flex items-center justify-center font-bold text-xl mb-4 shadow">
+          1
+        </div>
+<h3 class="font-bold text-lg text-brand-forest mb-2">Pick Your Mess</h3>
+<p class="text-xs text-gray-600 leading-relaxed">
+          Filter by distance, Gujarati / Kathiyawadi / Jain menu, oil purity scores, and student verified reviews.
+        </p>
+</div>
+<!-- Step 2 -->
+<div class="bg-white p-6 rounded-2xl border border-brand-gold/40 shadow text-center relative flex flex-col items-center">
+<div class="w-14 h-14 rounded-2xl bg-brand-saffron text-white flex items-center justify-center font-bold text-xl mb-4 shadow">
+          2
+        </div>
+<h3 class="font-bold text-lg text-brand-forest mb-2">UPI Instant Payment</h3>
+<p class="text-xs text-gray-600 leading-relaxed">
+          Scan the QR or click to pay via GPay, PhonePe, or Paytm with flat promotional discounts pre-applied.
+        </p>
+</div>
+<!-- Step 3 -->
+<div class="bg-white p-6 rounded-2xl border border-brand-gold/40 shadow text-center relative flex flex-col items-center">
+<div class="w-14 h-14 rounded-2xl bg-brand-forest text-brand-gold flex items-center justify-center font-bold text-xl mb-4 shadow">
+          3
+        </div>
+<h3 class="font-bold text-lg text-brand-forest mb-2">Instant Confirmation</h3>
+<p class="text-xs text-gray-600 leading-relaxed">
+          The mess owner instantly receives your booking and your digital QR pass is added to your account.
+        </p>
+</div>
+<!-- Step 4 -->
+<div class="bg-white p-6 rounded-2xl border border-brand-gold/40 shadow text-center relative flex flex-col items-center">
+<div class="w-14 h-14 rounded-2xl bg-green-700 text-white flex items-center justify-center font-bold text-xl mb-4 shadow">
+          4
+        </div>
+<h3 class="font-bold text-lg text-brand-forest mb-2">Relish Daily Meals</h3>
+<p class="text-xs text-gray-600 leading-relaxed">
+          Walk in for unlimited dining or receive hot doorstep tiffin delivery before 12:30 PM &amp; 8:00 PM every day!
+        </p>
+</div>
+</div>
+</section>
+<!-- END: How It Works in 4 Steps -->
+<!-- BEGIN: Exclusive Coupon Voucher Banner (Faithful Replica of https://lh3.googleusercontent.com/aida-public/AB6AXuD1qVSb1gJ4FjBFPdtylKwGkeMEuS-s60ZHcvTOKYG1G-dVvM2Y_yQo4LoVAt4H4pza_S_zU6lQjTZpQbFOtGJ8eekLVsbbACtFSqijAudIEn06DotmpuGK20OgdYA-KCEdmn16ki4kP1cL7Sqo1FDqd1MPHIlFIwMiE6skreOiQebfkHvbpYk8wdohcqMwD_YZH58CD71eStkcfks0mpxiqH4bEBiMX4xA3Orb18T7fDvP3spZt6EP Bottom Flyer) -->
+<section class="py-10 max-w-6xl mx-auto px-4 sm:px-6" data-purpose="coupon-voucher" id="coupon-banner">
+<!-- Red Scissor Cut Indicator Line -->
+<div class="flex items-center justify-between text-brand-chili font-mono text-xs font-bold mb-2 px-2">
+<div class="flex items-center gap-2">
+<span class="text-lg">✂️</span>
+<span class="tracking-widest uppercase">Cut along dashed line for special in-store mess discount</span>
+</div>
+<span class="hidden sm:inline">Pooja Complex, 1st Floor, Mahadev Vadi Main Rd, Rajkot</span>
+</div>
+<!-- The Flyer Coupon Card Container -->
+<div class="relative bg-brand-forest rounded-3xl p-4 sm:p-7 border-4 border-brand-gold shadow-2xl overflow-hidden">
+<!-- Inner Cream Content Board -->
+<div class="bg-brand-cream rounded-2xl border-2 border-brand-gold/80 p-5 sm:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 relative">
+<!-- Left: Kitchen Emblem & Main Header -->
+<div class="w-full lg:w-3/4">
+<!-- Top Tagline -->
+<div class="text-center sm:text-left mb-2">
+<span class="font-script-callout text-brand-saffron text-2xl font-bold tracking-wide">
+              — ENJOY —
+            </span>
+<h3 class="text-2xl sm:text-4xl font-extrabold text-brand-forest font-serif-heading tracking-wide">
+              FULL UNLIMITED DISH
+            </h3>
+</div>
+<!-- Dual Exclusive Discount Columns (From Flyer) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 pt-4 border-t-2 border-dashed border-brand-forest/20">
+<!-- Exclusive 1: Single Pass -->
+<div class="bg-white/80 p-4 rounded-xl border border-brand-gold/50 shadow-sm">
+<span class="bg-brand-forest text-brand-gold text-[10px] font-extrabold uppercase px-2 py-0.5 rounded tracking-wider">
+                EXCLUSIVE
+              </span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="text-3xl font-extrabold text-brand-forest">₹50</span>
+<span class="text-xs uppercase font-extrabold text-brand-charcoal">Flat OFF</span>
+</div>
+<div class="mt-2 text-sm font-bold flex items-center gap-2">
+<span class="text-brand-chili line-through text-lg">₹110</span>
+<span class="text-brand-forest text-xl">To ₹60</span>
+<span class="text-xs text-gray-500 font-normal">(Single Dish)</span>
+</div>
+</div>
+<!-- Exclusive 2: 30 Passes Booklet -->
+<div class="bg-white/80 p-4 rounded-xl border border-brand-gold/50 shadow-sm">
+<span class="bg-brand-forest text-brand-gold text-[10px] font-extrabold uppercase px-2 py-0.5 rounded tracking-wider">
+                EXCLUSIVE
+              </span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="text-3xl font-extrabold text-brand-forest">₹100</span>
+<span class="text-xs uppercase font-extrabold text-brand-charcoal">Flat OFF</span>
+</div>
+<div class="mt-2 text-sm font-bold flex items-center gap-2">
+<span class="text-brand-chili line-through text-lg">2500</span>
+<span class="text-brand-forest text-xl">To 2400</span>
+<span class="text-xs text-gray-500 font-normal">(30 Passes Booklet)</span>
+</div>
+</div>
+</div>
+<p class="text-xs text-gray-600 mt-4 italic">
+            * Valid on dine-in and parcel packing. Offer valid for students &amp; corporate employees with ID.
+          </p>
+</div>
+<!-- Perforated Divider (Dashed) -->
+<div class="hidden lg:block w-[2px] self-stretch border-r-2 border-dashed border-brand-forest/30"></div>
+<!-- Right: Rotated Coupon Stamp Side (Directly modeled after flyer) -->
+<div class="w-full lg:w-1/4 bg-brand-forest text-white rounded-xl p-5 border-2 border-brand-gold text-center flex flex-col justify-between items-center shadow-inner">
+<div class="w-full">
+<span class="text-[10px] uppercase tracking-widest text-brand-gold font-bold">Use Coupon Code</span>
+<div class="bg-white text-brand-forest text-lg font-mono font-extrabold py-2 px-3 rounded-lg border border-brand-gold my-2 tracking-wider">
+              GHARSE100
+            </div>
+<div class="text-[11px] text-amber-200 font-medium">
+              Valid: 01/07/'26 to 31/07/'26 <br>
+<span class="text-[10px] text-white/80">Valid for One-Time Use Per Offer</span>
+</div>
+</div>
+<button class="mt-4 w-full py-2 bg-brand-saffron hover:bg-brand-saffronHover text-white text-xs font-bold uppercase rounded-lg tracking-wider transition-colors shadow">
+            Claim Offer Now
+          </button>
+</div>
+</div>
+<!-- Address Bar along bottom of flyer -->
+<div class="mt-4 text-center text-xs text-amber-100/90 flex flex-wrap justify-center items-center gap-2 sm:gap-6 font-medium">
+<span class="">📍 Pooja Complex, 1st Floor, Radhanagar-5, Opp. Royal School, Mahadev Vadi Main Rd., Rajkot</span>
+<span class="">📞 (+91) 82386 92705</span>
+</div>
+</div>
+</section>
+<!-- END: Exclusive Coupon Voucher Banner -->
+<!-- BEGIN: For Mess Owners (B2B Partner Section) -->
+<section class="py-16 bg-brand-forest text-white border-t-2 border-brand-gold" data-purpose="mess-partner-section" id="for-owners">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left: Pitch -->
+<div class="lg:col-span-7">
+<span class="text-brand-gold font-script-callout text-2xl font-bold">Grow Your Mess Business</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold font-serif-heading text-white mt-1 mb-4 leading-tight">
+            Digitize Your Kitchen &amp; Fill 100+ Tables Every Day
+          </h2>
+<p class="text-sm sm:text-base text-amber-100/80 mb-6 leading-relaxed">
+            Stop worrying about empty mess seats, manual pass booklets, and delayed fee collections. 
+            GharSe connects your kitchen directly with thousands of college students and working professionals in Rajkot.
+          </p>
+<!-- Key Features Checklist -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 text-xs sm:text-sm">
+<div class="flex items-start gap-3 bg-brand-forestDark p-3.5 rounded-xl border border-brand-gold/30">
+<span class="text-brand-gold text-lg">💰</span>
+<div>
+<strong class="text-white block font-semibold">Automated UPI Payouts</strong>
+<span class="text-amber-100/70 text-xs">Direct T+1 daily settlement into your bank account.</span>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-brand-forestDark p-3.5 rounded-xl border border-brand-gold/30">
+<span class="text-brand-gold text-lg">📲</span>
+<div>
+<strong class="text-white block font-semibold">1-Click Daily Menu Broadcast</strong>
+<span class="text-amber-100/70 text-xs">Notify subscribers on WhatsApp with your fresh daily shaak.</span>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-brand-forestDark p-3.5 rounded-xl border border-brand-gold/30">
+<span class="text-brand-gold text-lg">📊</span>
+<div>
+<strong class="text-white block font-semibold">Zero-Hassle Attendance QR</strong>
+<span class="text-amber-100/70 text-xs">Students scan your QR code; no manual registers needed.</span>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-brand-forestDark p-3.5 rounded-xl border border-brand-gold/30">
+<span class="text-brand-gold text-lg">🛵</span>
+<div>
+<strong class="text-white block font-semibold">Batch Route Delivery Maps</strong>
+<span class="text-amber-100/70 text-xs">Automated delivery route optimization for hostel drops.</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="px-7 py-3 rounded-full bg-brand-gold hover:bg-brand-goldLight text-brand-forestDark font-extrabold text-sm uppercase tracking-wider transition-all shadow-md">
+              Register My Mess (Takes 10 Mins)
+            </button>
+<a class="px-6 py-3 rounded-full border border-brand-gold/60 text-amber-200 hover:bg-brand-forestDark font-bold text-sm transition-colors flex items-center gap-2" href="tel:+918238692705">
+<span class="">Talk to Partner Manager: (+91) 82386 92705</span>
+</a>
+</div>
+</div>
+<!-- Right: Partner Dashboard Visual Preview -->
+<div class="lg:col-span-5">
+<div class="bg-brand-forestDark p-6 rounded-3xl border-2 border-brand-gold/60 shadow-2xl">
+<div class="flex items-center justify-between pb-4 border-b border-brand-gold/20 mb-4">
+<div>
+<span class="text-[10px] text-amber-200 font-bold uppercase tracking-widest">Mess Partner Portal</span>
+<h4 class="text-lg font-bold text-white">Annapurna Kitchens Dashboard</h4>
+</div>
+<span class="bg-green-500/20 text-green-300 text-xs px-2.5 py-1 rounded-full font-bold">🟢 Live Now</span>
+</div>
+<!-- Stats metric cards -->
+<div class="grid grid-cols-2 gap-3 mb-4">
+<div class="bg-brand-forest p-3.5 rounded-xl border border-brand-gold/20">
+<span class="text-[11px] text-amber-200/80">Active Monthly Passes</span>
+<p class="text-2xl font-bold text-brand-gold mt-1">142 Students</p>
+</div>
+<div class="bg-brand-forest p-3.5 rounded-xl border border-brand-gold/20">
+<span class="text-[11px] text-amber-200/80">Today's Lunch Scans</span>
+<p class="text-2xl font-bold text-white mt-1">98 / 142</p>
+</div>
+</div>
+<!-- Recent Scan Feed -->
+<div class="space-y-2 text-xs">
+<span class="text-[11px] text-amber-200/70 font-semibold block uppercase tracking-wider">Recent Diners Checked In</span>
+<div class="flex justify-between items-center p-2 rounded-lg bg-brand-forest/60 border border-brand-gold/10">
+<span class="font-medium">Parth Joshi (RK Univ Hostel)</span>
+<span class="text-green-400 font-mono text-[11px]">Pass #042 • 12:42 PM</span>
+</div>
+<div class="flex justify-between items-center p-2 rounded-lg bg-brand-forest/60 border border-brand-gold/10">
+<span class="font-medium">Dhruv Patel (Saurashtra Univ)</span>
+<span class="text-green-400 font-mono text-[11px]">Pass #118 • 12:40 PM</span>
+</div>
+<div class="flex justify-between items-center p-2 rounded-lg bg-brand-forest/60 border border-brand-gold/10">
+<span class="font-medium">Aarav Trivedi (Work from Home)</span>
+<span class="text-green-400 font-mono text-[11px]">Tiffin Sent • 12:35 PM</span>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-brand-gold/20 text-center">
+<span class="text-xs text-amber-200/80">T+1 Auto Payout Tomorrow: <strong class="text-brand-gold font-bold">₹14,580.00</strong></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: For Mess Owners -->
+<!-- BEGIN: Student Testimonials -->
+<section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-purpose="student-reviews">
+<div class="text-center max-w-3xl mx-auto mb-12">
+<span class="text-brand-saffron font-script-callout text-2xl font-bold">Loved by 2,000+ Students</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-brand-forest font-serif-heading">What Diners Say in Rajkot</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Review 1 -->
+<div class="bg-white p-6 rounded-2xl border border-brand-gold/40 shadow-md flex flex-col justify-between">
+<div>
+<div class="flex items-center text-brand-gold mb-3 text-sm">★★★★★</div>
+<p class="text-xs sm:text-sm text-gray-700 leading-relaxed italic">
+            "Annapurna Kitchens feels completely like home food. No heavy spices, no heartburn, and purely groundnut oil. Saved almost ₹3,000 this month compared to ordering random junk."
+          </p>
+</div>
+<div class="mt-5 pt-4 border-t border-gray-100 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-brand-forest text-brand-gold font-bold flex items-center justify-center text-sm">
+            VM
+          </div>
+<div>
+<h4 class="text-xs font-bold text-brand-forest">Varun Mehta</h4>
+<span class="text-[11px] text-gray-500">Saurashtra University, 2nd Year MBA</span>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="bg-white p-6 rounded-2xl border border-brand-gold/40 shadow-md flex flex-col justify-between">
+<div>
+<div class="flex items-center text-brand-gold mb-3 text-sm">★★★★★</div>
+<p class="text-xs sm:text-sm text-gray-700 leading-relaxed italic">
+            "The 1-tap meal skip feature is a game-changer! Whenever I travel home to Morbi for the weekend, I pause my meals and get automatic wallet rollover credits without arguing with the mess uncle."
+          </p>
+</div>
+<div class="mt-5 pt-4 border-t border-gray-100 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-brand-saffron text-white font-bold flex items-center justify-center text-sm">
+            RP
+          </div>
+<div>
+<h4 class="text-xs font-bold text-brand-forest">Riddhi Patel</h4>
+<span class="text-[11px] text-gray-500">Marwadi University, Engineering</span>
+</div>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="bg-white p-6 rounded-2xl border border-brand-gold/40 shadow-md flex flex-col justify-between">
+<div>
+<div class="flex items-center text-brand-gold mb-3 text-sm">★★★★★</div>
+<p class="text-xs sm:text-sm text-gray-700 leading-relaxed italic">
+            "The soft phulka rotlis and Ringna No Olo are phenomenal! Clean seating area in Pooja Complex. ₹60 per plate is practically unbeatable for unlimited refills."
+          </p>
+</div>
+<div class="mt-5 pt-4 border-t border-gray-100 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-brand-forestDark text-brand-gold font-bold flex items-center justify-center text-sm">
+            KD
+          </div>
+<div>
+<h4 class="text-xs font-bold text-brand-forest">Karan Dave</h4>
+<span class="text-[11px] text-gray-500">Chartered Accountant Aspirant, Rajkot</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Student Testimonials -->
+<!-- BEGIN: FAQ Accordion -->
+<section class="py-14 bg-brand-creamLight border-y border-brand-gold/30" data-purpose="faq-section">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-10">
+<h2 class="text-2xl sm:text-3xl font-extrabold text-brand-forest font-serif-heading">Frequently Asked Questions</h2>
+<p class="text-xs sm:text-sm text-gray-600 mt-1">Everything you need to know about mess subscriptions, pauses, and safety.</p>
+</div>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<details class="group bg-white p-4 sm:p-5 rounded-2xl border border-brand-gold/40 shadow-sm" open="">
+<summary class="flex justify-between items-center font-bold text-sm sm:text-base text-brand-forest cursor-pointer list-none">
+<span class="">How do meal skips and wallet credits work?</span>
+<span class="transition group-open:rotate-180 text-brand-saffron">▼</span>
+</summary>
+<p class="text-xs sm:text-sm text-gray-600 mt-3 leading-relaxed">
+            Simply open GharSe before 9:00 AM for lunch or before 5:00 PM for dinner and tap "Skip Meal". Your meal credit is automatically extended to your validity period, ensuring zero financial loss.
+          </p>
+</details>
+<!-- FAQ Item 2 -->
+<details class="group bg-white p-4 sm:p-5 rounded-2xl border border-brand-gold/40 shadow-sm">
+<summary class="flex justify-between items-center font-bold text-sm sm:text-base text-brand-forest cursor-pointer list-none">
+<span class="">Can I pay via UPI apps like Google Pay, PhonePe, and Paytm?</span>
+<span class="transition group-open:rotate-180 text-brand-saffron">▼</span>
+</summary>
+<p class="text-xs sm:text-sm text-gray-600 mt-3 leading-relaxed">
+            Yes! We support all major UPI payment apps, QR scanners, and Rupay cards with instant confirmation. You receive a digital pass with a unique QR code directly on your mobile device.
+          </p>
+</details>
+<!-- FAQ Item 3 -->
+<details class="group bg-white p-4 sm:p-5 rounded-2xl border border-brand-gold/40 shadow-sm">
+<summary class="flex justify-between items-center font-bold text-sm sm:text-base text-brand-forest cursor-pointer list-none">
+<span class="">Is the food genuinely 100% Pure Vegetarian and cooked in Groundnut Oil?</span>
+<span class="transition group-open:rotate-180 text-brand-saffron">▼</span>
+</summary>
+<p class="text-xs sm:text-sm text-gray-600 mt-3 leading-relaxed">
+            Every partnered mess undergoes physical kitchen verification. We strictly verify that only 100% Shuddh groundnut / sunflower cooking oils are used (No Palm Oil) and all premises are purely vegetarian. Strict Jain options are prepared separately.
+          </p>
+</details>
+<!-- FAQ Item 4 -->
+<details class="group bg-white p-4 sm:p-5 rounded-2xl border border-brand-gold/40 shadow-sm">
+<summary class="flex justify-between items-center font-bold text-sm sm:text-base text-brand-forest cursor-pointer list-none">
+<span class="">Can I switch messes during my active monthly subscription?</span>
+<span class="transition group-open:rotate-180 text-brand-saffron">▼</span>
+</summary>
+<p class="text-xs sm:text-sm text-gray-600 mt-3 leading-relaxed">
+            Yes, our "Flexi-Pass" option lets you switch your dining mess once every 7 days to try different verified kitchens around Rajkot without losing unused pass balances.
+          </p>
+</details>
+</div>
+</div>
+</section>
+<!-- END: FAQ Accordion -->
+<!-- BEGIN: Deep Green Heritage Footer -->
+<footer class="bg-brand-forestDark text-white pt-14 pb-10 border-t-4 border-brand-gold" data-purpose="page-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-brand-gold/20">
+<!-- Col 1: Brand Info -->
+<div>
+<div class="flex items-center space-x-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-brand-gold p-1 flex items-center justify-center">
+<svg class="w-6 h-6 text-brand-forest fill-current" viewBox="0 0 24 24"><path d="M18.5 7.5A3.5 3.5 0 0 0 15 4c-.38 0-.74.07-1.08.18A4.98 4.98 0 0 0 5 7.5C5 8.16 5.17 8.78 5.47 9.32A3.5 3.5 0 0 0 3.5 12.5C3.5 14.43 5.07 16 7 16h10a4 4 0 0 0 4-4c0-1.84-1.25-3.39-2.97-3.85c.3-.51.47-1.1.47-1.65zM6 18h12v2H6v-2z"></path></svg>
+</div>
+<span class="text-2xl font-extrabold text-brand-gold font-serif-heading">GharSe</span>
+</div>
+<p class="text-xs text-amber-100/70 leading-relaxed mb-4">
+            Authentic, affordable, and hygienic student tiffin network across Gujarat. Bringing the warmth of mom's fresh rotli to every hostel and office.
+          </p>
+<div class="flex items-center gap-2 text-xs text-brand-gold font-bold">
+<span class="">🌿 Pure Vegetarian</span>
+<span class="">•</span>
+<span class="">🥣 Groundnut Oil</span>
+</div>
+</div>
+<!-- Col 2: Quick Links -->
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-amber-200 mb-4 font-serif-heading">Explore Messes</h4>
+<ul class="space-y-2 text-xs text-amber-100/80">
+<li class=""><a class="hover:text-brand-gold transition-colors" href="#messes">Annapurna Kitchens (Mahadev Vadi)</a></li>
+<li class=""><a class="hover:text-brand-gold transition-colors" href="#messes">Kathiyawadi Thali (University Rd)</a></li>
+<li class=""><a class="hover:text-brand-gold transition-colors" href="#messes">Jain Homely Food (Radhanagar)</a></li>
+<li class=""><a class="hover:text-brand-gold transition-colors" href="#messes">Executive North Indian (Kalawad Rd)</a></li>
+<li class=""><a class="hover:text-brand-gold transition-colors" href="#plans">Student 30-Passes Booklet (₹60/meal)</a></li>
+</ul>
+</div>
+<!-- Col 3: Physical Address & Branch -->
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-amber-200 mb-4 font-serif-heading">Flagship Location</h4>
+<p class="text-xs text-amber-100/80 leading-relaxed mb-3">
+<strong>Annapurna Kitchens HQ:</strong><br>
+            Pooja Complex, 1st Floor,<br>
+            Radhanagar-5, Opp. Royal School,<br>
+            Mahadev Vadi Main Rd., Rajkot - 360004
+          </p>
+<p class="text-xs text-amber-200 font-bold">
+            Helpline: (+91) 82386 92705
+          </p>
+</div>
+<!-- Col 4: Trust Certifications -->
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-amber-200 mb-4 font-serif-heading">Our Quality Promise</h4>
+<div class="bg-brand-forest p-4 rounded-xl border border-brand-gold/30 space-y-2 text-xs">
+<div class="flex items-center gap-2 text-green-300">
+<span class="">✔</span>
+<span class="">100% Shuddh Shakahari</span>
+</div>
+<div class="flex items-center gap-2 text-green-300">
+<span class="">✔</span>
+<span class="">No Recycled / Palm Oil</span>
+</div>
+<div class="flex items-center gap-2 text-green-300">
+<span class="">✔</span>
+<span class="">Daily Fresh Hand-Rolled Rotli</span>
+</div>
+<div class="flex items-center gap-2 text-green-300">
+<span class="">✔</span>
+<span class="">UPI Verified Fast Check-in</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Copyright Bottom Bar -->
+<div class="mt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-amber-100/60 gap-4">
+<div class="">
+          © 2026 GharSe Kitchens Network. All rights reserved. Made for students &amp; food lovers.
+        </div>
+<div class="flex gap-4">
+<a class="hover:text-brand-gold" href="#">Terms of Service</a>
+<a class="hover:text-brand-gold" href="#">Privacy Policy</a>
+<a class="hover:text-brand-gold" href="#">Refund Policy</a>
+<a class="hover:text-brand-gold font-bold text-amber-200" href="tel:+918238692705">+91 82386 92705</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Deep Green Heritage Footer -->
+<!-- BEGIN: Mobile Sticky Bottom Navigation -->
+<div class="fixed bottom-0 inset-x-0 z-50 bg-brand-forest border-t-2 border-brand-gold md:hidden flex justify-around items-center py-2 text-white text-[11px] font-medium shadow-2xl">
+<a class="flex flex-col items-center text-brand-gold" href="#">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">Home</span>
+</a>
+<a class="flex flex-col items-center text-amber-100 hover:text-brand-gold" href="#messes">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">Find Mess</span>
+</a>
+<a class="flex flex-col items-center text-amber-100 hover:text-brand-gold relative" href="#coupon-banner">
+<span class="absolute -top-1 right-2 bg-brand-chili text-white text-[9px] px-1 rounded-full font-bold">50 OFF</span>
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">Coupons</span>
+</a>
+<a class="flex flex-col items-center text-amber-100 hover:text-brand-gold" href="#plans">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">Passes</span>
+</a>
+</div>
+<!-- END: Mobile Sticky Bottom Navigation -->
+
+
+</body></html>

@@ -1,0 +1,6 @@
+node_modules
+dist
+.env*
+# Firebase Admin key — never commit or share
+scripts/serviceAccountKey.json
+serviceAccountKey*.json

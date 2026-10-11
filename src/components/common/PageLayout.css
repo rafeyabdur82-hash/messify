@@ -1,0 +1,27 @@
+.page-layout { min-height: 100vh; background: var(--dahi); }
+
+.page-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-5) var(--space-9);
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.page-title { font-size: clamp(24px, 3vw, 32px); }
+.page-subtitle { color: var(--charcoal-soft); margin-top: var(--space-2); font-size: 14px; }
+.page-actions { display: flex; gap: var(--space-3); }
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+
+@media (max-width: 760px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}

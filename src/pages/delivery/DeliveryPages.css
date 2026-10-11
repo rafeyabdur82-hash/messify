@@ -1,0 +1,37 @@
+.route-list { display: flex; flex-direction: column; gap: 16px; }
+.route-card { display: flex; justify-content: space-between; align-items: center; }
+
+.stop-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.stop-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1.5px solid var(--sooji);
+  border-radius: var(--radius-md);
+  background: var(--white);
+}
+.stop-item.is-current { border-color: var(--haldi); background: #FFF8E9; }
+.stop-item.is-done { opacity: 0.55; }
+.stop-index {
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  background: var(--sooji);
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  margin-right: 12px;
+}
+.stop-item.is-current .stop-index { background: var(--haldi); }
+.stop-item.is-done .stop-index { background: var(--success); color: white; }
+
+.qr-scan-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+  text-align: center;
+}
+#qr-reader { width: 100%; max-width: 400px; border-radius: var(--radius-md); overflow: hidden; }
