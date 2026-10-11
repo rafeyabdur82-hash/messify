@@ -43,11 +43,29 @@ async function reverseGeocode(lat, lon) {
   const data = await res.json()
   const a = data.address || {}
   const area = a.suburb || a.neighbourhood || a.quarter || a.village || a.town || a.city_district || ''
-  const city = a.city || a.town || a.village || a.county || a.state_district || ''
+  const city = a.city || a.town || a.village || a.state_district || a.county || ''
   const state = a.state || ''
   const label = [area, city].filter((v, i, arr) => v && arr.indexOf(v) === i).join(', ') || data.display_name?.split(',').slice(0, 2).join(',') || 'Your location'
-  // Full address from the geocoder, minus the trailing country, e.g. "Shradha Park, Wadi, Hingna, Nagpur, Maharashtra, 441110".
-  const full = (data.display_name || label).replace(/,\s*India$/, '')
+  // Keep the street/locality and useful postal details, but avoid Nominatim's
+  // redundant county/taluka levels (for example, "Nagpur, Nagpur Urban Taluka, Nagpur").
+  const parts = [
+    a.amenity || a.leisure || a.shop || a.building,
+    a.house_number,
+    a.road,
+    a.neighbourhood || a.quarter,
+    a.suburb,
+    city,
+    state,
+    a.postcode,
+    a.country,
+  ].filter(Boolean)
+  const seen = new Set()
+  const full = parts.filter((part) => {
+    const key = part.trim().toLocaleLowerCase()
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  }).join(', ') || label
   return { label, area, city, state, full }
 }
 

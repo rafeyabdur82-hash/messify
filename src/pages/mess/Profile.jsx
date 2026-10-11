@@ -23,7 +23,7 @@ export default function Profile() {
     if (locationStatus !== 'ready' || !location) return
     setCoords({ lat: location.lat, lng: location.lon })
     if (location.full) setFullAddress(location.full)
-    if (location.area) setArea(location.area)
+    if (location.label) setArea(location.label)
   }, [locationStatus, location])
 
   useEffect(() => {
