@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../context/AuthContext.jsx'
 import PageLayout from '../../components/common/MessPage.jsx'
-import { Card, Button, Toast, Select, EmptyState } from '../../components/common/UI.jsx'
+import { Card, Button, Toast, Select, EmptyState, Input } from '../../components/common/UI.jsx'
 import { getMessSubscribers, getMessSkipsForDate, createRoute, getMessDeliveryPartners } from '../../firebase/firestore.js'
 import { planIncludesMeal } from '../../utils/messResolver.js'
+import { formatINR } from '../../constants.js'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../../firebase/config.js'
 
@@ -16,6 +17,7 @@ export default function MessOrders() {
   const [students, setStudents] = useState({})
   const [partners, setPartners] = useState([])
   const [toast, setToast] = useState('')
+  const [routeSaving, setRouteSaving] = useState(false)
   const [routeBuilder, setRouteBuilder] = useState(null) // { meal, stops, partnerId }
 
   useEffect(() => { load() }, [currentUser])
@@ -53,7 +55,7 @@ export default function MessOrders() {
         status: 'pending',
       }
     })
-    setRouteBuilder({ meal, stops, partnerId: partners[0]?.partnerId || '' })
+    setRouteBuilder({ meal, stops, partnerId: partners[0]?.partnerId || '', tipAmount: '' })
   }
 
   function moveStop(index, direction) {
@@ -67,14 +69,24 @@ export default function MessOrders() {
   }
 
   async function confirmRoute() {
+    if (routeSaving) return
     const partner = partners.find((p) => p.partnerId === routeBuilder.partnerId)
     const deliveryPersonId = routeBuilder.partnerId || 'unassigned'
     const stops = routeBuilder.stops
     const messLocation = profile?.lat != null && profile?.lng != null ? { lat: profile.lat, lng: profile.lng, label: profile.messName || profile.name || 'Mess' } : null
-    await createRoute(currentUser.uid, deliveryPersonId, todayStr(), routeBuilder.meal, stops, messLocation)
-    setToast(`${routeBuilder.meal === 'lunch' ? 'Lunch' : 'Dinner'} route created — ${stops.length} stops${partner ? ` · assigned to ${partner.name}` : ''}`)
-    setTimeout(() => setToast(''), 3500)
-    setRouteBuilder(null)
+    const tipAmount = Number(routeBuilder.tipAmount) || 0
+    setRouteSaving(true)
+    try {
+      await createRoute(currentUser.uid, deliveryPersonId, todayStr(), routeBuilder.meal, stops, messLocation, tipAmount, profile?.messName)
+      setToast(`${routeBuilder.meal === 'lunch' ? 'Lunch' : 'Dinner'} route created — ${stops.length} stops${partner ? ` · assigned to ${partner.name}` : ''}${tipAmount > 0 ? ` · ${formatINR(tipAmount)} tip credited` : ''}`)
+      setTimeout(() => setToast(''), 3500)
+      setRouteBuilder(null)
+    } catch (error) {
+      setToast(error.message || 'Could not create the delivery route.')
+      setTimeout(() => setToast(''), 4000)
+    } finally {
+      setRouteSaving(false)
+    }
   }
 
   const lunchCount = subs.filter((s) => s.status === 'active' && planIncludesMeal(s.plan, 'lunch') && !isSkippedToday(s.studentId, 'lunch')).length
@@ -112,6 +124,21 @@ export default function MessOrders() {
               </div>
             )}
 
+            <div className="mb-4">
+              <Input
+                label="Delivery tip (optional, ₹)"
+                type="number"
+                min="0"
+                step="0.01"
+                value={routeBuilder.tipAmount}
+                disabled={partners.length === 0}
+                onChange={(e) => setRouteBuilder((prev) => ({ ...prev, tipAmount: e.target.value }))}
+                placeholder="0.00"
+              />
+              <p className="text-xs text-charcoal-soft mt-1">This amount is added to the selected delivery partner’s in-app earnings and shown in their payment history.</p>
+              {Number(routeBuilder.tipAmount) > 0 && !routeBuilder.partnerId && <p className="text-xs text-danger mt-1">Select a delivery partner to add a tip.</p>}
+            </div>
+
             <div className="flex flex-col gap-2 mb-5">
               {routeBuilder.stops.map((stop, i) => (
                 <div key={stop.studentId} className="flex items-center gap-3 p-3 border border-sooji rounded-xl">
@@ -129,8 +156,8 @@ export default function MessOrders() {
             </div>
 
             <div className="flex gap-3">
-              <Button full onClick={confirmRoute}>Confirm Route</Button>
-              <Button variant="outline" onClick={() => setRouteBuilder(null)}>Cancel</Button>
+              <Button full onClick={confirmRoute} disabled={routeSaving || (Number(routeBuilder.tipAmount) > 0 && !routeBuilder.partnerId)}>{routeSaving ? 'Creating…' : 'Confirm Route'}</Button>
+              <Button variant="outline" onClick={() => setRouteBuilder(null)} disabled={routeSaving}>Cancel</Button>
             </div>
           </div>
         </div>

@@ -105,6 +105,24 @@ service cloud.firestore {
         (resource.data.deliveryPersonId == request.auth.uid || resource.data.messId == request.auth.uid || isAdmin());
     }
 
+    // ---------- delivery partner tips / in-app earnings ----------
+    // One immutable credit per route. Creation must be part of the same batch
+    // as a route owned by this mess and assigned to the named delivery partner.
+    match /deliveryPayments/{paymentId} {
+      allow read: if isSignedIn() && (
+        resource.data.deliveryPersonId == request.auth.uid ||
+        resource.data.messId == request.auth.uid || isAdmin()
+      );
+      allow create: if isSignedIn() && myRole() == 'mess' &&
+        request.resource.data.messId == request.auth.uid &&
+        request.resource.data.routeId == paymentId &&
+        request.resource.data.amount is number && request.resource.data.amount > 0 &&
+        getAfter(/databases/$(database)/documents/routes/$(paymentId)).data.messId == request.auth.uid &&
+        getAfter(/databases/$(database)/documents/routes/$(paymentId)).data.deliveryPersonId == request.resource.data.deliveryPersonId &&
+        getAfter(/databases/$(database)/documents/routes/$(paymentId)).data.tipAmount == request.resource.data.amount;
+      allow update, delete: if false;
+    }
+
     // ---------- tiffin box QR tracking ----------
     match /tiffinBoxes/{boxId} {
       allow read: if isSignedIn();

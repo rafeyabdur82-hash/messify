@@ -12,7 +12,7 @@
 
 import {
   collection, doc, getDoc, getDocs, setDoc, addDoc, updateDoc, deleteDoc,
-  query, where, orderBy, serverTimestamp, onSnapshot, limit, arrayUnion, deleteField,
+  query, where, orderBy, serverTimestamp, onSnapshot, limit, arrayUnion, deleteField, writeBatch,
 } from 'firebase/firestore'
 import { db } from './config'
 
@@ -171,13 +171,40 @@ export async function respondToCustomRequest(requestId, status) {
 }
 
 // ---------- Routes / Delivery tracking (lightweight) ----------
-export async function createRoute(messId, deliveryPersonId, date, meal, stops, messLocation = null) {
-  return addDoc(collection(db, 'routes'), {
-    messId, deliveryPersonId, date, meal, stops, ...(messLocation ? { messLocation } : {}),
+// Route and optional delivery tip are written atomically so an assigned tip
+// can never be recorded without its route (or vice versa).
+export async function createRoute(messId, deliveryPersonId, date, meal, stops, messLocation = null, tipAmount = 0, messName = '') {
+  const amount = Number(tipAmount)
+  if (!Number.isFinite(amount) || amount < 0) throw new Error('Tip amount must be zero or greater.')
+  if (amount > 0 && (!deliveryPersonId || deliveryPersonId === 'unassigned')) {
+    throw new Error('Assign a delivery partner before adding a tip.')
+  }
+
+  const batch = writeBatch(db)
+  const routeRef = doc(collection(db, 'routes'))
+  batch.set(routeRef, {
+    messId, deliveryPersonId, date, meal, stops, tipAmount: amount, ...(messLocation ? { messLocation } : {}),
     studentIds: [...new Set(stops.map((st) => st.studentId))], // lets each student read only their own routes
     currentStopIndex: 0,
     status: 'not_started', createdAt: serverTimestamp(),
   })
+  if (amount > 0) {
+    batch.set(doc(db, 'deliveryPayments', routeRef.id), {
+      routeId: routeRef.id,
+      messId,
+      messName: messName || 'Mess',
+      deliveryPersonId,
+      date,
+      meal,
+      stopCount: stops.length,
+      amount,
+      type: 'route_tip',
+      status: 'credited',
+      paidAt: serverTimestamp(),
+    })
+  }
+  await batch.commit()
+  return { id: routeRef.id }
 }
 
 export function listenRoute(routeId, callback) {
@@ -247,6 +274,14 @@ export async function getDeliveryHistory(deliveryPersonId) {
   const q = query(collection(db, 'routes'), where('deliveryPersonId', '==', deliveryPersonId))
   const snap = await getDocs(q)
   return snap.docs.map((d) => ({ id: d.id, ...d.data() })).sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+}
+
+// Tip credits for a delivery partner; used to derive their in-app earnings balance.
+export async function getDeliveryPayments(deliveryPersonId) {
+  const q = query(collection(db, 'deliveryPayments'), where('deliveryPersonId', '==', deliveryPersonId))
+  const snap = await getDocs(q)
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }))
+    .sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b.paidAt?.seconds || 0) - (a.paidAt?.seconds || 0))
 }
 
 export async function getUserProfile(uid) {

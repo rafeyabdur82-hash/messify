@@ -30,6 +30,7 @@ import DeliveryPartners from './pages/mess/DeliveryPartners.jsx'
 import DeliveryDashboard from './pages/delivery/DeliveryDashboard.jsx'
 import RouteView from './pages/delivery/RouteView.jsx'
 import DeliveryHistory from './pages/delivery/DeliveryHistory.jsx'
+import EarningsHistory from './pages/delivery/EarningsHistory.jsx'
 import ScanQR from './pages/delivery/ScanQR.jsx'
 import DeliveryProfile from './pages/delivery/Profile.jsx'
 
@@ -138,6 +139,9 @@ export default function App() {
         } />
         <Route path="/delivery/history" element={
           <ProtectedRoute allowedRoles={['delivery']}><DeliveryHistory /></ProtectedRoute>
+        } />
+        <Route path="/delivery/earnings" element={
+          <ProtectedRoute allowedRoles={['delivery']}><EarningsHistory /></ProtectedRoute>
         } />
         <Route path="/delivery/scan" element={
           <ProtectedRoute allowedRoles={['delivery']}><ScanQR /></ProtectedRoute>
