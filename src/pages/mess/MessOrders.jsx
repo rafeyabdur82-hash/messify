@@ -45,6 +45,7 @@ export default function MessOrders() {
       const hasProfileGps = studentProfile.lat != null && studentProfile.lng != null
       const point = hasOrderGps ? { lat: s.deliveryLat, lng: s.deliveryLng } : hasProfileGps ? { lat: studentProfile.lat, lng: studentProfile.lng } : { lat: null, lng: null }
       return {
+        subscriptionId: s.id,
         studentId: s.studentId,
         name: s.deliveryName || studentProfile.name || 'Student',
         phone: s.deliveryPhone || studentProfile.phone || '',
@@ -53,9 +54,24 @@ export default function MessOrders() {
         dietaryNote: s.dietaryNote || '',
         ...point,
         status: 'pending',
+        selected: true,
       }
     })
     setRouteBuilder({ meal, stops, partnerId: partners[0]?.partnerId || '', tipAmount: '' })
+  }
+
+  function toggleStop(subscriptionId) {
+    setRouteBuilder((prev) => ({
+      ...prev,
+      stops: prev.stops.map((stop) => stop.subscriptionId === subscriptionId ? { ...stop, selected: !stop.selected } : stop),
+    }))
+  }
+
+  function toggleAllStops(selected) {
+    setRouteBuilder((prev) => ({
+      ...prev,
+      stops: prev.stops.map((stop) => ({ ...stop, selected })),
+    }))
   }
 
   function moveStop(index, direction) {
@@ -73,6 +89,9 @@ export default function MessOrders() {
     const partner = partners.find((p) => p.partnerId === routeBuilder.partnerId)
     const deliveryPersonId = routeBuilder.partnerId || 'unassigned'
     const stops = routeBuilder.stops
+      .filter((stop) => stop.selected)
+      .map(({ selected, subscriptionId, ...stop }) => stop)
+    if (stops.length === 0) return
     const messLocation = profile?.lat != null && profile?.lng != null ? { lat: profile.lat, lng: profile.lng, label: profile.messName || profile.name || 'Mess' } : null
     const tipAmount = Number(routeBuilder.tipAmount) || 0
     setRouteSaving(true)
@@ -111,7 +130,7 @@ export default function MessOrders() {
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setRouteBuilder(null)}>
           <div className="bg-white rounded-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto p-6" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-xl mb-1 capitalize">{routeBuilder.meal} Route</h3>
-            <p className="text-charcoal-soft text-sm mb-4">Choose a delivery partner and set the stop order.</p>
+            <p className="text-charcoal-soft text-sm mb-4">Choose which students to include, then set the stop order.</p>
 
             {partners.length === 0 ? (
               <p className="text-xs text-charcoal-soft bg-dahi p-3 rounded-lg mb-4">No delivery partners linked yet — this route will be created unassigned. Link a partner from the Delivery page to assign it.</p>
@@ -139,24 +158,46 @@ export default function MessOrders() {
               {Number(routeBuilder.tipAmount) > 0 && !routeBuilder.partnerId && <p className="text-xs text-danger mt-1">Select a delivery partner to add a tip.</p>}
             </div>
 
+            <div className="flex items-center justify-between gap-3 mb-2">
+              <p className="text-xs text-charcoal-soft">
+                {routeBuilder.stops.filter((stop) => stop.selected).length} of {routeBuilder.stops.length} students selected
+              </p>
+              <button type="button" onClick={() => toggleAllStops(routeBuilder.stops.some((stop) => !stop.selected))} className="text-xs font-semibold text-masala">
+                {routeBuilder.stops.every((stop) => stop.selected) ? 'Deselect all' : 'Select all'}
+              </button>
+            </div>
+
             <div className="flex flex-col gap-2 mb-5">
-              {routeBuilder.stops.map((stop, i) => (
-                <div key={stop.studentId} className="flex items-center gap-3 p-3 border border-sooji rounded-xl">
-                  <span className="w-7 h-7 grid place-items-center bg-sooji rounded-full font-mono text-xs font-bold flex-shrink-0">{i + 1}</span>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold truncate">{stop.name}</div>
-                    <div className="text-xs text-charcoal-soft truncate">{stop.address}</div>
-                  </div>
-                  <div className="flex flex-col gap-1 flex-shrink-0">
-                    <button type="button" onClick={() => moveStop(i, -1)} disabled={i === 0} className="w-6 h-6 grid place-items-center rounded bg-dahi disabled:opacity-30 text-xs">▲</button>
-                    <button type="button" onClick={() => moveStop(i, 1)} disabled={i === routeBuilder.stops.length - 1} className="w-6 h-6 grid place-items-center rounded bg-dahi disabled:opacity-30 text-xs">▼</button>
-                  </div>
-                </div>
-              ))}
+              {(() => {
+                let routePosition = 0
+                return routeBuilder.stops.map((stop, i) => {
+                  const position = stop.selected ? ++routePosition : null
+                  return (
+                    <div key={stop.subscriptionId} className={`flex items-center gap-3 p-3 border border-sooji rounded-xl ${stop.selected ? '' : 'opacity-60'}`}>
+                      <input
+                        type="checkbox"
+                        checked={stop.selected}
+                        onChange={() => toggleStop(stop.subscriptionId)}
+                        aria-label={`Include ${stop.name} in this route`}
+                        className="w-4 h-4 accent-[#8B2635] flex-shrink-0"
+                      />
+                      <span className="w-7 h-7 grid place-items-center bg-sooji rounded-full font-mono text-xs font-bold flex-shrink-0">{position || '—'}</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-semibold truncate">{stop.name}</div>
+                        <div className="text-xs text-charcoal-soft truncate">{stop.address}</div>
+                      </div>
+                      <div className="flex flex-col gap-1 flex-shrink-0">
+                        <button type="button" onClick={() => moveStop(i, -1)} disabled={i === 0} aria-label={`Move ${stop.name} up`} className="w-6 h-6 grid place-items-center rounded bg-dahi disabled:opacity-30 text-xs">▲</button>
+                        <button type="button" onClick={() => moveStop(i, 1)} disabled={i === routeBuilder.stops.length - 1} aria-label={`Move ${stop.name} down`} className="w-6 h-6 grid place-items-center rounded bg-dahi disabled:opacity-30 text-xs">▼</button>
+                      </div>
+                    </div>
+                  )
+                })
+              })()}
             </div>
 
             <div className="flex gap-3">
-              <Button full onClick={confirmRoute} disabled={routeSaving || (Number(routeBuilder.tipAmount) > 0 && !routeBuilder.partnerId)}>{routeSaving ? 'Creating…' : 'Confirm Route'}</Button>
+              <Button full onClick={confirmRoute} disabled={routeSaving || !routeBuilder.stops.some((stop) => stop.selected) || (Number(routeBuilder.tipAmount) > 0 && !routeBuilder.partnerId)}>{routeSaving ? 'Creating…' : 'Confirm Route'}</Button>
               <Button variant="outline" onClick={() => setRouteBuilder(null)} disabled={routeSaving}>Cancel</Button>
             </div>
           </div>
